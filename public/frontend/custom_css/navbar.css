@@ -98,6 +98,20 @@ a{text-decoration: none;}
     }
 }
 
+
+.pc-nvbar ul li:last-child a {
+    background-color: #fff;
+    color: #1dbf73;
+    border: 1px solid #1dbf73;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+.pc-nvbar ul li:last-child a:hover{
+    background-color: #1dbf73;
+    color: #fff;
+}
+
+
 #offcanvasExample {
     width: 280px; 
     height: 100vh;
