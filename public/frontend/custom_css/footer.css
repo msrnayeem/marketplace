@@ -1,0 +1,83 @@
+/* footer-top start  */
+.footer-top{
+    padding: 50px 0px;
+    border-bottom: 1px solid rgb(216, 216, 216);
+}   
+.f-t-left{
+
+}
+.f-t-right{
+
+}
+.f-r-box{
+    
+}
+.f-r-box h4{
+    margin-left: 32px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.f-r-box ul{
+
+}
+.f-r-box ul li{
+    list-style: none;
+}
+.f-r-box ul li a{
+    text-decoration: none;
+    color: #999;
+    display: inline-block;
+    padding: 5px 0px;
+}
+.f-r-box ul li a:hover{
+    text-decoration: underline;
+}
+.f-r-box ul li a small{
+    font-size: 12px;
+}
+/* footer-bottom start  */
+.footer-bottom{
+    padding: 20px 0px;
+}
+.f-b-left{
+
+}
+.f-b-left span{
+    font-size: 25px;
+    font-weight: 800;
+    color: #444;
+    margin-right: 20px;
+}
+.f-b-left p{
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    margin-left: 33px
+}
+.f-b-right{
+    margin-top: 10px;
+}
+.f-b-right ul{
+    text-align: right;
+    margin: 0;
+}
+.f-b-right ul li{
+    display: inline-block;
+}
+.f-b-right ul li a{
+    text-decoration: none;
+    color: #666;
+    display: inline-block;
+    padding: 0px 20px;
+    font-weight: 700;
+}
+.f-b-right ul li a:hover{
+    color: #999;
+}
+.f-b-right ul li a i{
+    font-size: 20px;
+}
+.f-b-right ul li a span{
+    margin-right: 5px;
+}

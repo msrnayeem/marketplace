@@ -1,0 +1,238 @@
+.navbar-brand img{
+    width: 120px;
+}
+.text-success{
+    color: #1dbf73 !important;
+}
+.text-success-hover:hover{
+    color: #1dbf73 !important;
+}
+a{text-decoration: none;}
+.nav-link-i{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #74767e;
+    display: block;
+    text-align: center;
+    line-height: 44px;
+}
+.nav-link-i:hover{
+    background-color: #F6F6F6;
+    color: #74767e;
+}
+.nav-link-i i{
+    width: 100%;
+    height: 100%;
+    font-size: 22px;
+}
+.fa-circle{
+    width: auto !important;
+    height: auto !important;
+    font-size: 8px !important;
+    color: #e60c0c;
+    right: 3px;
+}
+
+.pro-pic-wrapper{
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+.dropdown-item{
+    color: #74767e;
+}
+.fw-500{
+    font-weight: 500;
+}
+
+.hover-dropdown-wrapper{
+    position: relative;
+    
+}
+.hover-dropdown-btn{
+    border-bottom: 3px solid #2ff12e00;
+    text-wrap: nowrap;
+}
+.hover-dropdown{
+    position: absolute;
+    width: 800px;
+    transition: 0.1s;
+    transform-origin: top;
+    transform: scaleY(0);
+    background-color: #fff;
+}
+.hover-dropdown ul{
+    list-style: none;
+}
+.hover-dropdown-wrapper:hover .hover-dropdown-btn{
+    border-bottom: 3px solid #1dbf73;
+}
+.hover-dropdown-wrapper:hover .hover-dropdown{
+    transform: scaleY(1);
+}
+
+@media screen and (max-width: 991px) and (min-width: 767px){
+    .nav-brand-wrapper{
+        width: 25%;
+    }
+    .mobile-navbar{
+        width: 75%;
+    }
+    .mobile-navbar form{
+        width: 75%;
+    }
+}
+@media screen and (max-width: 767px){
+    .mobile-navbar{
+        width: 100%;
+        padding: 0 !important;
+        margin-bottom: 5px;
+    }
+    .mobile-navbar form{
+        width: 100%;
+    }
+    .pro-pic-wrapper{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+#offcanvasExample {
+    width: 280px; 
+    height: 100vh;
+    background-color: #fff;
+}
+.offcanvas-body {
+    height: inherit;
+    width:inherit;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: 0.5s;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* Hide the scrollbar thumb and scroll icon for the vertical scrollbar */
+.offcanvas-body::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.offcanvas-body::-webkit-scrollbar-thumb:hover {
+    background: transparent; /* Optional: Handle thumb hover state */
+}
+.joinn{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+    background-color: green;
+    display: inline-block;
+    width: auto;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+#offcanvasExample nav ul {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#offcanvasExample nav ul li {
+    position: relative;
+    width: 100%;
+    display: block;
+    list-style: none;
+}
+
+#offcanvasExample nav ul li a {
+    position: relative;
+    display: block;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+#offcanvasExample nav ul li a:hover {
+    background-color: #c94242;
+    color: white;
+}
+.panel{          
+    width: 90%;
+    margin-left: 20px;
+    transition: 0.5s;
+    overflow: hidden;
+    display: none;
+}
+small{
+    color: white;
+    float: right;
+    font-size: 20px;
+}
+.nav-link{
+    color: #62646a;
+}
+.nav-link:hover,.nav-link:focus{
+    color: #222325;
+}
+.accordion-icon::after {
+    content: "▼";
+   
+    transition: 0.5s;
+    color: #62646a;
+}
+@media (min-width: 400px) {
+    .accordion-icon::after {
+        margin-left: 5px;
+    }
+  }
+.accordion-icon.open::after {
+content: "▲"; 
+transition: 0.5s;
+color: #62646a;
+}
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+#menu_icon{
+    cursor: pointer;
+    display: block;
+}
+.bottom_nav_section {
+list-style-type: none;
+padding: 0;
+}
+
+.bottom_nav_section .nav-item {
+display: block;
+margin-bottom: 10px; /* Adjust as needed */
+}
+
+.bottom_nav_section .nav-item .nav-link {
+text-decoration: none;
+color: rgb(234, 217, 217);
+}
+
+
+@media (max-width: 400px) {
+#menu_icon {
+    display: block;
+}
+#offcanvasExample{
+    width: 210px;
+}
+.offcanvas-body{
+    width: inherit;
+}
+}
+
+
