@@ -1,6 +1,9 @@
 .navbar-brand img{
     width: 120px;
 }
+#searchBtn{
+    margin-left: 10px;
+}
 .text-success{
     color: #1dbf73 !important;
 }
