@@ -4,6 +4,18 @@
 #searchBtn{
     margin-left: 10px;
 }
+.pc-nvbar ul li:last-child a {
+    background-color: #fff;
+    color: #1dbf73;
+    border: 1px solid #1dbf73;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+.pc-nvbar ul li:last-child a:hover{
+    background-color: #1dbf73;
+    color: #fff;
+}
+
 .text-success{
     color: #1dbf73 !important;
 }
@@ -59,7 +71,7 @@ a{text-decoration: none;}
 }
 .hover-dropdown{
     position: absolute;
-    width: 800px;
+    width: 850px;
     transition: 0.1s;
     transform-origin: top;
     transform: scaleY(0);
@@ -102,17 +114,7 @@ a{text-decoration: none;}
 }
 
 
-.pc-nvbar ul li:last-child a {
-    background-color: #fff;
-    color: #1dbf73;
-    border: 1px solid #1dbf73;
-    padding: 5px 20px;
-    border-radius: 5px;
-}
-.pc-nvbar ul li:last-child a:hover{
-    background-color: #1dbf73;
-    color: #fff;
-}
+
 
 
 #offcanvasExample {
