@@ -47,26 +47,24 @@
     @endfor
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    $(document).ready(function() {
         // Get all the toggle-collapse buttons
-        var toggleButtons = document.querySelectorAll(".toggle-collapse");
+        var toggleButtons = $(".toggle-collapse");
 
-        toggleButtons.forEach(function(button, index) {
+        toggleButtons.each(function(index) {
             // Add a click event listener to each button
-            button.addEventListener("click", function() {
+            $(this).on("click", function() {
                 // Find the next sibling div with class "collapse"
-                var collapseDiv = this.nextElementSibling;
+                var collapseDiv = $(this).next(".collapse");
 
                 // Toggle the "show" class on the collapse div to open/close it
-                collapseDiv.classList.toggle("show");
+                collapseDiv.toggleClass("show");
 
-                var icon = this.querySelector("i");
-                if (icon.classList.contains("fa-chevron-down")) {
-                    icon.classList.remove("fa-chevron-down");
-                    icon.classList.add("fa-chevron-up");
+                var icon = $(this).find("i");
+                if (icon.hasClass("fa-chevron-down")) {
+                    icon.removeClass("fa-chevron-down").addClass("fa-chevron-up");
                 } else {
-                    icon.classList.remove("fa-chevron-up");
-                    icon.classList.add("fa-chevron-down");
+                    icon.removeClass("fa-chevron-up").addClass("fa-chevron-down");
                 }
             });
         });
