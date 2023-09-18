@@ -55,21 +55,21 @@
     <!-- Content for desktop screens (hidden on small screens) -->
     <div class="d-none d-md-block mt-4">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-            @for ($i = 0; $i < 7; $i++)
+            @foreach ($category->subCategories as $subcategory)
                 <div class="col">
                     <div class="card mt-4" style="width: 18rem;">
                         <img src="{{ asset('image.png') }}" class="card-img-top" alt="..." width="288">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">{{$subcategory->name}}</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
+                            @foreach($subcategory->subSubCategories as $subSubCategory)
+                                <li class="list-group-item">{{ $subSubCategory->name }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 </div>
