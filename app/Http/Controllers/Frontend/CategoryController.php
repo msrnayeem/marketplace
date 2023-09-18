@@ -37,9 +37,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(string $key)
     {
-        //
+        $category = Category::where('key', $key)->first();
+        if ($category == null) {
+            abort(404);
+        }
+        return view('frontend.pages.category', compact('category'));
     }
 
     /**

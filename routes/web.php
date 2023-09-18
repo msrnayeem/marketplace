@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
@@ -30,11 +31,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-
-//FRONTEND ROUTES
-Route::get('/', [IndexController::class, 'index'])->name('home');
-
-//Auth REG ROUTE
 //FOR GOOGLE AUTH
 Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('google.callback');
@@ -42,3 +38,9 @@ Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleC
 //FOR FACEBOOK AUTH
 Route::get('/auth/facebook/redirect', [SocialAuthController::class, 'redirectToFacebook'])->name('facebook.redirect');
 Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback'])->name('facebook.callback');
+
+//FRONTEND ROUTES
+Route::get('/', [IndexController::class, 'index'])->name('home');
+
+//Category resource route
+Route::resource('categories', CategoryController::class);

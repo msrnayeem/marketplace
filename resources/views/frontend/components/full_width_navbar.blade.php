@@ -2,7 +2,7 @@
     <div class="container">
         <ul class="navbar-nav flex-row gap-1 d-none d-lg-flex">
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Graphics & Design</a>
+                <a href="{{ route('categories.show', ['category' => 'graphics-design']) }}" class="hover-dropdown-btn nav-link fw-500">Graphics & Design</a>
                 <div class="hover-dropdown row shadow rounded p-3">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Logo & Brand Identity</li>
@@ -39,7 +39,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Programming & Tech</a>
+                <a href="{{ route('categories.show', ['category' => 'programming-tech']) }}" class="hover-dropdown-btn nav-link fw-500">Programming & Tech</a>
                 <div class="hover-dropdown row shadow rounded p-3">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Website Development</li>
@@ -72,7 +72,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Digital Marketing</a>
+                <a href="{{ route('categories.show', ['category' => 'digital-marketing']) }}" class="hover-dropdown-btn nav-link fw-500">Digital Marketing</a>
                 <div class="hover-dropdown row shadow rounded p-3">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Search</li>
@@ -103,7 +103,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Video & Animation</a>
+                <a href="{{ route('categories.show', ['category' => 'video-animation']) }}" class="hover-dropdown-btn nav-link fw-500">Video & Animation</a>
                 <div class="hover-dropdown row shadow rounded p-3">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Editing & Post-Production</li>
@@ -135,7 +135,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Writing & Translation</a>
+                <a href="{{ route('categories.show', ['category' => 'writing-translation']) }}" class="hover-dropdown-btn nav-link fw-500">Writing & Translation</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Content Writing</li>
@@ -181,7 +181,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Music & Audio</a>
+                <a href="{{ route('categories.show', ['category' => 'music-audio']) }}" class="hover-dropdown-btn nav-link fw-500">Music & Audio</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Music Production & Writing</li>
@@ -217,7 +217,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Business</a>
+                <a href="{{ route('categories.show', ['category' => 'music-audio']) }}" class="hover-dropdown-btn nav-link fw-500">Business</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Business Formation</li>
@@ -265,7 +265,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Data</a>
+                <a href="{{ route('categories.show', ['category' => 'data']) }}" class="hover-dropdown-btn nav-link fw-500">Data</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Data Science & ML</li>
@@ -300,7 +300,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">Photography</a>
+                <a href="{{ route('categories.show', ['category' => 'photography']) }}" class="hover-dropdown-btn nav-link fw-500">Photography</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Product</li>
@@ -326,7 +326,7 @@
                 </div>
             </li>
             <li class="nav-item hover-dropdown-wrapper">
-                <a href="" class="hover-dropdown-btn nav-link fw-500">AI Services</a>
+                <a href="{{ route('categories.show', ['category' => 'ai-services']) }}" class="hover-dropdown-btn nav-link fw-500">AI Services</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">AI Development</li>
