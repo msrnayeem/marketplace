@@ -20,6 +20,8 @@
     </div>
 </div>
 <!-- top banner end -->
+
+<!-- for mobile screen -->
 <div class="container d-md-none">
     @for ($i = 0; $i < 7; $i++)
         <div class="card mt-2" style="width: 18rem;">
@@ -46,24 +48,47 @@
         </div>
     @endfor
 </div>
+<!-- end mobile screen -->
+
+<!-- for desktop screen -->
+<div class="container d-none d-sm-block mt-4">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-6">
+        @for ($i = 0; $i < 7; $i++)
+            <div class="col">
+                <div class="card mt-4" style="width: 18rem;">
+                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="..." width="288">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                    </ul>
+                </div>
+            </div>
+        @endfor
+    </div>
+</div>
+<!-- end desktop screen -->
+
 <script>
     $(document).ready(function() {
-        // Get all the toggle-collapse buttons
         var toggleButtons = $(".toggle-collapse");
 
         toggleButtons.each(function(index) {
-            // Add a click event listener to each button
+           
             $(this).on("click", function() {
-                // Find the next sibling div with class "collapse"
-                var collapseDiv = $(this).next(".collapse");
 
-                // Toggle the "show" class on the collapse div to open/close it
+                var collapseDiv = $(this).next(".collapse");
                 collapseDiv.toggleClass("show");
 
                 var icon = $(this).find("i");
-                if (icon.hasClass("fa-chevron-down")) {
+                if (icon.hasClass("fa-chevron-down")) 
+                {
                     icon.removeClass("fa-chevron-down").addClass("fa-chevron-up");
-                } else {
+                } 
+                else {
                     icon.removeClass("fa-chevron-up").addClass("fa-chevron-down");
                 }
             });
