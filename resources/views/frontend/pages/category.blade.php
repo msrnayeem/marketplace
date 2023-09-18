@@ -25,15 +25,15 @@
     <!-- Content for mobile screens (hidden on medium and larger screens) -->
     <div class="d-md-none text-center">
         <div class="container">
-        @for ($i = 0; $i < 7; $i++)
+        @foreach ($category->subCategories as $subcategory)
             <div class="card mt-4" style="width: 18rem;">
                 <button class="btn toggle-collapse" type="button" style="height:70px;">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-auto">
                             <img src="{{ asset('frontend/images/brand.png') }}" alt="Icon" class="img-fluid" style="max-width: 80px; max-height: 54;">
                         </div>
-                        <div class="col-auto">
-                            Category Name
+                        <div class="col-auto text-center">
+                             <p class="d-flex" style="cursor:default; font-size:11px; font-weight:bold;">{{$subcategory->name}}</p>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-chevron-down"></i>
@@ -42,13 +42,17 @@
                 </button>       
                 <div class="collapse">
                     <ul class="list-group">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+                         @if($subcategory->subSubCategories->count() > 0)
+                            @foreach($subcategory->subSubCategories as $subSubCategory)
+                                <li class="list-group-item">{{ $subSubCategory->name }}</li>
+                            @endforeach
+                        @else
+                            <li class="list-group-item">No subcategories</li>
+                        @endif
                     </ul>            
                 </div>
             </div>
-        @endfor
+            @endforeach
         </div>
     </div>
     
@@ -60,12 +64,16 @@
                     <div class="card mt-4" style="width: 18rem;">
                         <img src="{{ asset('image.png') }}" class="card-img-top" alt="..." width="288">
                         <div class="card-body">
-                            <h5 class="card-title">{{$subcategory->name}}</h5>
+                            <h5 class="card-title" style="cursor:default;">{{$subcategory->name}}</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            @foreach($subcategory->subSubCategories as $subSubCategory)
-                                <li class="list-group-item">{{ $subSubCategory->name }}</li>
-                            @endforeach
+                            @if($subcategory->subSubCategories->count() > 0)
+                                @foreach($subcategory->subSubCategories as $subSubCategory)
+                                    <li class="list-group-item">{{ $subSubCategory->name }}</li>
+                                @endforeach
+                            @else
+                                <li class="list-group-item">No subcategories</li>
+                            @endif
                         </ul>
                     </div>
                 </div>
