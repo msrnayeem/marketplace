@@ -54,3 +54,21 @@
         padding: 10px;
     }
 }
+
+.list-group-item a{
+    text-decoration: none;
+    color: #000;
+}
+.list-group-item i {
+    float:right;
+    visibility: hidden;
+    transition: visibility 0.05s ease-in-out; 
+}
+
+.list-group-item:hover i {
+    visibility: visible;
+}
+.list-group-item:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer; 
+}

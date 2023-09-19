@@ -1,10 +1,10 @@
 @extends('frontend.layouts.frontend')
      
-@section('title', 'Fiverr - Freelance Marketplace')
+@section('title', 'Fiverr - {{ $category->name }}')
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/category.css') }}">
-    
+
 @endpush
  
 @section('content')
@@ -76,7 +76,10 @@
                         <ul class="list-group list-group-flush" >
                             @if($subcategory->subSubCategories->count() > 0)
                                 @foreach($subcategory->subSubCategories as $subSubCategory)
-                                    <li class="list-group-item">{{ $subSubCategory->name }}</li>
+                                    <li class="list-group-item">
+                                        <a href="">{{ $subSubCategory->name }} </a> 
+                                        <i class="fas fa-chevron-right" id="right-arrow"></i>
+                                    </li>
                                 @endforeach
                             @else
                                 <li class="list-group-item">No subcategories</li>
