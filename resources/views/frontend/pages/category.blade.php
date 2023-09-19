@@ -1,6 +1,6 @@
 @extends('frontend.layouts.frontend')
      
-@section('title', 'Fiverr - {{ $category->name }}')
+@section('title', 'Miverr -'.$category->name)
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/category.css') }}">
@@ -10,55 +10,67 @@
 @section('content')
 
 <!-- top banner -->
-
-<div class="banner">
-    <img src="{{ asset($category->imagePath) }}" alt="digital marketing">
+<div class="container">
+<div class="CategoryBanner" style="margin-top: 150px; position: relative;">
+    <img src="{{ asset($category->imagePath) }}" alt="{{ $category->name }}">
     <div class="text-overlay">
-    {{ $category->name }}
-        <div class="subtext">
-        {{ $category->caption }}
+        <div class="overlay-content">
+            <h2>{{ $category->name }}</h2>
+            <p class="subtext">{{ $category->caption }}</p>
         </div>
     </div>
 </div>
+<div>
 <!-- top banner end -->
 
-<nav  style="--bs-breadcrumb-divider: '>'; margin-left:40px;" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('categories.show', ['category' => $category->key]) }}">{{ $category->name }}</a></li>
-  </ol>
-</nav>
+<div class="container mt-3">
+    <!-- Breadcrumbs container -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="custom-active" href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <a class="black" href="{{ route('categories.show', ['category' => $category->key]) }}">{{ $category->name }}</a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+
+
 <div class="container mt-2">
-    <!-- Content for mobile screens (hidden on medium and larger screens) -->
+    <h3 class="mt-4">Explore {{ $category->name }}</h3>
     <div class="d-md-none text-center">
         <div class="container">
-        @foreach ($category->subCategories as $subcategory)
-            <div class="card border-0 mt-4" style="width: 18rem; border:none;">
-                <button class="btn toggle-collapse" type="button" style="height:70px;">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-auto ">
-                            <img src="{{ asset('frontend/images/brand.png') }}" alt="Icon" class="img-fluid rounded-1" style="max-width: 80px; max-height: 54;">
+            @foreach ($category->subCategories as $subcategory)
+                <div class="card mt-2" style="border:none;">
+                    <button class="btn toggle-collapse" type="button" style="height:70px;">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <img src="{{ asset('frontend/images/brand.png') }}" alt="Icon" class="img-fluid rounded-1" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="col-6 text-center">
+                                <p style="cursor:default;">{{$subcategory->name}}</p>
+                            </div>
+                            <div class="col-2 text-right">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
                         </div>
-                        <div class="col-auto text-center">
-                             <p class="d-flex" style="cursor:default; font-size:11px; font-weight:bold;">{{$subcategory->name}}</p>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+                    </button>       
+                    <div class="collapse">
+                        <ul class="list-group mt-4 pl-4">
+                            @if($subcategory->subSubCategories->count() > 0)
+                                @foreach($subcategory->subSubCategories as $subSubCategory)
+                                    <li class="list-group-item" style="border: none; text-align: left;">
+                                        <a href="">{{ $subSubCategory->name }} </a> 
+                                        <i class="fas fa-chevron-right" id="right-arrow"></i>
+                                    </li>
+                                @endforeach
+                            @else
+                                <li class="list-group-item">No subcategories</li>
+                            @endif
+                        </ul>            
                     </div>
-                </button>       
-                <div class="collapse">
-                    <ul class="list-group list-group-flush">
-                         @if($subcategory->subSubCategories->count() > 0)
-                            @foreach($subcategory->subSubCategories as $subSubCategory)
-                                <li class="list-group-item">{{ $subSubCategory->name }}</li>
-                            @endforeach
-                        @else
-                            <li class="list-group-item">No subcategories</li>
-                        @endif
-                    </ul>            
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
@@ -68,15 +80,15 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
             @foreach ($category->subCategories as $subcategory)
                 <div class="col">
-                    <div class="card mt-4" style="width: 18rem;">
-                        <img src="{{ asset('image.png') }}" class="card-img-top" alt="..." width="288">
-                        <div class="card-body">
+                    <div class="card mt-2" style="width: 18rem; border:none;">
+                        <img src="{{ asset('image.png') }}" class="card-img-top rounded" alt="..." width="200">
+                        <div class="card-body mt-4">
                             <h5 class="card-title" style="cursor:default;">{{$subcategory->name}}</h5>
                         </div>
                         <ul class="list-group list-group-flush" >
                             @if($subcategory->subSubCategories->count() > 0)
                                 @foreach($subcategory->subSubCategories as $subSubCategory)
-                                    <li class="list-group-item">
+                                    <li class="list-group-item " style="border: none; text-align: left;">
                                         <a href="">{{ $subSubCategory->name }} </a> 
                                         <i class="fas fa-chevron-right" id="right-arrow"></i>
                                     </li>
@@ -88,6 +100,94 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+    </div>
+</div>
+
+<br><hr>
+<div class="container">
+    <div class="row">
+            <div class="col-md-6">
+                <h3>{{ $category->name }} Related Guides</h3>
+            </div>
+            <div class="col-md-6 text-md-end d-none d-md-block">
+                <a href="">{{ $category->name }} Guides</a>
+            </div>
+        </div>
+    <div class="d-none d-md-block">
+        
+        <div class="row">
+            <div class="col-md-4">
+                <!-- News Card 1 -->
+                <div class="card border-0">
+                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 1">
+                    <div class="card-body">
+                         <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- News Card 2 -->
+                <div class="card border-0">
+                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 2">
+                    <div class="card-body">
+                         <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- News Card 3 -->
+                <div class="card border-0">
+                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 3">
+                    <div class="card-body">
+                         <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Carousel for Mobile -->
+    <div class="d-block d-md-none">
+        <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <!-- News Card 1 -->
+                    <div class="card border-0">
+                        <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 1">
+                        <div class="card-body">
+                             <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <!-- News Card 1 -->
+                    <div class="card border-0">
+                        <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 1">
+                        <div class="card-body">
+                            <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <!-- News Card 1 -->
+                    <div class="card border-0">
+                        <img src="{{ asset('image.png') }}" class="card-img-top" alt="News 1">
+                        <div class="card-body">
+                             <a class="card-text" href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more carousel items for News Card 2, 3, and so on -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 </div>

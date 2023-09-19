@@ -1,16 +1,9 @@
-.banner {
+.CategoryBanner {
     position: relative;
-    display: inline-block;
-    max-width: 100%;
-    margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px 10px 10px 10px;
-}
-
-.banner img {
-    max-width: 100%;
-    height: auto;
+    text-align: center;
+    max-height: 271px;
+    border-radius: 5px;
+    overflow: hidden; /* Ensure that the overlay stays inside the container */
 }
 
 .text-overlay {
@@ -19,23 +12,32 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    font-size: 25px;
-    font-weight: bold;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 100%; /* Make sure the overlay doesn't exceed the container's width */
+    box-sizing: border-box; /* Include padding and border within max-width */
+    white-space: nowrap; /* Prevent text from breaking into multiple lines */
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
+}
+
+.overlay-content {
+    text-align: center;
 }
 
 .subtext {
-    font-family: 'Macan', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    font-size: 14px;
-    margin-top: 5px;
+    font-size: 16px;
 }
+
+.breadcrumb .black{
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.custom-active {
+    color: blue; /* Set the text color to blue */
+    font-weight: bold; /* Optionally make it bold */
+}
+
 
 @media only screen and (max-width: 600px) {
     .banner img {
