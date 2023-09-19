@@ -56,6 +56,7 @@ class SocialAuthController extends Controller
             ],
             [
                 'name' => $user->name,
+                'key' => Str::slug($user->name),
                 'google_id' => $user->id,
                 'password' => bcrypt($randomPassword),
                 'email_verified_at' => now(),
@@ -100,6 +101,7 @@ class SocialAuthController extends Controller
             ],
             [
                 'name' => $user->name,
+                'key' => Str::slug($user->name),
                 'facebook_id' => $user->id,
                 'password' => bcrypt($randomPassword),
                 'email_verified_at' => now(),

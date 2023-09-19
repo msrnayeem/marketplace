@@ -1,6 +1,7 @@
 <?php
+namespace App\Http\Controllers\Frontend;
 
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use App\Models\SubSubCategory;
 use App\Http\Requests\StoreSubSubCategoryRequest;

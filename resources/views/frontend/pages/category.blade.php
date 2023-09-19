@@ -11,7 +11,7 @@
 
 <!-- top banner -->
 <div class="container" style="cursor:default;">
-<div class="CategoryBanner" style="margin-top: 150px; position: relative;">
+<div class="CategoryBanner" >
     <img src="{{ asset($category->imagePath) }}" alt="{{ $category->name }}">
     <div class="text-overlay">
         <div class="overlay-content">
@@ -34,8 +34,6 @@
         </ol>
     </nav>
 </div>
-
-
 
 <div class="container mt-2">
     <h3 class="mt-4" style="cursor:default;">Explore {{ $category->name }}</h3>

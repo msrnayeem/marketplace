@@ -38,7 +38,9 @@
                                 </a>                            
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li class="arrowUp"></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Profile</a></li>
+                                    <li>
+                                        <a class="dropdown-item text-success-hover fw-bold" href="{{ route('user.profile') }}">Profile</a>
+                                    </li>
                                     <li><a class="dropdown-item text-success-hover fw-bold" href="#">Dashboard</a></li>
                                     <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
                                     <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
@@ -47,7 +49,12 @@
                                     <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">English</a></li>
                                     <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a></li>
                                     <li><a class="dropdown-item text-success-hover fw-bold border-bottom" href="#">Help & support</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Logout</a></li>
+                                    <li>
+                                        <form method="post" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="dropdown-item text-success-hover fw-bold" type="submit">Logout</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

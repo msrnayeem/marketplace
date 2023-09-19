@@ -23,13 +23,10 @@
 <body>
     @include('frontend.components.header')
 
-@yield('content')
+    @yield('content')
 
 
-
-
-
-@include('frontend.components.footer')
+    @include('frontend.components.footer')
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
