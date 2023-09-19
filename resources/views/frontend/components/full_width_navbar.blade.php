@@ -138,7 +138,7 @@
                 <a href="{{ route('categories.show', ['category' => 'writing-translation']) }}" class="hover-dropdown-btn nav-link fw-500">Writing & Translation</a>
                 <div class="hover-dropdown row shadow rounded p-3 end-0">
                     <ul class="col-3 mb-3">
-                        <li class="dorpdown-item fw-bold mb-2">cc</li>
+                        <li class="dorpdown-item fw-bold mb-2">Writingg</li>
                         <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Article & Blog Posts</a></li>
                         <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Website Content</a></li>
                         <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Creative Writing</a></li>
@@ -175,7 +175,6 @@
                     <ul class="col-3 mb-3">
                         <li class="dorpdown-item fw-bold mb-2">Miscellaneous</li>
                         <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Technical Writing</a></li>
-                        <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Grant Writing</a></li>
                         <li class="dorpdown-item fw-500"><a href="" class="nav-link px-0">Grant Writing</a></li>
                     </ul>
                 </div>

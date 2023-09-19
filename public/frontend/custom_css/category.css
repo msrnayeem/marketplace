@@ -1,8 +1,7 @@
-.banner{
+.banner {
     position: relative;
     display: inline-block;
     max-width: 100%;
-    
     margin-top: 10px;
     padding-left: 20px;
     padding-right: 20px;

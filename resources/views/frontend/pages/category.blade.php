@@ -4,33 +4,40 @@
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/category.css') }}">
+    
 @endpush
  
 @section('content')
 
-<!--  op banner -->
- <div class="banner" style="padding-left:90px; padding-right:90px; margin:0 auto;">
-    <img src="{{ asset($category->imagePath) }}" alt="{{$category->key}}">
-     <iv class="text-ovelay">
+<!-- top banner -->
+
+<div class="banner">
+    <img src="{{ asset($category->imagePath) }}" alt="digital marketing">
+    <div class="text-overlay">
     {{ $category->name }}
         <div class="subtext">
         {{ $category->caption }}
-
         </div>
     </div>
 </div>
 <!-- top banner end -->
 
+<nav  style="--bs-breadcrumb-divider: '>'; margin-left:40px;" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('categories.show', ['category' => $category->key]) }}">{{ $category->name }}</a></li>
+  </ol>
+</nav>
 <div class="container mt-2">
     <!-- Content for mobile screens (hidden on medium and larger screens) -->
     <div class="d-md-none text-center">
         <div class="container">
         @foreach ($category->subCategories as $subcategory)
-            <div class="card mt-4" style="width: 18rem;">
+            <div class="card border-0 mt-4" style="width: 18rem; border:none;">
                 <button class="btn toggle-collapse" type="button" style="height:70px;">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-auto">
-                            <img src="{{ asset('frontend/images/brand.png') }}" alt="Icon" class="img-fluid" style="max-width: 80px; max-height: 54;">
+                        <div class="col-auto ">
+                            <img src="{{ asset('frontend/images/brand.png') }}" alt="Icon" class="img-fluid rounded-1" style="max-width: 80px; max-height: 54;">
                         </div>
                         <div class="col-auto text-center">
                              <p class="d-flex" style="cursor:default; font-size:11px; font-weight:bold;">{{$subcategory->name}}</p>
@@ -41,7 +48,7 @@
                     </div>
                 </button>       
                 <div class="collapse">
-                    <ul class="list-group">
+                    <ul class="list-group list-group-flush">
                          @if($subcategory->subSubCategories->count() > 0)
                             @foreach($subcategory->subSubCategories as $subSubCategory)
                                 <li class="list-group-item">{{ $subSubCategory->name }}</li>
@@ -66,7 +73,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="cursor:default;">{{$subcategory->name}}</h5>
                         </div>
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group list-group-flush" >
                             @if($subcategory->subSubCategories->count() > 0)
                                 @foreach($subcategory->subSubCategories as $subSubCategory)
                                     <li class="list-group-item">{{ $subSubCategory->name }}</li>
