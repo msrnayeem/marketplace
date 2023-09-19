@@ -10,7 +10,7 @@
 @section('content')
 
 <!-- top banner -->
-<div class="container">
+<div class="container" style="cursor:default;">
 <div class="CategoryBanner" style="margin-top: 150px; position: relative;">
     <img src="{{ asset($category->imagePath) }}" alt="{{ $category->name }}">
     <div class="text-overlay">
@@ -23,7 +23,7 @@
 <div>
 <!-- top banner end -->
 
-<div class="container mt-3">
+<div class="container mt-4">
     <!-- Breadcrumbs container -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -38,7 +38,7 @@
 
 
 <div class="container mt-2">
-    <h3 class="mt-4">Explore {{ $category->name }}</h3>
+    <h3 class="mt-4" style="cursor:default;">Explore {{ $category->name }}</h3>
     <div class="d-md-none text-center">
         <div class="container">
             @foreach ($category->subCategories as $subcategory)
@@ -66,7 +66,7 @@
                                     </li>
                                 @endforeach
                             @else
-                                <li class="list-group-item">No subcategories</li>
+                                <li class="list-group-item" style="cursor:default;">No subcategories</li>
                             @endif
                         </ul>            
                     </div>
@@ -94,7 +94,7 @@
                                     </li>
                                 @endforeach
                             @else
-                                <li class="list-group-item">No subcategories</li>
+                                <li class="list-group-item" style="cursor:default;">No subcategories</li>
                             @endif
                         </ul>
                     </div>
@@ -104,8 +104,7 @@
     </div>
 </div>
 
-<br><hr>
-<div class="container">
+<div class="container mt-4" style="cursor:default;">
     <div class="row">
             <div class="col-md-6">
                 <h3>{{ $category->name }} Related Guides</h3>
@@ -113,10 +112,9 @@
             <div class="col-md-6 text-md-end d-none d-md-block">
                 <a href="">{{ $category->name }} Guides</a>
             </div>
-        </div>
+    </div>
     <div class="d-none d-md-block">
-        
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-4">
                 <!-- News Card 1 -->
                 <div class="card border-0">
@@ -178,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add more carousel items for News Card 2, 3, and so on -->
+                
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -193,28 +191,46 @@
 </div>
 
 
-<script>
-    $(document).ready(function() {
-        var toggleButtons = $(".toggle-collapse");
 
-        toggleButtons.each(function(index) {
-           
-            $(this).on("click", function() {
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>{{ $category->name }} FAQs</h3>
+        </div>
+    </div>
+    <div class="accordion border-0" id="accordionPanelsStayOpenExample">
+  
+    <div class="accordion-item border-0">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                FAQ #2
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item border-0">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                FAQ #3
+            </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+        </div>
+    </div>
+</div>
 
-                var collapseDiv = $(this).next(".collapse");
-                collapseDiv.toggleClass("show");
+</div>
 
-                var icon = $(this).find("i");
-                if (icon.hasClass("fa-chevron-down")) 
-                {
-                    icon.removeClass("fa-chevron-down").addClass("fa-chevron-up");
-                } 
-                else {
-                    icon.removeClass("fa-chevron-up").addClass("fa-chevron-down");
-                }
-            });
-        });
-    });
-</script>
+
+@push('scripts')
+<script src="{{ asset('frontend/custom_js/category.js') }}"></script>
+@endpush
 
 @endsection

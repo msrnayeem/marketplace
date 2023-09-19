@@ -3,7 +3,7 @@
     text-align: center;
     max-height: 271px;
     border-radius: 5px;
-    overflow: hidden; /* Ensure that the overlay stays inside the container */
+    overflow: hidden; 
 }
 
 .text-overlay {
@@ -14,9 +14,9 @@
     color: white;
     padding: 20px;
     border-radius: 5px;
-    max-width: 100%; /* Make sure the overlay doesn't exceed the container's width */
-    box-sizing: border-box; /* Include padding and border within max-width */
-    white-space: nowrap; /* Prevent text from breaking into multiple lines */
+    max-width: 100%; 
+    box-sizing: border-box; 
+    white-space: nowrap; 
     text-align: center;
 }
 
@@ -34,8 +34,8 @@
     font-weight: bold;
 }
 .custom-active {
-    color: blue; /* Set the text color to blue */
-    font-weight: bold; /* Optionally make it bold */
+    color: blue; 
+    font-weight: bold; 
 }
 
 

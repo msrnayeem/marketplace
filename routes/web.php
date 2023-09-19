@@ -44,3 +44,5 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 
 //Category resource route
 Route::resource('categories', CategoryController::class);
+
+//user routes
