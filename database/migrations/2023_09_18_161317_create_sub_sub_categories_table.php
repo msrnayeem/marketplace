@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',50);
             $table->string('key',50)->unique();
+            $table->string('caption')->nullable();
             $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->timestamps();
         });

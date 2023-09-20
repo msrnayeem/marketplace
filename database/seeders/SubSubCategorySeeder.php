@@ -15,10 +15,10 @@ class SubSubCategorySeeder extends Seeder
     public function run(): void
     {
         $subSubCategories = [
-            ["Logo Design", "Brand Style Design", "Fonts & Typography", "Business Cards & Stationery"],
-            ["Website Design", "App Design", "UX Design", "Landing Page Design"],
+            ["Brand Style Design", "Fonts & Typography", "Business Cards & Stationery"],
+            [ "App Design", "UX Design", "Landing Page Design"],
             ["Illustration", "Artists", "NFT Art"],
-            ["Image Editing", "Resume Design", "Presentation Design"],
+            [ "Resume Design", "Presentation Design"],
             ["3D Architecture", "3D Fashion & Garment", "3D Landscape"],
             ["Wordpress", "Shopify", "Wix", "Custom Websites"],
             ["Software Development", "Mobile App Development", "Website Application", "Desktop Application", "Game Application", "Chatbot Application"],
@@ -62,16 +62,35 @@ class SubSubCategorySeeder extends Seeder
             ['AI Artists', 'AI Music Videos','AI Video Art'],
         ];
 
-        
+        SubSubCategory::create([
+            'name' => "Logo Design",
+            'key'  => Str::slug("Logo Design"),
+            'caption' => 'Stand out from the crowd with a logo that fits your brand personality.',
+            'sub_category_id' => 1,
+        ]);
+        SubSubCategory::create([
+            'name' =>"Website Design",
+            'key'  => Str::slug("Website Design"),
+            'caption' => 'Get a professional website that fits your brand.',
+            'sub_category_id' => 2,
+        ]);
+        SubSubCategory::create([
+            'name' => "Image Editing",
+            'key'  => Str::slug("Image Editing"),
+            'caption' => 'Get a professional image that fits your brand.',
+            'sub_category_id' => 4,
+        ]);
+
         $subCategoryId = 1;
         
         foreach ($subSubCategories as $subSubCategory) {
             foreach ($subSubCategory as $value) {
-                SubSubCategory::create([
+               SubSubCategory::create([
                     'name' => $value,
                     'key'  => Str::slug($value),
                     'sub_category_id' => $subCategoryId,
                 ]);
+                
             }
             $subCategoryId++;
         }

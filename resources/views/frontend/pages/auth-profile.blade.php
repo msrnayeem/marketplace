@@ -3,31 +3,7 @@
 @section('title', 'Profile-'. $user->name)
 
 @push('styles')
-<style>
-.main{
-    margin-top: 150px; 
-    position: relative;
-}
-
-.btn-green{
-    font-size: 16px;     
-    background-color: #1dbf73;
-    font-weight: 700;
-    color: #fff!important;
-    padding: 10px;   
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#become-seller a{
-    text-decoration: none;
-    color: #fff;
-}
-
-</style>
-
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/profile.css') }}">
 @endpush
  
 @section('content')
@@ -165,7 +141,7 @@
                     <div class="container mt-2 p-0" id="for_gigs">                      
                         <div class="row">
                             @for($j=0; $j<10; $j++)
-                            <div class="col-md-6 col-sm-12 mb-3">
+                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
                                 <div class="card">
                                     <img src="{{ asset('image.png') }}" class="card-img-top" alt="image">
                                     <div class="card-body d-flex justify-content-between">
@@ -182,7 +158,7 @@
                     <div class="container mt-2 p-0" id="for_drafts" style="display: none;">
                         <div class="row">
                             @for($j=0; $j<5; $j++)
-                            <div class="col-md-6 col-sm-1 mb-3">
+                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
                                 <div class="card">
                                     <img src="{{ asset('image.png') }}" class="card-img-top" alt="image">
                                     <div class="card-body d-flex justify-content-between">
