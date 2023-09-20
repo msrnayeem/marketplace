@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'name' => 'msr nayeem',
                 'key' => Str::slug('msr nayeem'),
                 'password' => bcrypt('msr@nayeem01'),
+                'imagePath' => "user-image/msr-nayeem.JPG",
                 'facebook_id' => null,
                 'google_id' => null,
                 'email_verified_at' => now(),
