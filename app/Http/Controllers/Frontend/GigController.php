@@ -14,7 +14,13 @@ class GigController extends Controller
      */
     public function index()
     {
-        //
+        $gigsQuery = Gig::with(['user', 'gigPackages' => function ($query) {
+            $query->orderBy('price', 'asc');
+        }]);
+
+        $gigs = $gigsQuery->paginate(4);
+        
+        return view('frontend.pages.gigs', compact('gigs'));
     }
 
     /**
