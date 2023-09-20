@@ -27,5 +27,31 @@ class UserSeeder extends Seeder
                 'remember_token' => null,
             ]
         );
+        User::updateOrCreate(
+            ['email' => 'nayeem@gmail.com'],
+            [
+                'name' => 'nayeem',
+                'key' => Str::slug('nayeem'),
+                'password' => bcrypt('msr@nayeem01'),
+                'imagePath' => "user-image/msr-nayeem.JPG",
+                'facebook_id' => null,
+                'google_id' => null,
+                'email_verified_at' => now(),
+                'remember_token' => null,
+            ]
+        );
+        User::updateOrCreate(
+            ['email' => 'shahidur@gmail.com'],
+            [
+                'name' => 'shahidur',
+                'key' => Str::slug('shahidur'),
+                'password' => bcrypt('msr@nayeem01'),
+                'imagePath' => "user-image/msr-nayeem.JPG",
+                'facebook_id' => null,
+                'google_id' => null,
+                'email_verified_at' => now(),
+                'remember_token' => null,
+            ]
+        );
     }
 }

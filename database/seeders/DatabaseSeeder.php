@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubCategorySeeder::class,
             SubSubCategorySeeder::class,
+            PackageSeeder::class,
+            GigSeeder::class,
+            GigPackageSeeder::class,
+            GigImageSeeder::class,
         ]);
     }
 }

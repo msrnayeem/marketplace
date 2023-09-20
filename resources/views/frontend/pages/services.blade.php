@@ -10,14 +10,12 @@
 @section('content')
 <!-- Breadcrumbs container -->
 <div class="container mt-4">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a class="custom-active" href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">
-                <a class="black" href="">category->name</a>
-            </li>
-        </ol>
-    </nav>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+  </ol>
+</nav>
 </div>
 <!-- Breadcrumbs container END--> 
 

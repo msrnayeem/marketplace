@@ -27,7 +27,9 @@
     <!-- Breadcrumbs container -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a class="custom-active" href="#">Home</a></li>
+            <li class="breadcrumb-item">
+                <a class="custom-active" href="#">Home</a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">
                 <a class="black" href="{{ route('categories.show', ['category' => $category->key]) }}">{{ $category->name }}</a>
             </li>
