@@ -22,9 +22,9 @@
 </head>
 <body>
     @include('frontend.components.header')
-
+<div style="margin-top: 140px;">
     @yield('content')
-
+</div>
 
     @include('frontend.components.footer')
 

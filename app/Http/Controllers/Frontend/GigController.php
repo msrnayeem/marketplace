@@ -40,29 +40,39 @@ class GigController extends Controller
      */
     public function gigsBySubSubCategory(int $subSubCategoryId)
     {
-        $cacheKey = "subsubcategory_{$subSubCategoryId}";
+    
+        // $cacheKey = "subsubcategory_{$subSubCategoryId}";
 
-        // Check if the rendered view is already cached
-        if (Cache::has($cacheKey . '_view')) {
-            return Cache::get($cacheKey . '_view');
-        }
+        // // Check if the rendered view is already cached
+        // if (Cache::has($cacheKey . '_view')) {
+        //     return Cache::get($cacheKey . '_view');
+        // }
 
-        $gigs = Cache::remember($cacheKey, 3600 * 7 * 24, function () use ($subSubCategoryId) {
-            $gigsQuery = Gig::with([
-                'user',
-                'gigPackages' => function ($query) {
-                    $query->orderBy('price', 'asc');
-                }
-            ]);
+        // $gigs = Cache::remember($cacheKey, 3600 * 7 * 24, function () use ($subSubCategoryId) {
+        //     $gigsQuery = Gig::with([
+        //         'user',
+        //         'gigPackages' => function ($query) {
+        //             $query->orderBy('price', 'asc');
+        //         }
+        //     ]);
 
-            return $gigsQuery->where('sub_sub_category_id', $subSubCategoryId)->paginate(4);
-        });
+        //     return $gigsQuery->where('sub_sub_category_id', $subSubCategoryId)->paginate(4);
+        // });
 
-        // Cache the rendered view
-        $view = view('frontend.pages.gigs', compact('gigs'))->render();
-        Cache::put($cacheKey . '_view', $view, 3600);
+        // // Cache the rendered view
+        // $view = view('frontend.pages.gigs', compact('gigs'))->render();
+        // Cache::put($cacheKey . '_view', $view, 3600);
 
-        return $view;
+        // return $view;
+
+        $gigs = Gig::with([
+            'user',
+            'gigPackages' => function ($query) {
+                $query->orderBy('price', 'asc');
+            }
+        ])->where('sub_sub_category_id', $subSubCategoryId)->get();
+
+        return view('frontend.pages.gigs', compact('gigs'));
     }
 
 

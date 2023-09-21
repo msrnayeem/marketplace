@@ -13,7 +13,7 @@
             <div class="row mb-4">
                 <div class="card text-center">
                     <div class="img container text-center ">
-                        <img src="{{Auth::user()->imagePath }}"  class="rounded-circle mt-2" alt="profile" width="140" height="150">
+                        <img src=""  class="rounded-circle mt-2" alt="profile" width="140" height="150">
                         <h3  class="m-0 mt-1">{{ Auth::user()->name }}</h3>
                     </div>
                     <div class="card-body">

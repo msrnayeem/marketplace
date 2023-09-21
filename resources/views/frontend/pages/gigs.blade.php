@@ -14,7 +14,7 @@
 @section('content')
 
 <!-- Breadcrumbs container -->
-<div class="container main">
+<div class="container">
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -26,9 +26,9 @@
         </a>      
       </li>
       <li class="breadcrumb-item active" aria-current="page">
-        <a href=""> 
+        <p> 
           {{$gigs[0]->subSubCategory->subCategory->name}}
-        </a>      
+        <p>      
       </li>
     </ol>
     <h2>{{$gigs[0]->subSubCategory->name}}</h2>
@@ -65,23 +65,37 @@
     </div>
   </div>
 
-
+  <!-- <a href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => 1]) }}"> -->
+ 
   <div class="row">
     @foreach($gigs as $gig)
       <div class="col-md-6 col-sm-12 col-xl-3 mb-2 p-4">
-          <div class="card">
-              <img src="{{ asset('image.png') }}" class="card-img-top" alt="image">
-              <div class="card-body d-flex justify-content-between">
-                  <h5 class="card-title" style="cursor: default;"> {{ $gig->title }} </h5>
-                  @if ($gig->gigPackages->isNotEmpty())
-                    <p style="font-size: 12px;">Starting at - {{ $gig->gigPackages->first()->price }}</p>
-                  @endif
+        <div class="card border-0">
+          <img src="{{ asset('image.png') }}" class="card-img-top rounded" alt="image">
+          <div class="row align-items-center p-1">
+              <div class="col-2">
+                  <!-- Apply rounded-circle class to add border radius to the image -->
+                  <img src="{{ asset($gig->user->imagePath) }}" alt="seller" class="img-fluid rounded-circle">
               </div>
+              <div class="col-6">
+                  <p class="mb-0">{{ $gig->user->name }}</p>
+              </div>
+              <div class="col-4">
+                  <p class="mb-0">Level 2</p>
+              </div>
+          </div>            
+          <!-- Card Body -->
+          <div class="card-body d-flex justify-content-between p-1">
+              <a class="card-title" style="cursor: default;">{{ $gig->title }}</a>
+              @if ($gig->gigPackages->isNotEmpty())
+                  <p style="font-size: 12px;">Starting at - {{ $gig->gigPackages->first()->price }}</p>
+              @endif
           </div>
+        </div>
       </div>
-    @endforeach
-   
+    @endforeach  
   </div>
+
 </div>
 
 
