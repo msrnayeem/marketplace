@@ -4,11 +4,8 @@
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/') }}">
-<style>
-  .main {
-    margin-top: 150px;
-  }
-</style>
+ 
+
 @endpush
  
 @section('content')
@@ -70,28 +67,50 @@
   <div class="row">
     @foreach($gigs as $gig)
       <div class="col-md-6 col-sm-12 col-xl-3 mb-2 p-4">
-        <div class="card border-0">
-          <img src="{{ asset('image.png') }}" class="card-img-top rounded" alt="image">
-          <div class="row align-items-center p-1">
-              <div class="col-2">
-                  <!-- Apply rounded-circle class to add border radius to the image -->
-                  <img src="{{ asset($gig->user->imagePath) }}" alt="seller" class="img-fluid rounded-circle">
-              </div>
-              <div class="col-6">
-                  <p class="mb-0">{{ $gig->user->name }}</p>
-              </div>
-              <div class="col-4">
-                  <p class="mb-0">Level 2</p>
-              </div>
-          </div>            
-          <!-- Card Body -->
-          <div class="card-body d-flex justify-content-between p-1">
-              <a class="card-title" style="cursor: default;">{{ $gig->title }}</a>
-              @if ($gig->gigPackages->isNotEmpty())
-                  <p style="font-size: 12px;">Starting at - {{ $gig->gigPackages->first()->price }}</p>
-              @endif
-          </div>
-        </div>
+          <div class="card border-0">
+
+            <div id="carouselExample" class="carousel slide mb-2">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('frontend/images/logo-2.png') }}" class="d-block w-100 rounded" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('frontend/images/logo-3.png') }}" class="d-block w-100 rounded" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('frontend/images/logo-2.png') }}" class="d-block w-100 rounded" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="row align-items-center p-1">
+                <div class="col-2">
+                    <!-- Apply rounded-circle class to add border radius to the image -->
+                    <img src="{{ asset($gig->user->imagePath) }}" alt="seller" class="img-fluid rounded-circle">
+                </div>
+                <div class="col-6">
+                    <p class="mb-0">{{ $gig->user->name }}</p>
+                </div>
+                <div class="col-4">
+                    <p class="mb-0">Level 2</p>
+                </div>
+            </div>            
+            <!-- Card Body -->
+            <div class="card-body d-flex justify-content-between p-1">
+                <a class="card-title" style="cursor: default;">{{ $gig->title }}</a>
+                @if ($gig->gigPackages->isNotEmpty())
+                    <p style="font-size: 12px;">Starting at - {{ $gig->gigPackages->first()->price }}</p>
+                @endif
+            </div>
+         </div>
       </div>
     @endforeach  
   </div>
@@ -101,6 +120,15 @@
 
 
 @push('scripts')
+<script>
+    $('.carousel-control-prev, .carousel-control-next').hide();
+    $('#carouselExample').hover(function () {
+        $(this).find('.carousel-control-prev, .carousel-control-next').fadeIn();
+    }, function () {
+        $(this).find('.carousel-control-prev, .carousel-control-next').fadeOut();
+    });
+</script>
+   
 <script src="{{ asset('frontend/custom_js/') }}"></script>
 @endpush
 
