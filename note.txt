@@ -1,3 +1,5 @@
 event(new AdminChangesOccurred('Admin made changes to the database.'));
 
 php artisan make:model Category -cmrsR
+
+git amend
