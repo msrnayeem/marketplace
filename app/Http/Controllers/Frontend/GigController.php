@@ -40,7 +40,7 @@ class GigController extends Controller
      */
     public function gigsBySubSubCategory(int $subSubCategoryId)
     {
-    
+
         // $cacheKey = "subsubcategory_{$subSubCategoryId}";
 
         // // Check if the rendered view is already cached
