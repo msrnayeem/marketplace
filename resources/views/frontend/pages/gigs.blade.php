@@ -68,29 +68,33 @@
     @foreach($gigs as $gig)
       <div class="col-md-6 col-sm-12 col-xl-3 mb-2 p-4">
           <div class="card border-0">
-
-            <div id="carouselExample" class="carousel slide mb-2">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('frontend/images/logo-2.png') }}" class="d-block w-100 rounded" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('frontend/images/logo-3.png') }}" class="d-block w-100 rounded" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('frontend/images/logo-2.png') }}" class="d-block w-100 rounded" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                
+          <div id="carouselExample{{ $gig->id }}" class="carousel slide mb-2">
+    <div class="carousel-inner">
+        @php $i = 0; @endphp
+        @foreach($gig->gigImages as $gigImage)
+            <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                <img src="{{ asset($gigImage->imagePath) }}" class="d-block w-100 rounded" alt="...">
             </div>
+            @php $i++; @endphp
+        @endforeach
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    <ol class="carousel-indicators">
+        @for ($j = 0; $j < count($gig->gigImages); $j++)
+            <li data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide-to="{{ $j }}" class="{{ $j === 0 ? 'active' : '' }}"></li>
+        @endfor
+    </ol>
+</div>
 
+               
             <div class="row align-items-center p-1">
                 <div class="col-2">
                     <!-- Apply rounded-circle class to add border radius to the image -->
@@ -105,7 +109,7 @@
             </div>            
             <!-- Card Body -->
             <div class="card-body p-1">
-    <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
+    <a class="card-title text-dark" style="cursor: default;">{{ $gig->id }}</a>
     @if ($gig->gigPackages->isNotEmpty())
         <p style="font-weight:800;">From - {{ $gig->gigPackages->first()->price }}</p>
     @endif
@@ -123,7 +127,7 @@
 @push('scripts')
 <script>
     $('.carousel-control-prev, .carousel-control-next').hide();
-    $('#carouselExample').hover(function () {
+    $('.carousel').hover(function () {
         $(this).find('.carousel-control-prev, .carousel-control-next').fadeIn();
     }, function () {
         $(this).find('.carousel-control-prev, .carousel-control-next').fadeOut();
