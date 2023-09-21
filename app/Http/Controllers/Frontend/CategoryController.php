@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -39,12 +40,29 @@ class CategoryController extends Controller
      */
     public function show(string $key)
     {
-        $category = Category::where('key', $key)->first();
+    
+        $cacheKey = "category_{$key}_view";
+        
+       
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+    
+
+        $category = Cache::remember("category_{$key}", 3600*24*7, function () use ($key) {
+            return Category::where('key', $key)->first();
+        });
+    
         if ($category == null) {
             abort(404);
         }
-        return view('frontend.pages.category', compact('category'));
+    
+        $view = view('frontend.pages.category', compact('category'))->render();
+        Cache::put($cacheKey, $view, 3600*24*7);
+    
+        return $view;
     }
+    
 
     /**
      * Show the form for editing the specified resource.

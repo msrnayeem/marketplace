@@ -80,9 +80,7 @@
           </div>
       </div>
     @endforeach
-    <div class="d-flex justify-content-center mt-4">
-      @include('frontend.components.pagination', ['paginator' => $gigs])
-    </div>
+   
   </div>
 </div>
 

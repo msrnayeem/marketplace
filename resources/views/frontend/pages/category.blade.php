@@ -61,7 +61,9 @@
                             @if($subcategory->subSubCategories->count() > 0)
                                 @foreach($subcategory->subSubCategories as $subSubCategory)
                                     <li class="list-group-item" style="border: none; text-align: left;">
-                                        <a href="">{{ $subSubCategory->name }} </a> 
+                                        <a href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => $subSubCategory->id]) }}">
+                                            {{ $subSubCategory->name }}
+                                        </a>
                                         <i class="fas fa-chevron-right" id="right-arrow"></i>
                                     </li>
                                 @endforeach
@@ -89,7 +91,9 @@
                             @if($subcategory->subSubCategories->count() > 0)
                                 @foreach($subcategory->subSubCategories as $subSubCategory)
                                     <li class="list-group-item " style="border: none; text-align: left;">
-                                        <a href="{{ route('gigs.index') }}">{{ $subSubCategory->name }} </a> 
+                                        <a href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => $subSubCategory->id]) }}">
+                                            {{ $subSubCategory->name }}
+                                        </a>
                                         <i class="fas fa-chevron-right" id="right-arrow"></i>
                                     </li>
                                 @endforeach

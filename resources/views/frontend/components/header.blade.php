@@ -102,4 +102,5 @@
         @include('frontend.components.full_width_navbar')
     </nav>
     @include('frontend.components.mobile_navbar')
+    
 </header>

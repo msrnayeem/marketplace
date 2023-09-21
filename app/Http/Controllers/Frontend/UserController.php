@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -19,9 +20,20 @@ class UserController extends Controller
 
         $id = auth()->user()->id;
 
-        $user = User::find($id);
+        $user = Cache::remember("user_{$id}", 3600 * 24 * 7, function () use ($id) {
+            return User::find($id);
+        });
 
-        return view('frontend.pages.auth-profile', compact('user'));
+        $viewCacheKey = "user_profile_view_{$id}";
+        if (Cache::has($viewCacheKey)) {
+            return Cache::get($viewCacheKey);
+        }
+
+        $view = view('frontend.pages.auth-profile', compact('user'))->render();
+
+        Cache::put($viewCacheKey, $view, 3600 * 24 * 7);
+
+        return $view;
     }
 
 

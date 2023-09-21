@@ -48,6 +48,7 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::resource('categories', CategoryController::class);
 //GIGs
 Route::resource('gigs', GigController::class);
+Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
 
 //user routes
 Route::resource('users', UserController::class);
