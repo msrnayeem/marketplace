@@ -97,19 +97,20 @@
                     <img src="{{ asset($gig->user->imagePath) }}" alt="seller" class="img-fluid rounded-circle">
                 </div>
                 <div class="col-6">
-                    <p class="mb-0">{{ $gig->user->name }}</p>
+                    <p class="mb-0" style="font-weight:700;">{{ $gig->user->name }}</p>
                 </div>
                 <div class="col-4">
                     <p class="mb-0">Level 2</p>
                 </div>
             </div>            
             <!-- Card Body -->
-            <div class="card-body d-flex justify-content-between p-1">
-                <a class="card-title" style="cursor: default;">{{ $gig->title }}</a>
-                @if ($gig->gigPackages->isNotEmpty())
-                    <p style="font-size: 12px;">Starting at - {{ $gig->gigPackages->first()->price }}</p>
-                @endif
-            </div>
+            <div class="card-body p-1">
+    <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
+    @if ($gig->gigPackages->isNotEmpty())
+        <p style="font-weight:800;">From - {{ $gig->gigPackages->first()->price }}</p>
+    @endif
+</div>
+
          </div>
       </div>
     @endforeach  
