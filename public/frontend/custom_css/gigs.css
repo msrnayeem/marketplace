@@ -1,0 +1,12 @@
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.image-container:hover img {
+    transform: scale(1.1); /* Example: Increase the size by 10% on hover */
+}

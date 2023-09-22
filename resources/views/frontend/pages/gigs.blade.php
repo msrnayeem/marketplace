@@ -81,7 +81,9 @@
                                 @php $i = 0; @endphp
                                 @foreach($gig->gigImages as $gigImage)
                                     <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset($gigImage->imagePath) }}" class="d-block w-100 rounded" alt="...">
+                                      <div class="image-container rounded">
+                                        <img src="{{ asset($gigImage->imagePath) }}" class="d-block w-100" alt="...">
+                                        </div>
                                     </div>
                                     @php $i++; @endphp
                                 @endforeach
