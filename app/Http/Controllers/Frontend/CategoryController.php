@@ -46,16 +46,11 @@ class CategoryController extends Controller
        
         if (Cache::has($cacheKey)) {
             return Cache::get($cacheKey);
-        }
-    
+        }   
 
         $category = Cache::remember("category_{$key}", 3600*24*7, function () use ($key) {
             return Category::where('key', $key)->first();
         });
-    
-        if ($category == null) {
-            abort(404);
-        }
     
         $view = view('frontend.pages.category', compact('category'))->render();
         Cache::put($cacheKey, $view, 3600*24*7);
