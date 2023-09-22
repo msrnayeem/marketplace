@@ -94,6 +94,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="card">
                     <div class="card-body">
@@ -110,21 +111,22 @@
         </div>
 
         <!-- right column seller-->
-        <!-- <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4 d-none d-sm-block" style="height:400px;">
+        @if($user->gigs == null)
+        <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4 d-none d-sm-block" style="height:400px;">
             <div class="card h-100">
                 <div class="card-body">
                     <a href="#" class="btn-standard btn-green rounded">Become Seller</a>
                 </div>
             </div>
-        </div> -->
-      
+        </div>
         <!-- right column become seller-->
 
+        @else
         <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4">
             <div class="container h-100 w-100">
                 <div class="row mx-0" >
                     <div class="container mt-2 p-0">
-                        <div class="row mx-0" style="height:40px;">
+                        <div class="row mx-0" style="height:50px;">
                             <div class="border border-2 bg-light d-flex">
                                 <div class="flex-grow-1">
                                     <label class="text-center fs-5" id="active-gigs">Active</label>
@@ -139,40 +141,111 @@
 
                 <div class="row mx-0 h-100 w-100">
                     <div class="container mt-2 p-0" id="for_gigs">                      
-                        <div class="row">
-                            @for($j=0; $j<10; $j++)
-                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                <div class="card">
-                                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="image">
-                                    <div class="card-body d-flex justify-content-between">
-                                        <h5 class="card-title" style="cursor: default;">Title Title Title Title Title</h5>
-                                        <p style="font-size: 12px;">Starting at - 5</p>
+                        <div class="row mt-4">
+                            @foreach($user->gigs as $gig)
+                                @if($gig->is_active == 1 && $gig->status == 1)
+                                    <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
+                                        <div class="card border-0">
+                                            
+                                            <div id="carouselExample{{ $gig->id }}" class="carousel slide mb-2">
+                                                <div class="carousel-inner">
+                                                        @php $i = 0; @endphp
+                                                        @foreach($gig->gigImages as $gigImage)
+                                                            <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                                                            <div class="image-container rounded">
+                                                                <img src="{{ asset($gigImage->imagePath) }}" class="d-block w-100" alt="...">
+                                                                </div>
+                                                            </div>
+                                                            @php $i++; @endphp
+                                                        @endforeach
+                                                    </div>
+                                                    @if(count($gig->gigImages) > 1)
+                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
+                                                    <ol class="carousel-indicators" >
+                                                        @for ($j = 0; $j < count($gig->gigImages); $j++)
+                                                            <li data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide-to="{{ $j }}" class="{{ $j === 0 ? 'active' : '' }}"></li>
+                                                        @endfor
+                                                    </ol>
+                                                    @endif
+                                                </div>
+                                                <div class="card-body p-1 mt-2">
+                                                    <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
+                                                    @if ($gig->gigPackages->isNotEmpty())
+                                                        <p class="mt-2" style="font-weight:800;">From - {{ $gig->gigPackages->first()->price }}</p>
+                                                    @endif
+                                                </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            @endfor
-                        </div>
-                       
+                                @endif
+                            @endforeach
+                        </div>                       
                     </div>
 
                     <div class="container mt-2 p-0" id="for_drafts" style="display: none;">
-                        <div class="row">
-                            @for($j=0; $j<5; $j++)
-                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                <div class="card">
-                                    <img src="{{ asset('image.png') }}" class="card-img-top" alt="image">
-                                    <div class="card-body d-flex justify-content-between">
-                                        <h5 class="card-title" style="cursor: default;">Title Title Title Title Title</h5>
-                                        <p style="font-size: 12px;">Starting at - 5</p>
+                        <div class="row mt-4">
+                            @foreach($user->gigs as $gig)
+                                @if($gig->is_active == 0 || $gig->status == 0)
+                                    <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
+                                        <div class="card border-0">
+                                            
+                                            <div id="carouselExample{{ $gig->id }}" class="carousel slide mb-2">
+                                                <div class="carousel-inner">
+                                                    @if(count($gig->gigImages) == null)
+                                                        <div class="image-container rounded">
+                                                                <img src="{{ asset('frontend/images/gigs/website-1.png') }}" class="d-block w-100" alt="...">
+                                                                </div>
+                                                            </div>
+                                                    @else
+                                                        @php $i = 0; @endphp
+                                                        @foreach($gig->gigImages as $gigImage)
+                                                            <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                                                            <div class="image-container rounded">
+                                                                <img src="{{ asset('website-2.png') }}" class="d-block w-100" alt="...">
+                                                                </div>
+                                                            </div>
+                                                            @php $i++; @endphp
+                                                        @endforeach
+                                                    @endif
+                                                    </div>
+                                                    @if(count($gig->gigImages) > 1)
+                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
+                                                    <ol class="carousel-indicators" >
+                                                        @for ($j = 0; $j < count($gig->gigImages); $j++)
+                                                            <li data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide-to="{{ $j }}" class="{{ $j === 0 ? 'active' : '' }}"></li>
+                                                        @endfor
+                                                    </ol>
+                                                    @endif
+                                                </div>
+                                                <div class="card-body p-1 mt-2">
+                                                    <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
+                                                    @if ($gig->gigPackages->isNotEmpty())
+                                                        <p class="mt-2" style="font-weight:800;">From - {{ $gig->gigPackages->first()->price }}</p>
+                                                    @endif
+                                                </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            @endfor
-                        </div>
+                                @endif
+                            @endforeach
+                        </div>          
                     </div>
                 </div>
             </div>
         </div>
+        @endif
 
         
     </div>
