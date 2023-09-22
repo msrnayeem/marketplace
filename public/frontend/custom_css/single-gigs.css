@@ -1,0 +1,142 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .product-column {
+    flex-grow: 1;
+    padding: 20px;
+   
+  }
+ 
+  
+  .sidebar-column {
+    flex-shrink: 0; /* Prevent the sidebar-column from shrinking */
+    width: 350px; /* Set the desired width for your sidebar */
+    position: sticky;
+    top: 20px; 
+  
+  }
+  
+
+  .carousel-indicators{
+    height: auto;
+    bottom: -130px;
+  }
+ 
+  .carousel-indicators [data-bs-target]{
+    height: 55px;
+    width: 55px;
+    margin: 5px;
+}
+
+
+
+  .seller-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .seller-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .product-image {
+    width: 100%;  
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    transition: transform 0.3s ease-in-out; 
+}
+
+.image-container:hover img {
+    transform: scale(1.1); 
+}
+  .about-gig h3 {
+    margin-top:80px;
+  }
+  
+  .design-approach h3,
+  .client-satisfaction h3,
+  .get-started h3,
+  .about-seller .title h3 {
+    margin-top: 20px;
+  }
+  
+  .design-approach ul,
+  .client-satisfaction p,
+  .get-started p,
+  .about-seller .about hr,
+  .about-seller .about p {
+    margin-top: 10px;
+  }
+  
+  .about-seller .seller-column {
+    margin-bottom: 10px;
+  }
+  
+  .seller-details .info p {
+    margin-bottom: 10px;
+  }
+  
+  .contact-link {
+    text-decoration: none;
+    color: blue;
+  }
+  
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .tab {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  .tab.active {
+    background-color: #ddd;
+  }
+  
+  .info-container .info {
+    display: none;
+  }
+  
+  .info.active {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .product-column,
+    .sidebar-column {
+      flex-basis: 100%;
+    }
+  }
+  

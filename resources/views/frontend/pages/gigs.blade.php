@@ -115,15 +115,16 @@
                             <div class="col-4">
                                 <p class="mb-0">Level 2</p>
                             </div>
-                              </div>            
+                        </div>            
                     <!-- Card Body -->
                     <div class="card-body p-1">
-                      <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
+                      <a class="card-title text-dark" href="{{ route('gigs.show', ['gig' => $gig]) }}">
+                        {{ $gig->title }}
+                      </a>
                       @if ($gig->gigPackages->isNotEmpty())
                           <p style="font-weight:800;">From - {{ $gig->gigPackages->first()->price }}</p>
                       @endif
                     </div>
-
                 </div>
               </div>
             @endforeach
