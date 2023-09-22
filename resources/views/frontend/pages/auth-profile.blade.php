@@ -13,8 +13,8 @@
             <div class="row mb-4">
                 <div class="card text-center">
                     <div class="img container text-center ">
-                        <img src=""  class="rounded-circle mt-2" alt="profile" width="140" height="150">
-                        <h3  class="m-0 mt-1">{{ Auth::user()->name }}</h3>
+                            <img src="{{ asset(Auth::user()->avatar) }}"  class="rounded-circle mt-2" alt="profile" width="140" height="150">
+                        <h3  class="m-0 mt-1 text-capitalize">{{ Auth::user()->name }}</h3>
                     </div>
                     <div class="card-body">
                         <a href="#" class="btn btn-outline-primary">Preview Miver Profile</a>
@@ -126,17 +126,18 @@
             <div class="container h-100 w-100">
                 <div class="row mx-0" >
                     <div class="container mt-2 p-0">
-                        <div class="row mx-0" style="height:50px;">
-                            <div class="border border-2 bg-light d-flex">
+                        <div class="row mx-0" style="height: 50px;">
+                            <div class="border border-2 bg-light d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <label class="text-center fs-5" id="active-gigs">Active</label>
+                                    <label class="text-center fs-5 active-tab" id="active-gigs">Active</label>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <label class="text-center fs-5"  id="drafts">Drafts</label>
+                                    <label class="text-center fs-5" id="drafts">Drafts</label>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row mx-0 h-100 w-100">
@@ -186,7 +187,8 @@
                                 @endif
                             @endforeach
                         </div>                       
-                    </div>
+                    </div>    
+
 
                     <div class="container mt-2 p-0" id="for_drafts" style="display: none;">
                         <div class="row mt-4">

@@ -107,7 +107,7 @@
                         <div class="row align-items-center p-1">
                             <div class="col-2">
                                 <!-- Apply rounded-circle class to add border radius to the image -->
-                                <img src="{{ asset($gig->user->imagePath) }}" alt="seller" class="img-fluid rounded-circle">
+                                <img src="{{ asset($gig->user->avatar) }}" alt="seller" class="img-fluid rounded-circle">
                             </div>
                             <div class="col-6">
                                 <p class="mb-0" style="font-weight:700;">{{ $gig->user->name }}</p>

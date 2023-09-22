@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('key')->unique();
             $table->string('email')->unique()->nullable();
             $table->string('password');
-            $table->string('imagePath')->default(null)->nullable();
+            $table->string('avatar')->default('user-image/default-user.png');
             $table->string('facebook_id')->default(null)->nullable();
             $table->string('google_id')->default(null)->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -12,7 +12,7 @@ class Gig extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class)->select('id', 'name', 'key', 'imagePath');
+        return $this->belongsTo(User::class)->select('id', 'name', 'key', 'avatar');
     }
     public function subSubCategory()
     {
@@ -22,16 +22,4 @@ class Gig extends Model
     {
         return $this->hasMany(GigImage::class);
     }
-
-    // public function minPrice()
-    // {
-    //     return $this->with([
-    //         'gigPackages' => function ($query) {
-    //             $query->select('gig_id', \DB::raw('MIN(price) as min_price'))
-    //                 ->groupBy('gig_id');
-    //         }
-    //     ])
-    //         ->get();
-    // }
-
 }

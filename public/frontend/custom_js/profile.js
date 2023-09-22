@@ -7,27 +7,42 @@ $(document).ready(function() {
       $(this).find('.carousel-control-prev, .carousel-control-next').fadeOut();
   });
 
-    // When clicking on "Active gigs", show the corresponding section and hide "Drafts"
-    $('#active-gigs').on('click', function() {
-        $('#for_gigs').show();
-        $('#for_drafts').hide();
-        
-        $(this).css('color','black');
-        $('#drafts').css('color','#1dbf73');
-        $(this).css('border-bottom','6px solid #1dbf73');
-        $('#drafts').css('border-bottom','6px solid #f7f7f7');
-    });
+  $("#active-gigs, #drafts").click(function () { 
 
-    // When clicking on "Drafts", show the corresponding section and hide "Active gigs"
-    $('#drafts').on('click', function() {
-        $('#for_drafts').show();
-        $('#for_gigs').hide();
+    $("#active-gigs, #drafts").removeClass("active-tab");
+    $(this).addClass("active-tab");
+
+    $("#for_gigs, #for_drafts").hide();
+    //if #active-gigs is clicked show #for_gigs hide #for_drafts and vice versa
+    if($(this).attr("id") == "active-gigs"){
+      $("#for_gigs").show();
+    }
+    else{
+      $("#for_drafts").show();
+    }
   
-        $(this).css('color','black');
-        $('#active-gigs').css('color','#1dbf73');
-        $(this).css('border-bottom','6px solid #1dbf73');
-        $('#active-gigs').css('border-bottom','6px solid #f7f7f7');
-    });
+});
+    // // When clicking on "Active gigs", show the corresponding section and hide "Drafts"
+    // $('#active-gigs').on('click', function() {
+    //     $('#for_gigs').show();
+    //     $('#for_drafts').hide();
+    //     $(this).addClass("active-tab");
+    //     // $(this).css('color','black');
+    //     // $('#drafts').css('color','#1dbf73');
+    //     // $(this).css('border-bottom','6px solid #1dbf73');
+    //     // $('#drafts').css('border-bottom','6px solid #f7f7f7');
+    // });
+
+    // // When clicking on "Drafts", show the corresponding section and hide "Active gigs"
+    // $('#drafts').on('click', function() {
+    //     $('#for_drafts').show();
+    //     $('#for_gigs').hide();
+    //     $(this).addClass("active-tab");
+    //     // $(this).css('color','black');
+    //     // $('#active-gigs').css('color','#1dbf73');
+    //     // $(this).css('border-bottom','6px solid #1dbf73');
+    //     // $('#active-gigs').css('border-bottom','6px solid #f7f7f7');
+    // });
 
     // Add click event listener to the edit icon
     $("#edit-icon").click(function() {
