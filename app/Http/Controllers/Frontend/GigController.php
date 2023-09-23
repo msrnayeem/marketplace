@@ -98,7 +98,7 @@ class GigController extends Controller
      */
     public function show(Gig $gig)
     {
-        return view('frontend.pages.single-gigs', compact('gig'));
+        return view('frontend.pages.single', compact('gig'));
     }
 
     /**

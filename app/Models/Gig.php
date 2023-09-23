@@ -22,4 +22,6 @@ class Gig extends Model
     {
         return $this->hasMany(GigImage::class);
     }
+
+    
 }

@@ -1,0 +1,89 @@
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    transition: transform 0.3s ease-in-out; 
+}
+
+.image-container:hover img {
+    transform: scale(1.1); 
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .tab {
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  
+  .tab.active {
+    background-color: #ddd;
+  }
+  
+  .info-container .info {
+    display: none;
+    
+  }
+  
+  .info.active {
+    display: block;
+    margin-top: 10px;
+  }
+  
+
+.container .order{ 
+    height:25rem;
+    max-width: 20rem;
+}
+.package-info{
+    overflow-y:scroll;
+    height:10rem;
+}
+ 
+@media (max-width: 600px){
+    .order-md-3 {
+    margin-top:20px;
+    text-align:center;
+    
+  }
+} 
+.btn-light{
+    border:1px solid green;
+}
+.carousel-indicators{
+    height: auto;
+    bottom: -130px;
+  }
+ 
+  .carousel-indicators [data-bs-target]{
+    height: 55px;
+    width: 55px;
+    margin: 5px;
+}
+
+.seller-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .seller-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .about-gig h3 {
+    margin-top:80px;
+  }

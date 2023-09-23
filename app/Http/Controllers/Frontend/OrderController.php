@@ -1,0 +1,120 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+
+use App\Models\Gig;
+use App\Models\Order;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
+use App\Models\User;
+use App\Notifications\OrderCreatedNotification;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
+class OrderController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreOrderRequest $request)
+    {
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return response()->json(['result' => 'Login First']);
+        }
+
+        // Get the buyer's ID
+        $buyer_id = Auth::user()->id;
+
+        // Get the input data
+        $gig_id = $request->input('gig_id');
+        $package_id = $request->input('package_id');
+
+        // Find the gig with gigPackages and validate its status
+        $gig = Gig::with('gigPackages')
+            ->where('status', 1)
+            ->where('is_active', 1)
+            ->where('user_id', '!=', $buyer_id)
+            ->find($gig_id);
+
+        if (!$gig) {
+            return response()->json(['result' => "You can't order this gig"]);
+        }
+
+        // Find the selected package
+        $package = $gig->gigPackages->find($package_id);
+
+        if (!$package) {
+            return response()->json(['result' => 'Invalid package selection']);
+        }
+
+        // Create the order
+        $order = Order::create([
+            'gig_id' => $gig_id,
+            'gig_package_id' => $package_id,
+            'buyer_id' => $buyer_id,
+            'seller_id' => $gig->user_id,
+            'amount' => $package->price,
+        ]);
+
+        $seller = User::find($gig->user_id);
+        $seller->notify(new OrderCreatedNotification($order));
+
+        // Send a notification to the buyer
+        $buyer = Auth::user();
+        $buyer->notify(new OrderCreatedNotification($order));
+        
+        return response()->json(['result' => true]);
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Order $order)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Order $order)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateOrderRequest $request, Order $order)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Order $order)
+    {
+        //
+    }
+}

@@ -7,18 +7,7 @@
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/single-gigs.css') }}">
 <style>
-.image-container {
-    position: relative;
-    overflow: hidden;
-}
 
-.image-container img {
-    transition: transform 0.3s ease-in-out; 
-}
-
-.image-container:hover img {
-    transform: scale(1.1); 
-}
     </style>
 @endpush
  
@@ -98,7 +87,7 @@
                     @endif
                     </div> 
                 </div>
-            </div>
+              </div>
       
 
       <div class="about-gig">
@@ -196,9 +185,9 @@
                   </div>
                   <span style="display: none;" name="{{ $gig->id }}" id="gig_id">
               </div>
-                <div class="mt-3">
-                    <button class="btn btn-primary btn-sm" id="order">Order Now</button>
-                </div>
+              <div class="mt-3">
+                  <button class="btn btn-primary btn-sm" id="order">Order Now</button>
+              </div>
               
           </div>
     </div>

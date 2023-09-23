@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\GigController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\UserController;
@@ -49,6 +50,9 @@ Route::resource('categories', CategoryController::class);
 //GIGs
 Route::resource('gigs', GigController::class);
 Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
+
+//Orders
+Route::resource('orders', OrderController::class);
 
 //user routes
 Route::resource('users', UserController::class);
