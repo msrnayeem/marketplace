@@ -57,3 +57,9 @@ Route::resource('orders', OrderController::class);
 //user routes
 Route::resource('users', UserController::class);
 Route::get('/my_profile', [UserController::class, 'userProfile'])->name('user.profile');
+
+//notifications clear
+Route::get('/mark-as-read', function () {
+    Auth::user()->unreadNotifications->markAsRead();
+    return redirect()->back();
+})->name('clear.notifications');

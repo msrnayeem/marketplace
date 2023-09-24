@@ -19,6 +19,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/footer.css') }}">
     
     @stack('styles')
+    <style>
+        body{
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
     @include('frontend.components.header')

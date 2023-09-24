@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Notifications\OrderCreatedNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -50,13 +51,18 @@ class OrderController extends Controller
 
         // Find the gig with gigPackages and validate its status
         $gig = Gig::with('gigPackages')
-            ->where('status', 1)
-            ->where('is_active', 1)
-            ->where('user_id', '!=', $buyer_id)
             ->find($gig_id);
-
         if (!$gig) {
             return response()->json(['result' => "You can't order this gig"]);
+        }
+        if ($gig->status != 1) {
+            return response()->json(['result' => "This gig is not approved yet"]);
+        }
+        if ($gig->user_id == $buyer_id) {
+            return response()->json(['result' => "You can't order your own gig"]);
+        }
+        if ($gig->is_active == 0) {
+            return response()->json(['result' => "This gig is unpublished"]);
         }
 
         // Find the selected package
@@ -66,23 +72,36 @@ class OrderController extends Controller
             return response()->json(['result' => 'Invalid package selection']);
         }
 
-        // Create the order
-        $order = Order::create([
-            'gig_id' => $gig_id,
-            'gig_package_id' => $package_id,
-            'buyer_id' => $buyer_id,
-            'seller_id' => $gig->user_id,
-            'amount' => $package->price,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $seller = User::find($gig->user_id);
-        $seller->notify(new OrderCreatedNotification($order));
+            $order = Order::create([
+                'gig_id' => $gig_id,
+                'gig_package_id' => $package_id,
+                'buyer_id' => $buyer_id,
+                'seller_id' => $gig->user_id,
+                'amount' => $package->price,
+                'delivery_date' => Carbon::now()->addDays($package->delivery_time),
+            ]);
 
-        // Send a notification to the buyer
-        $buyer = Auth::user();
-        $buyer->notify(new OrderCreatedNotification($order));
-        
-        return response()->json(['result' => true]);
+            // Notify the seller
+            $seller = User::find($gig->user_id);
+            $seller->notify(new OrderCreatedNotification($order));
+
+            // Notify the buyer
+            $buyer = Auth::user();
+            $buyer->notify(new OrderCreatedNotification($order));
+
+            DB::commit();
+
+            return response()->json(['result' => true]);
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            DB::rollBack(); // Rollback the transaction if an exception occurs
+            return response()->json(['result' => 'Database exception']);
+        }
+
+
     }
 
 

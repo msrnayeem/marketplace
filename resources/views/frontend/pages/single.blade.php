@@ -271,11 +271,8 @@
     $('.order-button').on('click', function (e) {
       e.preventDefault();
       const form = $(this).closest('form');
-
-      // Serialize the form data
       const formData = form.serialize();
 
-   console.log(formData);
       Swal.fire({
         title: 'Are you sure?',
         icon: 'warning',
@@ -300,8 +297,9 @@
             url: "{{ route('orders.store') }}", // Replace with your actual URL
             data: formData,
             success: function (response) {
-              Swal.close();              
-              if (response.result) {
+              Swal.close(); 
+                          
+              if (response.result === true) {
                 Swal.fire({
                   title: 'Order Placed Successfully',
                   icon: 'success',

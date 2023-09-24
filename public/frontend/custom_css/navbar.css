@@ -254,4 +254,11 @@ color: rgb(234, 217, 217);
 }
 }
 
+.seller-dashboard:hover {
+    background-color:yellow; /* Change the background color on hover */
+    color: #fff; /* Change the text color on hover */
+}
+
+/* CSS used here will be applied after bootstrap.css */
+
 
