@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\GigImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GigImageSeeder extends Seeder
 {
@@ -14,34 +15,63 @@ class GigImageSeeder extends Seeder
     public function run(): void
     {
 
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/logo-brand-identity.jpg',
-        ]);
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/logo-brand-identity.jpg',
-        ]);
+        $data = [
+            [
+                'gig_id' => 1,
+                'imagePath' => 'frontend/images/gigs/logo-1.png',
+            ],
+            [
+                'gig_id' => 1,
+                'imagePath' => 'frontend/images/gigs/logo-2.png',
+            ],
+            [
+                'gig_id' => 1,
+                'imagePath' => 'frontend/images/gigs/logo-3.png',
+            ],
+            [
+                'gig_id' => 4,
+                'imagePath' => 'frontend/images/gigs/logo-4.png',
+            ],
+            [
+                'gig_id' => 4,
+                'imagePath' => 'frontend/images/gigs/logo-5.png',
+            ],
+            [
+                'gig_id' => 4,
+                'imagePath' => 'frontend/images/gigs/logo-6.png',
+            ],
+            [
+                'gig_id' => 2,
+                'imagePath' => 'frontend/images/gigs/website-1.png',
+            ],
+            [
+                'gig_id' => 2,
+                'imagePath' => 'frontend/images/gigs/website-2.png',
+            ],
+            [
+                'gig_id' => 2,
+                'imagePath' => 'frontend/images/gigs/website-3.png',
+            ],
+            [
+                'gig_id' => 3,
+                'imagePath' => 'frontend/images/gigs/website-3.png',
+            ],
+            [
+                'gig_id' => 6,
+                'imagePath' => 'frontend/images/gigs/website-2.png',
+            ],
+            [
+                'gig_id' => 6,
+                'imagePath' => 'frontend/images/gigs/website-3.png',
+            ],
+            [
+                'gig_id' => 3,
+                'imagePath' => 'frontend/images/gigs/website-3.png',
+            ],
+        ];
 
-
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/website-development.jpg',
-        ]);
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/website-development.jpg',
-        ]);
-
-
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/application-development.jpg',
-        ]);
-        GigImage::updateOrInsert([
-            'gig_id' => 1,
-            'imagePath' => 'frontend/images/sub_category/application-development.jpg',
-        ]);
+        // Insert the data into the gig_images table
+        DB::table('gig_images')->insert($data);
 
     }
 }

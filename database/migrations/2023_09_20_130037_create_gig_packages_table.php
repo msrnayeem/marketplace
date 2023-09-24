@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('gig_id')->constrained()->cascadeOnDelete();
             $table->foreignId('package_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('delivery_time');
             $table->text('description');
             $table->float('price');
             $table->timestamps();

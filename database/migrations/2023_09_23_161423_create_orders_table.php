@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->date('delivery_date')->default(null)->nullable();
             $table->decimal('amount', 8, 2);
             $table->string('status')->default('pending');
+            $table->boolean('is_priority')->default(false);
             $table->timestamps();
         });
     }

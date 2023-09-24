@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable()->default(null);
+            $table->boolean('is_active')->default(0);
+            $table->boolean('status')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('sub_sub_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
