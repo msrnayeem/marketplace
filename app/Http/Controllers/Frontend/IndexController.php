@@ -11,4 +11,14 @@ class IndexController extends Controller
     {
         return view('frontend.pages.landing');
     }
+
+    public function privacyPolicy()
+    {
+        return view('frontend.pages.privacy-policy');
+    }
+
+    public function termsOfServices()
+    {
+        return view('frontend.pages.terms-of-services');
+    }
 }

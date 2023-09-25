@@ -46,6 +46,10 @@ Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFaceb
 //FRONTEND ROUTES
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
+//privacy policy
+Route::get('/privacy-policy', [IndexController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/terms-of-services', [IndexController::class, 'termsOfServices'])->name('terms.of.services');
+
 //Category resource route
 Route::resource('categories', CategoryController::class);
 //GIGs
