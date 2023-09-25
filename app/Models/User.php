@@ -61,4 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class, 'seller_id');
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
 }

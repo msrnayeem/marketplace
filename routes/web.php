@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,7 @@ Route::resource('orders', OrderController::class);
 //user routes
 Route::resource('users', UserController::class);
 Route::get('/my_profile', [UserController::class, 'userProfile'])->name('user.profile');
+Route::get('/seller-dashboard', [UserDashboardController::class, 'index'])->name('seller.dashboard');
 
 //notifications clear
 Route::get('/mark-as-read', function () {

@@ -11,14 +11,15 @@
             </div>
 
             <div class="collapse navbar-collapse">
-                @if(isset($seller))
+                @if(!in_array(Route::currentRouteName(), ['user.profile', 'seller.dashboard']))
                 <form class="w-50 input-group" role="search">
                     <input class="form-control" type="search" placeholder="What service are you looking for today?" aria-label="search" aria-describedby="searchBtn">
                     <button class="btn btn-outline-secondary bg-dark text-white" type="button" id="searchBtn"><i class="fa-solid fa-search"></i></button>
                 </form>
                 @else
+                    
                     <div class="btn-group me-4">
-                    <a class="dropdown-item" type="button">Dashboard</a>
+                    <a class="dropdown-item" type="button" href="{{ route('seller.dashboard') }}">Dashboard</a>
                     </div>
                     <div class="btn-group me-2">
                         <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -115,7 +116,7 @@
                                     <li>
                                         <a class="dropdown-item text-success-hover fw-bold" href="{{ route('user.profile') }}">Profile</a>
                                     </li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Dashboard</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('seller.dashboard') }}">Dashboard</a></li>
                                     <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
                                     <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
                                     <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a></li>
@@ -159,8 +160,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li class="arrowUp"></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Profile</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Dashboard</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('user.profile') }}">Profile</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('seller.dashboard') }}">Dashboard</a></li>
                         <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
                         <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
                         <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a></li>
@@ -173,7 +174,9 @@
                 </div>
             </div>
         </div>
-        @include('frontend.components.full_width_navbar')
+        @if(in_array(Route::currentRouteName(), ['home', 'categories.show', 'gigs.show', 'gigs.subSubCategory']))
+             @include('frontend.components.full_width_navbar')
+        @endif
     </nav>
     @include('frontend.components.mobile_navbar')
     

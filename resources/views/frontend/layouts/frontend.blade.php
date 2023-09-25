@@ -27,7 +27,7 @@
 </head>
 <body>
     @include('frontend.components.header')
-<div style="margin-top: 140px;">
+<div style="margin-top: 100px;">
     @yield('content')
 </div>
 
