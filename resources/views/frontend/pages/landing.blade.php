@@ -9,7 +9,7 @@
 @section('content')
 
 <section class="slider">
-    <div class="container">      
+    <div class="container">
       <div class="row">
         <div class="col-lg-6">
           <div class="slider-left">
@@ -43,7 +43,7 @@
          </div>
       </div>
       <div class="recangle">
-         
+
       </div>
     </div>
   </section>
@@ -58,13 +58,13 @@
           <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/paypal.ec56157.png" alt=""></li>
           <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/intuit.6e468f0.png" alt=""></li>
           <li><img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/pandg.8b7310b.png" alt=""></li>
-           </ul > 
-    
+           </ul >
+
 
       </nav>
     </div>
-  </section>   
-    
+  </section>
+
 
   <section class="service">
     <div class="container-fluid">
@@ -154,13 +154,13 @@
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
-          </a>        
+          </a>
         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>
-    </div>  
+    </div>
     </div>
   </section>
 
@@ -187,11 +187,11 @@
                             <div class="col-10">
                                <!--Start carousel-->
                                <div id="carouselExampleIndicatorMobile" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-                      
+
                                   <div class="carousel-inner">
                                      <div class="carousel-item active">
                                         <div class="row mx-0">
-                                            
+
                                             <div style="padding-inline: 0px; min-width: 130px;" class="col col-md cart-view">
                                                 <div class="cart-img-container align-self-start" style="height: 180px;">
                                                     <a href="#"><img src="{{ asset('image.png') }}" class="cart-img" ></a>
@@ -206,12 +206,12 @@
                                                         </span>
                                                     </div>
                                                     <p>From $20</p>
-                                                </div> 
+                                                </div>
                                             </div>
 
                                         </div>
                                      </div>
-                                     
+
                                     @for($i=1; $i<=4; $i++)
                                      <div class="carousel-item">
                                         <div class="row mx-0">
@@ -230,7 +230,7 @@
                                                         </span>
                                                     </div>
                                                     <p>From $20</p>
-                                                </div> 
+                                                </div>
                                             </div>
 
                                         </div>
@@ -268,7 +268,7 @@
                             <div class="col-10">
                                <!--Start carousel-->
                                <div id="carouselExampleIndicator" class="carousel slide" data-bs-ride="carousel" >
-                      
+
                                   <div class="carousel-inner">
                                      <div class="carousel-item active">
                                         <div class="row mx-0">
@@ -288,16 +288,16 @@
                                                       </span>
                                                   </div>
                                                   <p>From $2{{$i}}</p>
-                                                </div> 
+                                                </div>
                                             </div>
                                           @endfor
-            
+
 
                                         </div>
                                      </div>
                                      <div class="carousel-item">
                                         <div class="row mx-0">
-                                            
+
                                             @for($i=7; $i<=12;$i++)
                                             <div style="padding-inline: 6px; min-width: 130px;" class="col col-md cart-view">
                                                 <div class="cart-img-container align-self-start" style="height: 180px;">
@@ -313,11 +313,11 @@
                                                       </span>
                                                   </div>
                                                   <p>From $2{{$i}}</p>
-                                                </div> 
+                                                </div>
                                             </div>
                                             @endfor
-            
-                                           
+
+
                                         </div>
                                      </div>
                                   </div>
@@ -411,7 +411,7 @@
           </div>
           <div class="col-lg-3">
             <div class="market-box">
-              
+
               <img src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg" alt="">
               <h5></h5>
               <p>Music & Audio</p>
@@ -439,7 +439,7 @@
             </div>
           </div>
         </div>
-      </div>   
+      </div>
     </div>
   </section>
   <section class="project">
@@ -452,7 +452,7 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img style="width:100%;object-fit: cover;object-position: center center;" 
+                <img style="width:100%;object-fit: cover;object-position: center center;"
                   src="https://fiverr-res.cloudinary.com/q_auto,f_auto,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/carmelacaldart0.jpg" alt="">
               </picture>
               <article class="p-b-cont">
@@ -463,7 +463,7 @@
           <div class="col-lg-3">
             <div class="project-box">
               <picture class="p-b-img">
-                <img style="width:100%;object-fit: cover;object-position: center center;" 
+                <img style="width:100%;object-fit: cover;object-position: center center;"
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_320,dpr_1.0/general_assets/logged_out_homepage/assets/made_on_fiverr/spickex.jpg" alt="">
               </picture>
               <article class="p-b-cont">
@@ -494,7 +494,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </section>

@@ -40,24 +40,24 @@ class CategoryController extends Controller
      */
     public function show(string $key)
     {
-    
+
         $cacheKey = "category_{$key}_view";
-        
-       
+
+
         if (Cache::has($cacheKey)) {
             return Cache::get($cacheKey);
-        }   
+        }
 
         $category = Cache::remember("category_{$key}", 3600*24*7, function () use ($key) {
-            return Category::where('key', $key)->first();
+            return Category::where('key', $key)->with('subCategories.subSubCategories')->first();
         });
-    
+
         $view = view('frontend.pages.category', compact('category'))->render();
         Cache::put($cacheKey, $view, 3600*24*7);
-    
+
         return $view;
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

@@ -2,7 +2,8 @@
     <nav class="navbar fixed-top navbar-expand-lg flex-column bg-white">
         <div class="container">
             <div class="nav-brand-wrapper d-flex">
-                <button class="navbar-toggler border-0 d-block d-lg-none "  id="menu_icon" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <button class="navbar-toggler border-0 d-block d-lg-none " id="menu_icon" role="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -11,32 +12,39 @@
             </div>
 
             <div class="collapse navbar-collapse">
-                @if(!in_array(Route::currentRouteName(), ['user.profile', 'seller.dashboard']))
-                <form class="w-50 input-group" role="search">
-                    <input class="form-control" type="search" placeholder="What service are you looking for today?" aria-label="search" aria-describedby="searchBtn">
-                    <button class="btn btn-outline-secondary bg-dark text-white" type="button" id="searchBtn"><i class="fa-solid fa-search"></i></button>
-                </form>
+                @if (!in_array(Route::currentRouteName(), ['user.profile', 'seller.dashboard']))
+                    <form class="w-50 input-group" role="search">
+                        <input class="form-control" type="search" placeholder="What service are you looking for today?"
+                            aria-label="search" aria-describedby="searchBtn">
+                        <button class="btn btn-outline-secondary bg-dark text-white" type="button" id="searchBtn"><i
+                                class="fa-solid fa-search"></i></button>
+                    </form>
                 @else
-                    
                     <div class="btn-group me-4">
-                    <a class="dropdown-item" type="button" href="{{ route('seller.dashboard') }}">Dashboard</a>
+                        <a class="dropdown-item" type="button" href="{{ route('seller.dashboard') }}">Dashboard</a>
                     </div>
                     <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false">
                             My Business
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                             <li><a class="dropdown-item" type="button">Orders</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" type="button">Gigs</a></li>
                             <li><a class="dropdown-item" type="button">Profile</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" type="button">Earnings</a></li>
                             <li><a class="dropdown-item" type="button">Fiver Workspace</a></li>
                         </ul>
                     </div>
                     <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false">
                             Growth & Marketing
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -46,7 +54,8 @@
                         </ul>
                     </div>
                     <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-expanded="false">
                             Analytics
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
@@ -55,14 +64,15 @@
                         </ul>
                     </div>
                 @endif
-                @if(Auth::user())
+                @if (Auth::user())
                     <ul class="navbar-nav align-items-center gap-1 ms-auto mb-2 mb-lg-0">
                         <!-- notification -->
-                          <!-- Add this HTML to your navigation bar -->
+                        <!-- Add this HTML to your navigation bar -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link" style="font-size:25px;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-regular fa-bell position-relative" >
-                                    @if(Auth::user()->unreadNotifications->count() > 0)
+                            <a class="nav-link" style="font-size:25px;" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-regular fa-bell position-relative">
+                                    @if (Auth::user()->unreadNotifications->count() > 0)
                                         <i class="fa-solid fa-circle position-absolute top-0" style="right: -7px;"></i>
                                     @endif
                                 </i>
@@ -75,15 +85,17 @@
                                     <ul class="list-group list-group-flush">
                                         <div class="card" style=" height:200px; overflow-y:scroll;">
                                             <ul class="list-group list-group-flush">
-                                                @foreach(Auth::user()->notifications as $notification)
-                                                    <li class="list-group-item"> {{ $notification->data['message'] }}</li>
+                                                @foreach (Auth::user()->notifications as $notification)
+                                                    <li class="list-group-item"> {{ $notification->data['message'] }}
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </ul>
                                     <ul class="list-group list-group-flush text-center">
                                         <li>
-                                            <a class="dropdown-item fw-bold" href="{{ route('clear.notifications') }}">Mark as Read</a>
+                                            <a class="dropdown-item fw-bold"
+                                                href="{{ route('clear.notifications') }}">Mark as Read</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -92,42 +104,57 @@
 
                         <!-- message -->
                         <li class="nav-item">
-                            <a class="nav-link-i" href="#"><i class="fa-regular fa-envelope position-relative"></i></a>
+                            <a class="nav-link-i" href="#"><i
+                                    class="fa-regular fa-envelope position-relative"></i></a>
                         </li>
 
                         <!-- list -->
                         <li class="nav-item me-2">
-                            <a class="nav-link-i" href="#"><i class="fa-regular fa-heart position-relative"></i></a>
+                            <a class="nav-link-i" href="#"><i
+                                    class="fa-regular fa-heart position-relative"></i></a>
                         </li>
-                        
+
                         <li class="nav-item">
-                            <a class="nav-link text-success-hover fw-bold" aria-current="page" href="#">Order</a>
+                            <a class="nav-link text-success-hover fw-bold" aria-current="page"
+                                href="#">Order</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success fw-bold" href="#">Switch to Selling</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <a class="pro-pic-wrapper border rounded-circle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png" alt="Profile Picture" height="40" width="40" class="rounded-circle">
-                                </a>                            
+                                <a class="pro-pic-wrapper border rounded-circle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"
+                                        alt="Profile Picture" height="40" width="40" class="rounded-circle">
+                                </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li class="arrowUp"></li>
                                     <li>
-                                        <a class="dropdown-item text-success-hover fw-bold" href="{{ route('user.profile') }}">Profile</a>
+                                        <a class="dropdown-item text-success-hover fw-bold"
+                                            href="{{ route('user.profile') }}">Profile</a>
                                     </li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('seller.dashboard') }}">Dashboard</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
-                                    <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and Payments</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">English</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-bottom" href="#">Help & support</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold"
+                                            href="{{ route('seller.dashboard') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a
+                                            Request</a></li>
+                                    <li><a class="dropdown-item text-success fw-bold" href="#">Refer a
+                                            friend</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold border-top"
+                                            href="#">Settings</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and
+                                            Payments</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold border-top"
+                                            href="#">English</a></li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-success-hover fw-bold border-bottom"
+                                            href="#">Help & support</a></li>
                                     <li>
                                         <form method="post" action="{{ route('logout') }}">
                                             @csrf
-                                            <button class="dropdown-item text-success-hover fw-bold" type="submit">Logout</button>
+                                            <button class="dropdown-item text-success-hover fw-bold"
+                                                type="submit">Logout</button>
                                         </form>
                                     </li>
                                 </ul>
@@ -137,47 +164,57 @@
                 @else
                     <ul class="pc-nvbar navbar-nav align-items-center gap-1 ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-success-hover fw-bold" aria-current="page" href="#">Become a Seller</a>
+                            <a class="nav-link text-success-hover fw-bold" aria-current="page" href="#">Become
+                                a Seller</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-success-hover fw-bold" aria-current="page" href="{{route('login')}}">Sign in</a>
+                            <a class="nav-link text-success-hover fw-bold" aria-current="page"
+                                href="{{ route('login') }}">Sign in</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-success-hover fw-bold join" aria-current="page" href="{{route('register')}}">Join</a>
+                            <a class="nav-link text-success-hover fw-bold join" aria-current="page"
+                                href="{{ route('register') }}">Join</a>
                         </li>
                     </ul>
                 @endif
             </div>
             <div class="mobile-navbar d-flex d-lg-none justify-content-between align-items-center ps-4">
                 <form role="search">
-                    <input class="form-control" type="search" placeholder="Find Services" aria-label="search" aria-describedby="searchBtn">
+                    <input class="form-control" type="search" placeholder="Find Services" aria-label="search"
+                        aria-describedby="searchBtn">
                 </form>
                 <div class="dropdown d-none d-md-block">
-                    <a class="pro-pic-wrapper border rounded-circle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png" alt="Profile Picture"
-                            class="w-100 h-100 rounded-circle">
+                    <a class="pro-pic-wrapper border rounded-circle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"
+                            alt="Profile Picture" class="w-100 h-100 rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li class="arrowUp"></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('user.profile') }}">Profile</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="{{ route('seller.dashboard') }}">Dashboard</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold"
+                                href="{{ route('user.profile') }}">Profile</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold"
+                                href="{{ route('seller.dashboard') }}">Dashboard</a></li>
                         <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
                         <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and Payments</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">English</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a>
+                        </li>
+                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and
+                                Payments</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">English</a>
+                        </li>
                         <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-bottom" href="#">Help & support</a></li>
+                        <li><a class="dropdown-item text-success-hover fw-bold border-bottom" href="#">Help &
+                                support</a></li>
                         <li><a class="dropdown-item text-success-hover fw-bold" href="#">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        @if(in_array(Route::currentRouteName(), ['home', 'categories.show', 'gigs.show', 'gigs.subSubCategory']))
-             @include('frontend.components.full_width_navbar')
+        @if (in_array(Route::currentRouteName(), ['home', 'categories.show', 'gigs.show', 'gigs.subSubCategory']))
+            @include('frontend.components.full_width_navbar')
         @endif
     </nav>
-    @include('frontend.components.mobile_navbar')
-    
 </header>
+
+@include('frontend.components.mobile_navbar')
