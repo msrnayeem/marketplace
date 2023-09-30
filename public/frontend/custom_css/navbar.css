@@ -160,19 +160,7 @@ a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Hide the scrollbar thumb and scroll icon for the vertical scrollbar */
-.offcanvas-body::-webkit-scrollbar {
-    width: 8px;
-    /* Adjust the width as needed */
-}
 
-.offcanvas-body::-webkit-scrollbar-thumb {
-    background: transparent;
-}
-
-.offcanvas-body::-webkit-scrollbar-thumb:hover {
-    background: transparent;
-}
 
 .joinn {
     margin-left: 20px;
@@ -283,9 +271,35 @@ small {
 
     #offcanvasExample {
         width: 265px;
+        overflow-y: scroll;
     }
 
     .offcanvas-body {
+
         width: inherit;
     }
+}
+
+.accordion-item {
+    border: none;
+    font-weight: 500;
+}
+
+.accordion {
+
+    --bs-accordion-border-color: none;
+    --bs-accordion-border-width: 0;
+    --bs-accordion-border-radius: 0;
+}
+
+/* Custom CSS to change Bootstrap accordion active button color */
+.accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+    color: #b8886a;
+    border: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+    border: none !important;
 }
