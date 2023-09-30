@@ -29,7 +29,9 @@
                             My Business
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                            <li><a class="dropdown-item" type="button">Orders</a></li>
+                            <li>
+                                <a href="{{ route('orders.index') }}" class="dropdown-item" type="button">Orders</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -177,38 +179,6 @@
                         </li>
                     </ul>
                 @endif
-            </div>
-            <div class="mobile-navbar d-flex d-lg-none justify-content-between align-items-center ps-4">
-                <form role="search">
-                    <input class="form-control" type="search" placeholder="Find Services" aria-label="search"
-                        aria-describedby="searchBtn">
-                </form>
-                <div class="dropdown d-none d-md-block">
-                    <a class="pro-pic-wrapper border rounded-circle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"
-                            alt="Profile Picture" class="w-100 h-100 rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li class="arrowUp"></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold"
-                                href="{{ route('user.profile') }}">Profile</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold"
-                                href="{{ route('seller.dashboard') }}">Dashboard</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a Request</a></li>
-                        <li><a class="dropdown-item text-success fw-bold" href="#">Refer a friend</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">Settings</a>
-                        </li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and
-                                Payments</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-top" href="#">English</a>
-                        </li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold border-bottom" href="#">Help &
-                                support</a></li>
-                        <li><a class="dropdown-item text-success-hover fw-bold" href="#">Logout</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         @if (in_array(Route::currentRouteName(), ['home', 'categories.show', 'gigs.show', 'gigs.subSubCategory']))

@@ -21,7 +21,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+        $orders = Order::with('buyer', 'seller', 'gig')->where('seller_id', Auth::user()->id)->get();
+
+        return view('frontend.pages.order-index', compact('orders'));
     }
 
     /**

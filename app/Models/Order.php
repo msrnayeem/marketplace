@@ -16,6 +16,17 @@ class Order extends Model
         'delivery_date',
         'status',
     ];
+    public function getDeliveryDateAttribute($value)
+    {
+        // Format the date as dd-month/year (01-January/2023)
+        return date('d-M-Y', strtotime($value));
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        // Format the date as dd-month/year (01-January/2023)
+        return date('d-M-Y', strtotime($value));
+    }
 
     public function buyer()
     {

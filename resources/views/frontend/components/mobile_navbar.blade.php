@@ -2,25 +2,35 @@
 
     <div class="offcanvas-body">
         <ul class="nav nav-pills nav-sidebar flex-column">
-            <li class="nav-item nav-link d-flex align-items-center gap-2 mb-3">
-                <div class="pro-pic-wrapper border rounded-circle">
-                    <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png" alt="Profile Picture"
-                        class="w-100 h-100 rounded-circle">
-                </div>
-                <a href="" class="fw-500 text-dark">User Name</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link fw-500">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link fw-500">Inbox</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link fw-500">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link fw-500">Lists</a>
-            </li>
+            @if (Auth::user())
+                <li class="nav-item nav-link d-flex align-items-center gap-2 mb-3">
+                    <div class="pro-pic-wrapper border rounded-circle">
+                        <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('user-image/default-user.png') }}"
+                            alt="Profile Picture" class="w-100 h-100 rounded-circle">
+                    </div>
+                    <a href="" class="fw-500 text-dark">{{ Auth::user()->name }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link fw-500">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link fw-500">Inbox</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link fw-500">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link fw-500">Lists</a>
+                </li>
+            @else
+                <li class="nav-item nav-link d-flex align-items-center gap-2 mb-3">
+                    <a href="{{ route('register') }}" class="nav-link fw-500">Join</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('login') }}" class="nav-link fw-500">Sign In</a>
+                </li>
+            @endif
+
             <div class="accordion" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -149,7 +159,12 @@
                 <a href="#" class="nav-link fw-500">Billing and payments</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link fw-500">Logout</a>
+                <a href="#" class="nav-link fw-500">
+                    <form method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="dropdown-item text-success-hover fw-bold" type="submit">Logout</button>
+                    </form>
+                </a>
             </li>
             <div class="accordion" id="langAccordion">
                 <div class="accordion-item">
