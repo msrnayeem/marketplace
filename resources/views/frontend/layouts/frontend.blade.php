@@ -24,6 +24,8 @@
         body {
             background-color: #f5f5f5;
         }
+
+        .accordion-button:not(.collapsed) {}
     </style>
 </head>
 
@@ -40,7 +42,7 @@
 
     <!-- Bootstrap Js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('frontend/custom_js/nav.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/custom_js/nav.js') }}"></script> --}}
 
     @stack('scripts')
 </body>
