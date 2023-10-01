@@ -28,7 +28,7 @@ class OrderCreatedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -51,9 +51,16 @@ class OrderCreatedNotification extends Notification
     {
         return [
             'message' =>
-                "new order ID: " . $this->order->id . ", has been placed ",
-            'order_id' => $this->order->id,
+                "new order ID: " . $this->order->order_id . ", has been placed ",
+            'order_id' => $this->order->order_id,
             'action' => "order route",
         ];
+    }
+    public function toMail(object $notifiable): MailMessage
+    {
+        return (new MailMessage)
+            ->line("New order ID: " . $this->order->id . " has been placed.")
+            ->action('View Order', route('orders.index'))
+            ->line('Thank you for using our application!');
     }
 }

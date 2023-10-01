@@ -13,6 +13,7 @@ use App\Notifications\OrderCreatedNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -81,6 +82,7 @@ class OrderController extends Controller
             DB::beginTransaction();
 
             $order = Order::create([
+                'order_id' => "ok",
                 'gig_id' => $gig_id,
                 'gig_package_id' => $package_id,
                 'buyer_id' => $buyer_id,

@@ -118,7 +118,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link text-success-hover fw-bold" aria-current="page"
-                                href="#">Order</a>
+                                href="{{ route('orders.index') }}">Order</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success fw-bold" href="#">Switch to Selling</a>
