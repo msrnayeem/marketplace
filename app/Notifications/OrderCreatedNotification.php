@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderCreatedNotification extends Notification
+class OrderCreatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     private $order;
@@ -32,17 +32,6 @@ class OrderCreatedNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     */
-    // public function toMail(object $notifiable): MailMessage
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
-
-    /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>
@@ -59,7 +48,7 @@ class OrderCreatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line("New order ID: " . $this->order->id . " has been placed.")
+            ->line("New order ID: " . $this->order->order_id . " has been placed.")
             ->action('View Order', route('orders.index'))
             ->line('Thank you for using our application!');
     }

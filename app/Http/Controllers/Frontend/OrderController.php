@@ -82,7 +82,8 @@ class OrderController extends Controller
             DB::beginTransaction();
 
             $order = Order::create([
-                'order_id' => "ok",
+                // order_id = date now + gig_id + buyer_id+price
+                'order_id' => Carbon::now()->timestamp . $gig_id . $buyer_id . $package->price,
                 'gig_id' => $gig_id,
                 'gig_package_id' => $package_id,
                 'buyer_id' => $buyer_id,
@@ -117,7 +118,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('frontend.pages.order-details', compact('order'));
     }
 
     /**

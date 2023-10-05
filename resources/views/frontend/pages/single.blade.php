@@ -134,7 +134,9 @@
                         </div>
                         <div class="seller-column">
                             <a class="seller-name">{{ $gig->user->name }}</a>
-                            <a href="#" class="contact-link">Contact me</a>
+                            @if ($gig->user->id != Auth::user()->id)
+                                <a href="#" class="contact-link">Contact me</a>
+                            @endif
                         </div>
                     </div>
                     <div class="seller-details">
@@ -228,9 +230,11 @@
 
 
                     </div>
-                    <div class="card-title text-center border border-2">
-                        <a class="btn btn-light">Contact Me</a>
-                    </div>
+                    @if ($gig->user->id != Auth::user()->id)
+                        <div class="card-title text-center border border-2">
+                            <a class="btn btn-light">Contact Me</a>
+                        </div>
+                    @endif
                 </div>
             </div>
 

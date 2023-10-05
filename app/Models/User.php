@@ -57,10 +57,41 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Order::class, 'buyer_id');
     }
 
+    public function buyerOrdersActive()
+    {
+        return $this->buyerOrders()->where('status', 'active')->count() ?? 0;
+    }
+
+    public function buyerOrdersCancelled()
+    {
+        return $this->buyerOrders()->where('status', 'cancelled')->count() ?? 0;
+    }
+
+    public function buyerOrdersCompleted()
+    {
+        return $this->buyerOrders()->where('status', 'completed')->count() ?? 0;
+    }
+
     public function sellerOrders()
     {
         return $this->hasMany(Order::class, 'seller_id');
     }
+
+    public function sellerOrdersActive()
+    {
+        return $this->sellerOrders()->where('status', 'active')->count() ?? 0;
+    }
+
+    public function sellerOrdersCancelled()
+    {
+        return $this->sellerOrders()->where('status', 'cancelled')->count() ?? 0;
+    }
+
+    public function sellerOrdersCompleted()
+    {
+        return $this->sellerOrders()->where('status', 'completed')->count() ?? 0;
+    }
+
 
     public function getNameAttribute($value)
     {

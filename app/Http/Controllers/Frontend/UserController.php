@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Cache;
 class UserController extends Controller
 {
 
-    public function userProfile()
+    public function userProfile($rollout = null)
     {
         if (!auth()->user()) {
             return redirect()->route('login');
@@ -22,7 +22,7 @@ class UserController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
 
-        return view('frontend.pages.auth-profile', compact('user'));
+        return view('frontend.pages.auth-profile', compact('user', 'rollout'));
 
     }
 

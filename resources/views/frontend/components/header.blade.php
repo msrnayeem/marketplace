@@ -12,60 +12,13 @@
             </div>
 
             <div class="collapse navbar-collapse">
-                @if (!in_array(Route::currentRouteName(), ['user.profile', 'seller.dashboard']))
-                    <form class="w-50 input-group" role="search">
-                        <input class="form-control" type="search" placeholder="What service are you looking for today?"
-                            aria-label="search" aria-describedby="searchBtn">
-                        <button class="btn btn-outline-secondary bg-dark text-white" type="button" id="searchBtn"><i
-                                class="fa-solid fa-search"></i></button>
-                    </form>
-                @else
-                    <div class="btn-group me-4">
-                        <a class="dropdown-item" type="button" href="{{ route('seller.dashboard') }}">Dashboard</a>
-                    </div>
-                    <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
-                            data-bs-display="static" aria-expanded="false">
-                            My Business
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                            <li>
-                                <a href="{{ route('orders.index') }}" class="dropdown-item" type="button">Orders</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" type="button">Gigs</a></li>
-                            <li><a class="dropdown-item" type="button">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" type="button">Earnings</a></li>
-                            <li><a class="dropdown-item" type="button">Fiver Workspace</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
-                            data-bs-display="static" aria-expanded="false">
-                            Growth & Marketing
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                            <li><a class="dropdown-item" type="button">Scale Your Business</a></li>
-                            <li><a class="dropdown-item" type="button">Contact</a></li>
-                            <li><a class="dropdown-item" type="button">Fiver learn</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group me-2">
-                        <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
-                            data-bs-display="static" aria-expanded="false">
-                            Analytics
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                            <li><a class="dropdown-item" type="button">Overview</a></li>
-                            <li><a class="dropdown-item" type="button">Repeat Business</a></li>
-                        </ul>
-                    </div>
-                @endif
+                <form class="w-50 input-group" role="search">
+                    <input class="form-control" type="search" placeholder="What service are you looking for today?"
+                        aria-label="search" aria-describedby="searchBtn">
+                    <button class="btn btn-outline-secondary bg-dark text-white" type="button" id="searchBtn"><i
+                            class="fa-solid fa-search"></i></button>
+                </form>
+
                 @if (Auth::user())
                     <ul class="navbar-nav align-items-center gap-1 ms-auto mb-2 mb-lg-0">
                         <!-- notification -->
@@ -109,7 +62,6 @@
                             <a class="nav-link-i" href="#"><i
                                     class="fa-regular fa-envelope position-relative"></i></a>
                         </li>
-
                         <!-- list -->
                         <li class="nav-item me-2">
                             <a class="nav-link-i" href="#"><i
@@ -120,48 +72,12 @@
                             <a class="nav-link text-success-hover fw-bold" aria-current="page"
                                 href="{{ route('orders.index') }}">Order</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-success fw-bold" href="#">Switch to Selling</a>
+                            <a class="nav-link text-success-hover fw-bold" aria-current="page"
+                                href="{{ route('seller.dashboard') }}">Switch to Selling</a>
                         </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="pro-pic-wrapper border rounded-circle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png"
-                                        alt="Profile Picture" height="40" width="40" class="rounded-circle">
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li class="arrowUp"></li>
-                                    <li>
-                                        <a class="dropdown-item text-success-hover fw-bold"
-                                            href="{{ route('user.profile') }}">Profile</a>
-                                    </li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold"
-                                            href="{{ route('seller.dashboard') }}">Dashboard</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Post a
-                                            Request</a></li>
-                                    <li><a class="dropdown-item text-success fw-bold" href="#">Refer a
-                                            friend</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-top"
-                                            href="#">Settings</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">Billing and
-                                            Payments</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-top"
-                                            href="#">English</a></li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold" href="#">$ USD</a>
-                                    </li>
-                                    <li><a class="dropdown-item text-success-hover fw-bold border-bottom"
-                                            href="#">Help & support</a></li>
-                                    <li>
-                                        <form method="post" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button class="dropdown-item text-success-hover fw-bold"
-                                                type="submit">Logout</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        @include('frontend.components.profile-dropdown')
                     </ul>
                 @else
                     <ul class="pc-nvbar navbar-nav align-items-center gap-1 ms-auto mb-2 mb-lg-0">

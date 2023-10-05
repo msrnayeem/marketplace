@@ -61,7 +61,7 @@ Route::resource('orders', OrderController::class);
 
 //user routes
 Route::resource('users', UserController::class);
-Route::get('/my_profile', [UserController::class, 'userProfile'])->name('user.profile');
+Route::get('/my_profile/{rollout?}', [UserController::class, 'userProfile'])->name('user.profile');
 Route::get('/seller-dashboard', [UserDashboardController::class, 'index'])->name('seller.dashboard');
 
 //notifications clear
