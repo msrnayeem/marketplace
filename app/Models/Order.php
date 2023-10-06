@@ -49,5 +49,9 @@ class Order extends Model
         return $this->belongsTo(Package::class);
     }
 
+    public function orderTimeline()
+    {
+        return $this->hasMany(OrderTimeline::class);
+    }
 
 }

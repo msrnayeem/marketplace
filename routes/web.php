@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\GigController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\OrderTimelineController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -58,6 +59,7 @@ Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCat
 
 //Orders
 Route::resource('orders', OrderController::class);
+Route::resource('order-details', OrderTimelineController::class);
 
 //user routes
 Route::resource('users', UserController::class);

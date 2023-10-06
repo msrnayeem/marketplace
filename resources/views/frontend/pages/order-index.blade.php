@@ -35,7 +35,8 @@
                                 {{ $order->buyer->name }}
                             </td>
                             <td>
-                                <a href="{{ route('orders.show', ['order' => $order->id]) }}">{{ $order->gig->title }} </a>
+                                <a href="{{ route('order-details.show', ['order_detail' => $order->order_id]) }}">{{ $order->gig->title }}
+                                </a>
                             </td>
                             <td> {{ $order->amount }} </td>
                             <td> {{ $order->created_at }} </td>

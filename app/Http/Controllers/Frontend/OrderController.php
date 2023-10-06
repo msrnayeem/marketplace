@@ -92,6 +92,13 @@ class OrderController extends Controller
                 'delivery_date' => Carbon::now()->addDays($package->delivery_time),
             ]);
 
+            // Create the order timeline
+            $order->orderTimeline()->create([
+                'description' => 'Order placed',
+                'order_id' => $order->id,
+            ]);
+
+
             // Notify the seller
             $seller = User::find($gig->user_id);
             $seller->notify(new OrderCreatedNotification($order));
