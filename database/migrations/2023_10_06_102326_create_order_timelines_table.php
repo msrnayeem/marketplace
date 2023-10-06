@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')
                 ->onDelete('cascade');
+            $table->foreignId('changed_by')->constrained('users')
+                ->onDelete('cascade');
             $table->foreignId('timeline_status_id')->constrained('timeline_statuses');
             $table->string('file')->nullable();
             $table->timestamps();

@@ -9,6 +9,7 @@ class OrderTimeline extends Model
     protected $fillable = [
         'order_id',
         'timeline_status_id',
+        'changed_by',
         'file'
     ];
 
@@ -17,14 +18,9 @@ class OrderTimeline extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function seller()
+    public function changedBy()
     {
-        return $this->hasOneThrough(User::class, Order::class, 'id', 'id', 'order_id', 'seller_id');
-    }
-
-    public function buyer()
-    {
-        return $this->hasOneThrough(User::class, Order::class, 'id', 'id', 'order_id', 'buyer_id');
+        return $this->belongsTo(User::class, 'changed_by');
     }
 
     public function timelineStatus()

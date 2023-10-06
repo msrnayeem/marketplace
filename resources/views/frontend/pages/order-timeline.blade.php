@@ -23,7 +23,7 @@
         }
 
         .timeline-date {
-            color: #007bff;
+            color: #dd3b3b;
             margin-bottom: 5px;
         }
 
@@ -40,21 +40,19 @@
 
             <div class="col-md-6 col-sm-12 p-3">
                 <div class="row">
-
                     @foreach ($timelines as $date => $timelineGroup)
                         <div class="col-md-3 col-sm-4">
-                            <h4>{{ $date }}</h4>
+                            <h4 class="timeline-date">{{ $date }}</h4>
                         </div>
                         <div class="col-md-9 col-sm-7">
                             @foreach ($timelineGroup as $timeline)
-                                <p> {{ $timeline->buyer->name }}
+                                <p> {{ $timeline->changedBy->name }}
                                     {{ $timeline->timelineStatus->description }}
                                     at - {{ $timeline->created_at->format('H:i A') }}
                                 </p>
                             @endforeach
-
-
                         </div>
+                        <hr>
                     @endforeach
                 </div>
             </div>

@@ -96,6 +96,7 @@ class OrderController extends Controller
             $order->orderTimeline()->create([
                 'timeline_status_id' => 1,
                 'order_id' => $order->id,
+                'changed_by' => $buyer_id,
             ]);
 
 
