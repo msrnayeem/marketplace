@@ -8,7 +8,7 @@ class OrderTimeline extends Model
 {
     protected $fillable = [
         'order_id',
-        'description',
+        'timeline_status_id',
         'file'
     ];
 
@@ -25,5 +25,10 @@ class OrderTimeline extends Model
     public function buyer()
     {
         return $this->hasOneThrough(User::class, Order::class, 'id', 'id', 'order_id', 'buyer_id');
+    }
+
+    public function timelineStatus()
+    {
+        return $this->belongsTo(TimelineStatus::class);
     }
 }

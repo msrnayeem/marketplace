@@ -94,7 +94,7 @@ class OrderController extends Controller
 
             // Create the order timeline
             $order->orderTimeline()->create([
-                'description' => 'Order placed',
+                'timeline_status_id' => 1,
                 'order_id' => $order->id,
             ]);
 

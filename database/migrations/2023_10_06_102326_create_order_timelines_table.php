@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')
                 ->onDelete('cascade');
-            $table->string('description', '100')->nullable();
+            $table->foreignId('timeline_status_id')->constrained('timeline_statuses');
             $table->string('file')->nullable();
             $table->timestamps();
         });

@@ -38,29 +38,28 @@
     <div class="container mt-4">
         <div class="row d-flex justify-content-center mt-70 mb-70">
 
-            <div class="col-md-6 p-3">
+            <div class="col-md-6 col-sm-12 p-3">
                 <div class="row">
-                    <div class="col-md-3 col-sm-4">
-                        @foreach ($timelines as $date => $timelineGroup)
+
+                    @foreach ($timelines as $date => $timelineGroup)
+                        <div class="col-md-3 col-sm-4">
                             <h4>{{ $date }}</h4>
-                        @endforeach
-                    </div>
-                    <div class="col-md-9 col-sm-7">
-                        @foreach ($timelines as $date => $timelineGroup)
-                            <ul class="list-group">
-                                @foreach ($timelineGroup as $timeline)
-                                    <li class="list-group-item">
-                                        <b>{{ $timeline->buyer->name }}</b> {{ $timeline->description }} at -
-                                        {{ $timeline->created_at->format('H:i A') }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endforeach
-                    </div>
+                        </div>
+                        <div class="col-md-9 col-sm-7">
+                            @foreach ($timelineGroup as $timeline)
+                                <p> {{ $timeline->buyer->name }}
+                                    {{ $timeline->timelineStatus->description }}
+                                    at - {{ $timeline->created_at->format('H:i A') }}
+                                </p>
+                            @endforeach
+
+
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
-            <div class="col-md-6" style="border: 2px solid yellow; ">
+            <div class="col-md-6 col-sm-12" style="border: 2px solid yellow; ">
                 <p> ok</p>
             </div>
         </div>

@@ -43,13 +43,13 @@ class OrderTimelineController extends Controller
         $order = Order::where('order_id', $order_detail)->firstOrFail();
 
         $timelines = OrderTimeline::where('order_id', $order->id)
-            ->with('seller', 'buyer')
+            ->with('seller', 'buyer', 'timelineStatus')
             ->orderBy('created_at') // You might want to order them first before grouping
             ->get()
             ->groupBy(function ($date) {
                 return Carbon::parse($date->created_at)->format('d-m-Y');
             });
-
+        
         return view('frontend.pages.order-timeline', compact('timelines'));
     }
 

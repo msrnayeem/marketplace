@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             GigSeeder::class,
             GigPackageSeeder::class,
             GigImageSeeder::class,
+            TimelineStatusSeeder::class,
         ]);
     }
 }
