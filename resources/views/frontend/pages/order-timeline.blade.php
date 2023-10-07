@@ -40,8 +40,16 @@
 @endpush
 
 @section('content')
+    @php
+        $allTimelineGroups = [];
+        foreach ($timelines as $date => $timelineGroup) {
+            $allTimelineGroups[] = $timelineGroup;
+        }
+    @endphp
+
+
     <div class="container mt-4">
-        <div class="row d-flex justify-content-center mt-70 mb-70">
+        <div class="row d-flex justify-content-start mt-70 mb-70">
 
             <div class="col-md-6 col-sm-12 p-3">
                 <div class="row">
@@ -66,39 +74,26 @@
                     @endforeach
                 </div>
             </div>
+            <div class="col-md-6 p-3">
+                <div class="row">
+                    <form class="form-control mb-3" method="POST" action="{{ route('order-details.store') }}">
+                        <select class="form-select form-select-md mb-3">
+                            @if (count($allTimelineGroups) == 1 && $seller == false)
+                                <option value="1" selected>Send requirements</option>
+                            @else
+                                <option value="1" selected>Ask for requirements</option>
+                            @endif
 
-            <div class="col-md-6 col-sm-12" style="border: 2px solid yellow; ">
-                <ul class="nav nav-underline" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">Home</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab"
-                            aria-controls="about" aria-selected="false">About</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Contact</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h2>Home</h2>
-                        <p>This is the home section. Add your home content here.</p>
-                    </div>
-                    <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
-                        <h2>About</h2>
-                        <p>This is the about section. Add information about your website or yourself here.</p>
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <h2>Contact</h2>
-                        <p>This is the contact section. Add contact information or a contact form here.</p>
-                    </div>
+                        </select>
+                        <div class="mb-3 @if ($seller == true) d-none @endif">
+                            <label for="formFileMultiple" class="form-label">Send File</label>
+                            <input class="form-control" type="file" id="formFileMultiple" multiple>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Change Now</button>
+                    </form>
                 </div>
-
             </div>
+
         </div>
     </div>
 

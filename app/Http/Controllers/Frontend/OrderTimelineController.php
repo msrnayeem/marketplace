@@ -42,15 +42,20 @@ class OrderTimelineController extends Controller
     {
         $order = Order::where('order_id', $order_detail)->firstOrFail();
 
+        $seller = false;
+        if ($order->seller_id == auth()->user()->id) {
+            $seller = true;
+        }
+
         $timelines = OrderTimeline::where('order_id', $order->id)
             ->with('changedBy', 'timelineStatus')
-            ->orderBy('created_at') // You might want to order them first before grouping
+            ->orderBy('created_at', 'asc') // You might want to order them first before grouping
             ->get()
             ->groupBy(function ($date) {
                 return Carbon::parse($date->created_at)->format('d-m-Y');
             });
 
-        return view('frontend.pages.order-timeline', compact('timelines'));
+        return view('frontend.pages.order-timeline', compact('timelines', 'seller'));
     }
 
 
