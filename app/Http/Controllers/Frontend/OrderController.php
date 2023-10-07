@@ -25,9 +25,20 @@ class OrderController extends Controller
         if (!Auth::check()) {
             return redirect('/login');
         }
-        $orders = Order::with('buyer', 'seller', 'gig')->where('seller_id', Auth::user()->id)->get();
+        $userId = Auth::user()->id;
 
-        return view('frontend.pages.order-index', compact('orders'));
+        $sellings = Order::with('seller', 'gig')
+            ->where(function ($query) use ($userId) {
+                $query->where('seller_id', $userId);
+            })
+            ->get();
+
+        $buyings = Order::with('buyer', 'gig')
+            ->where(function ($query) use ($userId) {
+                $query->where('buyer_id', $userId);
+            })
+            ->get();
+        return view('frontend.pages.order-index', compact('sellings', 'buyings'));
     }
 
     /**

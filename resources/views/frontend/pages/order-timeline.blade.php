@@ -51,7 +51,12 @@
                         </div>
                         <div class="col-md-9 col-sm-7">
                             @foreach ($timelineGroup as $timeline)
-                                <p> {{ $timeline->changedBy->name }}
+                                <p>
+                                    @if ($timeline->changedBy->id == Auth::user()->id)
+                                        You -
+                                    @else
+                                        {{ $timeline->changedBy->name }} -
+                                    @endif
                                     {{ $timeline->timelineStatus->description }}
                                     at - {{ $timeline->created_at->format('H:i A') }}
                                 </p>
@@ -65,30 +70,33 @@
             <div class="col-md-6 col-sm-12" style="border: 2px solid yellow; ">
                 <ul class="nav nav-underline" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                      <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Home</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
+                        <a class="nav-link" id="about-tab" data-bs-toggle="tab" href="#about" role="tab"
+                            aria-controls="about" aria-selected="false">About</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Contact</a>
                     </li>
-                  </ul>
+                </ul>
 
-                  <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <h2>Home</h2>
-                      <p>This is the home section. Add your home content here.</p>
+                        <h2>Home</h2>
+                        <p>This is the home section. Add your home content here.</p>
                     </div>
                     <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
-                      <h2>About</h2>
-                      <p>This is the about section. Add information about your website or yourself here.</p>
+                        <h2>About</h2>
+                        <p>This is the about section. Add information about your website or yourself here.</p>
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                      <h2>Contact</h2>
-                      <p>This is the contact section. Add contact information or a contact form here.</p>
+                        <h2>Contact</h2>
+                        <p>This is the contact section. Add contact information or a contact form here.</p>
                     </div>
-                  </div>
+                </div>
 
             </div>
         </div>
