@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\GigController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\OrderTimelineController;
@@ -67,7 +68,6 @@ Route::get('/my_profile/{rollout?}', [UserController::class, 'userProfile'])->na
 Route::get('/seller-dashboard', [UserDashboardController::class, 'index'])->name('seller.dashboard');
 
 //notifications clear
-Route::get('/mark-as-read', function () {
-    Auth::user()->unreadNotifications->markAsRead();
-    return redirect()->back();
-})->name('clear.notifications');
+Route::get('/mark-as-read', [NotificationController::class, 'markAllRead'])->name('clear.notifications');
+
+Route::get('/notification-read/{notification}', [NotificationController::class, 'singleNotificationRead'])->name('single.notification.read');

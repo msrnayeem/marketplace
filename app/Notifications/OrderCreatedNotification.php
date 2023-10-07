@@ -40,9 +40,9 @@ class OrderCreatedNotification extends Notification implements ShouldQueue
     {
         return [
             'message' =>
-                "new order ID: " . $this->order->order_id . ", has been placed ",
+                "new order ID: " . $this->order->order_id . " has been placed ",
             'order_id' => $this->order->order_id,
-            'action' => "order route",
+            'action' => route('order-details.show', ['order_detail' => $this->order->order_id]),
         ];
     }
     public function toMail(object $notifiable): MailMessage

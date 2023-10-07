@@ -41,7 +41,11 @@
                                         <div class="card" style=" height:200px; overflow-y:scroll;">
                                             <ul class="list-group list-group-flush">
                                                 @foreach (Auth::user()->notifications as $notification)
-                                                    <li class="list-group-item"> {{ $notification->data['message'] }}
+                                                    <li class="list-group-item">
+                                                        <a
+                                                            href="{{ route('single.notification.read', ['notification' => $notification->id]) }}">
+                                                            {{ $notification->data['message'] }}
+                                                        </a>
                                                     </li>
                                                 @endforeach
                                             </ul>
