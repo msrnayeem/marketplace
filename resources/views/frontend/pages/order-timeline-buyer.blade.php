@@ -54,7 +54,7 @@
                                                 You
                                             @endif - {{ $timeline->timelineStatus->description }}
                                             at {{ $timeline->created_at->format('H:i A') }}
-                                            @if ($timeline->timelineStatus->id == 2 && $timeline->file !== null)
+                                            @if ($timeline->file !== null && $timeline->timelineStatus->id != 4)
                                                 <p>
                                                     <a href="{{ asset($timeline->file) }}" download>Download</a>
                                                 </p>
@@ -106,6 +106,16 @@
                                         <p>Want to cancel the order?</p>
                                         <div>
                                             <button type="submit" class="btn btn-outline-primary">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif ($StatusId == 8)
+                                <div @class(['p-4', 'font-bold' => true]) style="background:white;">
+                                    <input type="hidden" name="timeline_status_id" value="4">
+                                    <div class="mb-3 text-center">
+                                        <p>if everything is fine, then accept your order.</p>
+                                        <div>
+                                            <button type="submit" class="btn btn-outline-primary">Accept</button>
                                         </div>
                                     </div>
                                 </div>

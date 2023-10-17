@@ -53,7 +53,7 @@
                                                 You
                                             @endif - {{ $timeline->timelineStatus->description }}
                                             at {{ $timeline->created_at->format('H:i A') }}
-                                            @if ($timeline->timelineStatus->id == 2 && $timeline->file !== null)
+                                            @if ($timeline->timelineStatus->id != 4 && $timeline->file !== null)
                                                 <p>
                                                     <a href="{{ asset($timeline->file) }}" download>Download</a>
                                                 </p>
@@ -70,7 +70,7 @@
             <div class="col-md-6 p-3">
                 <div class="row justify-content-center align-items-start"
                     style="min-height: 300px; border: 2px solid black;">
-                    @if ($StatusId == 4)
+                    @if ($StatusId == 4 || $StatusId == 9)
                         <div class="col-12 mt-4">
                             <div class="alert alert-danger" role="alert">
                                 <h4 class="alert-heading">Order Cancelled!</h4>
@@ -103,24 +103,55 @@
                                 </div>
 
                             </form>
-                        @endif
-                        <form class="col-6 mt-3" method="POST" action="{{ route('order-details.store') }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="order_id" value="{{ $order_id }}" readonly>
-                            @if ($StatusId >= 1 && $StatusId <= 3)
-                                <div @class(['p-4', 'font-bold' => true]) style="background:white;">
-                                    <input type="hidden" name="timeline_status_id" value="4">
-                                    <div class="mb-3 text-center">
-                                        <p>Want to cancel the order?</p>
-                                        <div>
-                                            <button type="submit" class="btn btn-outline-primary">Yes</button>
-                                        </div>
+                        @elseif($StatusId >= 1 && $StatusId <= 3)
+                            <form class="col-6 mt-3" method="POST" action="{{ route('order-details.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{ $order_id }}" readonly>
+
+                                <div class="card p-4">
+                                    <div class="form-group mb-4">
+                                        <label for="timeline_status_id">Update status now:</label>
+                                        <select id="timeline_status_id" name="timeline_status_id" class="form-control mt-2">
+                                            <option value="5">Accept</option>
+                                            <option value="4">Cancel</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-end mb-2 mt-4">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
-                            @endif
+                            </form>
+                        @elseif($StatusId == 5)
+                            <form class="col-6 mt-3" method="POST" action="{{ route('order-details.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{ $order_id }}" readonly>
 
-                        </form>
+                                <div class="card p-4">
+                                    <h4> Order completed ?</h4>
+                                    <div class="form-group mb-4">
+                                        <input type="hidden" name="timeline_status_id" value="8">
+                                        <div class="mb-3">
+                                            <label for="formFileMultiple" class="form-label">Send files-</label>
+                                            <input class="form-control" type="file" id="formFileMultiple" name="file">
+                                        </div>
+                                    </div>
+                                    <div class="text-end mb-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        @elseif($StatusId == 8)
+                            <div class="col-12 mt-4">
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Completed</h4>
+                                    <p>Now wait for the buyer to accept the order.</p>
+
+                                </div>
+                            </div>
+                        @endif
+
                     @endif
                 </div>
 

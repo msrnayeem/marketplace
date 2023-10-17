@@ -37,6 +37,21 @@ class OrderTimelineController extends Controller
         $order_id = $request->order_id;
         $status_id = $request->timeline_status_id;
 
+        if ($status_id == 4 || 5 || 8) {
+            $order = Order::find($order_id);
+            if ($order_id == 4) {
+                $order->status = 'cancelled';
+            }
+            if ($order_id == 5) {
+                $order->status = 'completed';
+            }
+            if ($order_id == 8) {
+                $order->status = 'dispute';
+            }
+
+            $order->save();
+        }
+
         if ($request->hasFile('file')) {
             $uploadedFile = $request->file('file');
             if ($uploadedFile->isValid()) {
@@ -57,6 +72,8 @@ class OrderTimelineController extends Controller
             'changed_by' => auth()->user()->id,
             'file' => $fileUrl ?? null,
         ]);
+
+
 
         return redirect()->back()->with('success', 'Order timeline updated successfully');
     }
