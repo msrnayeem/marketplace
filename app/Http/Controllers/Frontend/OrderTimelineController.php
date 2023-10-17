@@ -37,7 +37,7 @@ class OrderTimelineController extends Controller
         $order_id = $request->order_id;
         $status_id = $request->timeline_status_id;
 
-        if ($status_id == 4 || 5 || 8) {
+        if ($status_id == 4 || 5 || 8 || 9) {
             $order = Order::find($order_id);
             if ($order_id == 4) {
                 $order->status = 'cancelled';
@@ -47,6 +47,9 @@ class OrderTimelineController extends Controller
             }
             if ($order_id == 8) {
                 $order->status = 'dispute';
+            }
+            if ($order_id == 9) {
+                $order->status = 'completed';
             }
 
             $order->save();
