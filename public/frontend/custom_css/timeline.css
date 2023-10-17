@@ -1,0 +1,28 @@
+body {
+    background-color: #eee;
+}
+
+.list-group-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.list-group-item span {
+    font-weight: bold;
+    color: #333;
+}
+
+.timeline-date {
+    color: #dd3b3b;
+    margin-bottom: 5px;
+}
+
+
+
+.nav-underline .nav-link.active {
+    color: #0f85b0;
+    border-bottom: 3px solid #0f85b0;
+}

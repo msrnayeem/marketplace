@@ -8,6 +8,7 @@ use App\Models\OrderTimeline;
 use App\Http\Requests\StoreOrderTimelineRequest;
 use App\Http\Requests\UpdateOrderTimelineRequest;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class OrderTimelineController extends Controller
 {
@@ -32,30 +33,76 @@ class OrderTimelineController extends Controller
      */
     public function store(StoreOrderTimelineRequest $request)
     {
-        //
+
+        $order_id = $request->order_id;
+        $status_id = $request->timeline_status_id;
+
+        if ($request->hasFile('file')) {
+            $uploadedFile = $request->file('file');
+            if ($uploadedFile->isValid()) {
+                // Generate a new file name
+                $newFileName = 'requirement-' . $request->order_id . '-' . now()->format('YmdHis') . '.' . $uploadedFile->getClientOriginalExtension();
+
+                // Store the file in the public disk (storage/app/public/requirement directory)
+                $filePath = $uploadedFile->storeAs('public/requirement', $newFileName);
+
+                // Get the full public URL to the stored file
+                $fileUrl = asset('storage/requirement/' . $newFileName);
+            }
+        }
+
+        $orderTimeline = OrderTimeline::create([
+            'order_id' => $order_id,
+            'timeline_status_id' => $status_id,
+            'changed_by' => auth()->user()->id,
+            'file' => $fileUrl ?? null,
+        ]);
+
+        return redirect()->back()->with('success', 'Order timeline updated successfully');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show($order_detail)
     {
+        if ($order_detail == null) {
+            return redirect()->back()->with('error', 'Order not found');
+        }
+        if (!Auth::check()) {
+            //redirect to login route
+            return redirect()->route('login');
+        }
         $order = Order::where('order_id', $order_detail)->firstOrFail();
 
-        $seller = false;
-        if ($order->seller_id == auth()->user()->id) {
-            $seller = true;
+        $order_id = $order->id;
+
+        if ($order !== null && $order->buyer_id == auth()->user()->id || $order->seller_id == auth()->user()->id) {
+            $timelines = OrderTimeline::where('order_id', $order->id)
+                ->with('changedBy', 'timelineStatus')
+                ->orderBy('created_at', 'asc')
+                ->get()
+                ->groupBy(function ($date) {
+                    return Carbon::parse($date->created_at)->format('d-m-Y');
+                })
+                ->map(function ($timelineGroup) {
+                    return $timelineGroup->groupBy('timelineStatus.name');
+                });
+
+
+        } else {
+            return redirect()->back()->with('error', 'You are not authorized to view this order timeline');
         }
 
-        $timelines = OrderTimeline::where('order_id', $order->id)
-            ->with('changedBy', 'timelineStatus')
-            ->orderBy('created_at', 'asc') // You might want to order them first before grouping
-            ->get()
-            ->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d-m-Y');
-            });
+        $StatusId = OrderTimeline::where('order_id', $order->id)->orderBy('created_at', 'desc')->first()->timeline_status_id;
 
-        return view('frontend.pages.order-timeline', compact('timelines', 'seller'));
+        if ($order->seller_id == Auth::user()->id) {
+            return view('frontend.pages.order-timeline-seller', compact('timelines', 'order_id', 'StatusId'));
+        } else {
+            return view('frontend.pages.order-timeline-buyer', compact('timelines', 'order_id', 'StatusId'));
+        }
+
     }
 
 

@@ -97,7 +97,7 @@ class OrderController extends Controller
                 'order_id' => Carbon::now()->timestamp . $gig_id . $buyer_id . $package->price,
                 'gig_id' => $gig_id,
                 'gig_package_id' => $package_id,
-                'buyer_id' => $buyer_id,
+                'buyer_id' => Auth::user()->id,
                 'seller_id' => $gig->user_id,
                 'amount' => $package->price,
                 'delivery_date' => Carbon::now()->addDays($package->delivery_time),
@@ -107,7 +107,7 @@ class OrderController extends Controller
             $order->orderTimeline()->create([
                 'timeline_status_id' => 1,
                 'order_id' => $order->id,
-                'changed_by' => $buyer_id,
+                'changed_by' => Auth::user()->id,
             ]);
 
 
