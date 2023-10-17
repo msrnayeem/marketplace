@@ -29,6 +29,7 @@
                                 <i class="fa-regular fa-bell position-relative">
                                     @if (Auth::user()->unreadNotifications->count() > 0)
                                         <i class="fa-solid fa-circle position-absolute top-0" style="right: -7px;"></i>
+                                        o
                                     @endif
                                 </i>
                             </a>
