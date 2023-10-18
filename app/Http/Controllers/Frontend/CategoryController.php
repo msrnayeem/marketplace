@@ -52,7 +52,7 @@ class CategoryController extends Controller
             return Category::where('key', $key)->with('subCategories.subSubCategories')->first();
         });
 
-        $view = view('frontend.pages.category', compact('category'))->render();
+        $view = view('frontend.pages.gigs.category', compact('category'))->render();
         Cache::put($cacheKey, $view, 3600*24*7);
 
         return $view;

@@ -19,6 +19,6 @@ class UserDashboardController extends Controller
         }
 
         $seller = Auth::user();
-        return view('frontend.pages.seller_dashboard', compact('seller'));
+        return view('frontend.pages.profile.seller_dashboard', compact('seller'));
     }
 }

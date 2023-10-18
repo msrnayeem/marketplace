@@ -22,7 +22,7 @@ class UserController extends Controller
         $id = auth()->user()->id;
         $user = User::find($id);
 
-        return view('frontend.pages.auth-profile', compact('user', 'rollout'));
+        return view('frontend.pages.profile.auth-profile', compact('user', 'rollout'));
 
     }
 

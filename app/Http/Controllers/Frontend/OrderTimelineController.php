@@ -118,9 +118,9 @@ class OrderTimelineController extends Controller
         $StatusId = OrderTimeline::where('order_id', $order->id)->orderBy('created_at', 'desc')->first()->timeline_status_id;
 
         if ($order->seller_id == Auth::user()->id) {
-            return view('frontend.pages.order-timeline-seller', compact('timelines', 'order_id', 'StatusId'));
+            return view('frontend.pages.order.order-timeline-seller', compact('timelines', 'order_id', 'StatusId'));
         } else {
-            return view('frontend.pages.order-timeline-buyer', compact('timelines', 'order_id', 'StatusId'));
+            return view('frontend.pages.order.order-timeline-buyer', compact('timelines', 'order_id', 'StatusId'));
         }
 
     }

@@ -98,4 +98,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return ucfirst($value);
     }
 
+    public function getCreatedAtAttribute($value)
+    {
+        // Customize the date format using the format() method
+        return \Carbon\Carbon::parse($value)->format('M-y');
+    }
+
 }

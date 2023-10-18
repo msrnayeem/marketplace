@@ -29,7 +29,7 @@ class GigController extends Controller
         });
 
         // Cache the rendered view
-        $view = view('frontend.pages.gigs', compact('gigs'))->render();
+        $view = view('frontend.pages.gigs.gigs', compact('gigs'))->render();
         Cache::put('all_gigs_view', $view, 3600);
 
         return $view;
@@ -72,7 +72,7 @@ class GigController extends Controller
             }
         ])->where('sub_sub_category_id', $subSubCategoryId)->get();
 
-        return view('frontend.pages.gigs', compact('gigs'));
+        return view('frontend.pages.gigs.gigs', compact('gigs'));
     }
 
 
@@ -98,7 +98,7 @@ class GigController extends Controller
      */
     public function show(Gig $gig)
     {
-        return view('frontend.pages.single', compact('gig'));
+        return view('frontend.pages.gigs.single', compact('gig'));
     }
 
     /**

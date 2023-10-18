@@ -38,7 +38,7 @@ class OrderController extends Controller
                 $query->where('buyer_id', $userId);
             })
             ->get();
-        return view('frontend.pages.order-index', compact('sellings', 'buyings'));
+        return view('frontend.pages.order.order-index', compact('sellings', 'buyings'));
     }
 
     /**
@@ -137,7 +137,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('frontend.pages.order-details', compact('order'));
+        return view('frontend.pages.order.order-details', compact('order'));
     }
 
     /**

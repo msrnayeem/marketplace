@@ -9,34 +9,42 @@
 @section('content')
     <div class="container main">
         <div class="row align-items-start">
-            <div class="col sm-1 col-md-5 col-xl-3 mb-3 mb-sm-3 p-4">
-                <div class="row mb-4">
-                    <div class="card text-center">
-                        <div class="img container text-center ">
-                            <img src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle mt-2" alt="profile"
-                                width="140" height="150">
-                            <h3 class="m-0 mt-1 text-capitalize">{{ Auth::user()->name }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-outline-primary">Preview Miver Profile</a>
-
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item border-0">An item</li>
-                                <li class="list-group-item border-0">A second item</li>
-                                <li class="list-group-item border-0">A third item</li>
-                            </ul>
+            <div class="col sm-12 col-md-5 col-xl-3 mb-3 mb-sm-3">
+                <div class="row mb-4" style="background: white">
+                    <div class="img container text-center ">
+                        <img src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle mt-2" alt="profile"
+                            width="140" height="150">
+                        <h3 class="m-0 mt-1 text-capitalize">{{ Auth::user()->name }}</h3>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col text-center">
+                            <a href="#" class="btn btn-outline-primary" style="width: 60%;">Preview Profile</a>
                         </div>
                     </div>
+
+                    <div class="row mt-2">
+                        <div class="col d-flex justify-content-between">
+                            <p class="d-inline">From -</p>
+                            <p class="d-inline">Bangladesh</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-between">
+                            <p class="d-inline">Member since- </p>
+                            <p class="d-inline">{{ Auth::user()->created_at }}</p>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="row mb-4">
                     <div class="card">
                         <div class="card-body p-2">
+
                             <div class="row">
-                                <div class="col-md-6">
-                                    <h5 class="card-title">Description</h5>
-                                </div>
-                                <div class="col-md-6 d-none d-md-inline text-right">
-                                    <a class="card-text" href="#">Edit Description</a>
+                                <div class="col d-flex justify-content-between">
+                                    <h5 class="card-title d-inline">Description</h5>
+                                    <a class="d-inline">Edit</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -114,13 +122,15 @@
 
             <!-- right column seller-->
             @if ($user->is_seller == 1)
-                <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4 d-none d-sm-block" style="height:400px;">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <a href="#" class="btn-standard btn-green rounded">Become Seller</a>
-                        </div>
-                    </div>
+                <div class="col-md-7 col-xl-9 justify-content-center align-items-center"
+                    style="height: 400px; background:white;">
+
+                    <a href="#" class="btn-standard btn-green rounded">Become Seller</a>
+
                 </div>
+
+
+
                 <!-- right column become seller-->
             @else
                 <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4">
