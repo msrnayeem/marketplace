@@ -1,6 +1,6 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Professional info-' . Auth::user()->name)
+@section('title', "Gig's basic info")
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}">
@@ -9,12 +9,12 @@
     <!-- Bootstrap-select CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.1/dist/css/bootstrap-select.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/professional-info.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/basic-info.css') }}">
 @endpush
 @section('content')
 
     <div class="container">
-        <form method="POST" action="{{ route('professional-info.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data">
             @csrf
 
 
@@ -53,54 +53,8 @@
                 </div>
             </div>
 
-            <div class="row my-5 py-2">
-                <div class="col-md-4">
-                    <label for="skills" class="header_name">Skills<span class="text-danger">*</span> </label>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table" id="skillsTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Skill Name</th>
-                                        <th scope="col">Skill Level</th>
-                                        <th scope="col"><span class="add-skill">+</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Skills will be dynamically added here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row my-5 py-2">
-                <div class="col-md-4">
-                    <label for="education" class="header_name">Education<span class="text-danger">*</span> </label>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table" id="educationTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Institute name</th>
-                                        <th scope="col">Degree</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col"><span class="add-education">+</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="my-2 py-2 text-end">
                 <button type="submit" class="btn btn-success"
                     style="background-color:#1dbf73; color:white;">Continue</button>
@@ -114,5 +68,5 @@
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- custom JS -->
-        <script src="{{ asset('frontend/custom_js/professional-info.js') }}"></script>
+        <script src="{{ asset('frontend/custom_js/basic-info.js') }}"></script>
     @endpush

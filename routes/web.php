@@ -58,6 +58,7 @@ Route::get('/terms-of-services', [IndexController::class, 'termsOfServices'])->n
 Route::resource('categories', CategoryController::class);
 //GIGs
 Route::resource('gigs', GigController::class);
+Route::get('add-gig-basic', [GigController::class,'addGigBasic'])->name('add.gig.basic');
 Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
 
 //Orders

@@ -102,6 +102,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(PersonalInfo::class);
     }
 
+    public function ProfessionalInfo()
+    {
+        return $this->hasOne(ProfessionalInfo::class);
+    }
+
     public function getNameAttribute($value)
     {
         return ucfirst($value);

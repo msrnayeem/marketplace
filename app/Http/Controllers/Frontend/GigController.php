@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Cache;
 
 class GigController extends Controller
 {
+
+    public function addGigBasic()
+    {
+
+        return view('frontend.pages.gigs.add-gig-basic');
+    }
+
     public function index()
     {
         // Check if the rendered view is already cached

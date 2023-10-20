@@ -68,6 +68,7 @@ class PersonalInfoController extends Controller
                 'user_id' => Auth::user()->id,
             ];
 
+            PersonalInfo::create($formattedData);
             // Handle the uploaded image
             if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
                 $uploadedFile = $request->file('avatar');

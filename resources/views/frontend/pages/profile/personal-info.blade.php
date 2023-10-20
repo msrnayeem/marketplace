@@ -93,6 +93,7 @@
                 </div>
             </div>
 
+
             <div class="row my-5 py-2">
                 <div class="col-md-4">
                     <label for="language" class="header_name">Language <span class="text-danger">*</span> </label>
@@ -107,11 +108,12 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+
             <div class="my-2 py-2 text-end">
-                <button class="btn btn-success" style="background-color:#1dbf73; color:white;">Continue</button>
+                <button type="submit" class="btn btn-success"
+                    style="background-color:#1dbf73; color:white;">Continue</button>
             </div>
         </form>
 
