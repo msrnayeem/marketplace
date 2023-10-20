@@ -1,0 +1,45 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.camera-icon {
+    font-size: 48px;
+    cursor: pointer;
+}
+
+#imageInput {
+    display: none;
+}
+
+.preview-container img {
+    max-width: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+
+.container {
+    font: 400 16px/24px "Macan", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header_name {
+    font-size: 18px;
+}
+
+.input-group .input-group-prepend,
+.input-group .input-group-append {
+    display: flex;
+}
+
+.add-icon,
+.remove-icon {
+    cursor: pointer;
+    line-height: 30px;
+    margin-left: 10px;
+    /* Adjust the margin as per your preference */
+}
+
+.step-header {
+    border-bottom: 1px solid #e4e5e7;
+}

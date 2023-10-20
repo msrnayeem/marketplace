@@ -4,12 +4,18 @@
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/profile.css') }}">
+    <style>
+        #edit-desc {
+            cursor: pointer;
+
+        }
+    </style>
 @endpush
 
 @section('content')
     <div class="container main">
         <div class="row align-items-start">
-            <div class="col sm-12 col-md-5 col-xl-3 mb-3 mb-sm-3">
+            <div class="col-xl-3 sm-12 col-md-5 mb-3 mb-sm-3">
                 <div class="row mb-4" style="background: white">
                     <div class="img container text-center ">
                         <img src="{{ asset(Auth::user()->avatar) }}" class="rounded-circle mt-2" alt="profile"
@@ -40,23 +46,22 @@
                 <div class="row mb-4">
                     <div class="card">
                         <div class="card-body p-2">
-
-                            <div class="row">
-                                <div class="col d-flex justify-content-between">
-                                    <h5 class="card-title d-inline">Description</h5>
-                                    <a class="d-inline">Edit</a>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                                        content.With supporting text below as a natural lead-in to additional content
-                                        With supporting text below as a natural lead-in to additional content
-                                        With supporting text below as a natural lead-in to additional content
-                                        With supporting text below as a natural lead-in to additional content
-                                        With supporting text below as a natural lead-in to additional content
-                                        With supporting text below as a natural lead-in to additional content
+                                    <div class="col d-flex justify-content-between">
+                                        <h5 class="card-title d-inline">Description</h5>
+                                        <a class="d-inline" id="edit-desc">Edit</a>
+                                    </div>
+                                    <p class="card-text" id="description" contenteditable="false">
+                                        With supporting text below as a natural lead-in to additional content...
                                     </p>
+                                    <div id="edit-buttons" style="display: none;">
+                                        <button class="btn btn-primary" id="save-btn">Save</button>
+                                        <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                                    </div>
+
+
+
                                 </div>
                                 <hr>
                                 <div class="col-md-12 mb-3">
@@ -65,14 +70,13 @@
                                             <h5 class="card-title">Languages</h5>
                                         </div>
                                         <div class="col-md-6 d-none d-md-inline text-right">
-                                            <a class="card-text" href="#">Add New</a>
+                                            <p class="card-text" id="edit">Edit</p>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
-                                                <ul class="list-group list-group-flush">
+                                                <ul class="list-group list-group-flush" id="language-list">
                                                     <li class="list-group-item">English - Fluent</li>
-                                                    <li class="list-group-item">English - Fluent</li>
-                                                    <li class="list-group-item">English - Fluent</li>
+                                                    <li class="list-group-item">Bengali - Fluent</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -122,18 +126,17 @@
 
             <!-- right column seller-->
             @if ($user->is_seller == 1)
-                <div class="col-md-7 col-xl-9 justify-content-center align-items-center"
-                    style="height: 400px; background:white;">
-
-                    <a href="#" class="btn-standard btn-green rounded">Become Seller</a>
-
+                <div class="col-xl-9 col-md-7 sm-12 mb-sm-3" style="height: 450px;">
+                    <div class="container h-100 w-100 p-4" style="background:rgb(223, 141, 141);">
+                        <a href="{{ route('become.seller') }}" class="btn-standard btn-green rounded">Become Seller</a>
+                    </div>
                 </div>
 
 
 
                 <!-- right column become seller-->
             @else
-                <div class="col sm-1 col-md-7 col-xl-9 mb-sm-3 p-3 p-md-4 p-xl-4">
+                <div class="col-md-7 col-xl-9 mb-sm-3 p-3">
                     <div class="container h-100 w-100">
                         <div class="row mx-0">
                             <div class="container mt-2 p-0">
@@ -285,6 +288,51 @@
     </div>
     @push('scripts')
         <script src="{{ asset('frontend/custom_js/profile.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('#edit-desc').on('click', function() {
+                    var descriptionElement = $('#description');
+                    var editButtons = $('#edit-buttons');
+
+                    descriptionElement.attr('contenteditable', 'true');
+                    descriptionElement.focus();
+                    editButtons.show();
+
+                    $('#save-btn').on('click', function() {
+                        descriptionElement.attr('contenteditable', 'false');
+
+                        //jquery ajax to save the description to the server
+
+
+                        editButtons.hide();
+                    });
+
+                    $('#cancel-btn').on('click', function() {
+                        descriptionElement.attr('contenteditable', 'false');
+                        // Revert the description back to its original content
+
+                        // You can fetch the original content from the server if necessary
+
+                        editButtons.hide();
+                    });
+                });
+
+                $("#edit").click(function() {
+                    var languageList = $("#language-list");
+                    var isEditable = languageList.attr("contenteditable") === "true";
+
+                    if (!isEditable) {
+                        // Change "Edit" button to "Cancel" and make the list items editable
+                        $(this).text("Cancel");
+                        languageList.attr("contenteditable", "true").focus();
+                    } else {
+                        // Change "Cancel" button back to "Edit" and make the list items non-editable
+                        $(this).text("Edit");
+                        languageList.attr("contenteditable", "false");
+                    }
+                });
+            });
+        </script>
     @endpush
 
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Order;
 use App\Models\OrderTimeline;
 use App\Http\Requests\StoreOrderTimelineRequest;
@@ -37,23 +38,38 @@ class OrderTimelineController extends Controller
         $order_id = $request->order_id;
         $status_id = $request->timeline_status_id;
 
-        if ($status_id == 4 || 5 || 8 || 9) {
+        if (in_array($status_id, [4, 5, 8, 9])) {
             $order = Order::find($order_id);
-            if ($order_id == 4) {
-                $order->status = 'cancelled';
-            }
-            if ($order_id == 5) {
-                $order->status = 'completed';
-            }
-            if ($order_id == 8) {
-                $order->status = 'dispute';
-            }
-            if ($order_id == 9) {
-                $order->status = 'completed';
+
+            switch ($status_id) {
+                case 4:
+                    $order->status = 'cancelled';
+                    break;
+                case 5:
+                    $order->status = 'confirmed';
+                    break;
+                case 8:
+                    $order->status = 'dispute';
+                    break;
+                case 9:
+                    $order->status = 'completed';
+
+                    //add account balance
+                    $account = Account::create([
+                        'user_id' => $order->seller_id,
+                        'amount'=> $order->amount,
+                        'type'=> 'plus',
+                    ]);
+                    $account->save();
+
+                    break;
             }
 
             $order->save();
         }
+
+
+
 
         if ($request->hasFile('file')) {
             $uploadedFile = $request->file('file');

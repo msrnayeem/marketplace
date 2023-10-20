@@ -113,7 +113,9 @@
                                         <input type="hidden" name="timeline_status_id" value="8">
                                         <div class="mb-3">
                                             <label for="formFileMultiple" class="form-label">Send files-</label>
-                                            <input class="form-control" type="file" id="formFileMultiple" name="file">
+                                            <input class="form-control" type="file" id="formFileMultiple" name="file"
+                                                accept=".jpg, .jpeg, .png, .pdf">
+
                                         </div>
                                     </div>
                                     <div class="text-end mb-2">

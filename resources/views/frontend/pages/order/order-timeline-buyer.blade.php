@@ -50,7 +50,8 @@
                                 <input type="hidden" name="timeline_status_id" value="2">
                                 <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">Send Requirements</label>
-                                    <input class="form-control" type="file" id="formFileMultiple" name="file">
+                                    <input class="form-control" type="file" id="formFileMultiple" name="file"
+                                        accept=".jpg, .jpeg, .png, .pdf">
                                     <button type="submit" class="btn btn-outline-primary mt-3">Update</button>
                                 </div>
                             @endif

@@ -5,8 +5,10 @@ use App\Http\Controllers\Frontend\GigController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\ProfessionalInfoController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\OrderTimelineController;
+use App\Http\Controllers\Frontend\PersonalInfoController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -65,6 +67,9 @@ Route::resource('order-details', OrderTimelineController::class);
 //user routes
 Route::resource('users', UserController::class);
 Route::get('/my_profile/{rollout?}', [UserController::class, 'userProfile'])->name('user.profile');
+Route::resource('personal-info', PersonalInfoController::class);
+Route::resource('professional-info', ProfessionalInfoController::class);
+Route::get('become-seller', [PersonalInfoController::class, 'becomeSeller'])->name('become.seller');
 Route::get('/seller-dashboard', [UserDashboardController::class, 'index'])->name('seller.dashboard');
 
 //notifications clear
