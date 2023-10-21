@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gig extends Model
 {
+
+    protected $fillable = [
+        'title',
+        'sub_sub_category_id',
+        'user_id',
+        'description',
+        'status',
+    ];
+
+
     public function gigPackages()
     {
         return $this->hasMany(GigPackage::class);
@@ -23,5 +33,5 @@ class Gig extends Model
         return $this->hasMany(GigImage::class);
     }
 
-    
+
 }

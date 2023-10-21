@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\GigController;
+use App\Http\Controllers\Frontend\GigImageController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -57,10 +58,12 @@ Route::get('/terms-of-services', [IndexController::class, 'termsOfServices'])->n
 
 //Category resource route
 Route::resource('categories', CategoryController::class);
-Route::get('/get-sub-categories/{categoryId}',[SubCategoryController::class, 'show'])->name('get.sub.categories');
+Route::get('/get-sub-categories/{categoryId}', [SubCategoryController::class, 'show'])->name('get.sub.categories');
 //GIGs
 Route::resource('gigs', GigController::class);
-Route::get('/add-gig-basic', [GigController::class,'addGigBasic'])->name('add.gig.basic');
+Route::get('/add-gig-basic', [GigController::class, 'addGigBasic'])->name('add.gig.basic');
+Route::resource('gig-images', GigImageController::class);
+Route::get('/add-gig-image/{id}', [GigImageController::class, 'addImageToGig'])->name('add.gig.image');
 Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
 
 //Orders

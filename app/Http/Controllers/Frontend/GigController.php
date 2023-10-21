@@ -97,7 +97,19 @@ class GigController extends Controller
      */
     public function store(StoreGigRequest $request)
     {
-        //
+        $gig = Gig::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+            'sub_sub_category_id' => $request->subCategory,
+            'description' => $request->about,
+            'status' => 1,
+        ]);
+
+        if ($gig) {
+            return redirect()->route('add.gig.image', ['id' => $gig->id]);
+        }
+
+        return redirect()->route('add.gig.basic')->withInput();
     }
 
     /**

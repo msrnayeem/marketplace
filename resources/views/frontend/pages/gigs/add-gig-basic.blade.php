@@ -15,7 +15,7 @@
     <style>
     </style>
     <div class="container p-4">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('gigs.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card p-4">
                 <div class="row">
@@ -28,7 +28,12 @@
                     </div>
                     <div class="col-4 d-flex flex-column">
                         <div class="form-group d-flex flex-column flex-grow-1">
-                            <textarea class="form-control flex-grow-1" id="title" name="title" placeholder="start with I will do"></textarea>
+                            <textarea class="form-control flex-grow-1 @error('title') is-invalid @enderror" id="title" name="title"
+                                placeholder="Start with 'I will do'">{{ old('title') }}</textarea>
+                            @error('title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
                         </div>
                     </div>
                 </div>
@@ -45,7 +50,11 @@
                     <div class="col-4 d-flex flex-column">
                         <div class="form-group d-flex flex-column flex-grow-1">
                             <div class="d-flex mb-2">
-                                <select class="form-select mx-2" id="category" name="category">
+                                <select class="form-select mx-2 @error('category') is-invalid @enderror" id="category"
+                                    name="category">
+                                    @error('category')
+                                        is-invalid
+                                    @enderror">
                                     <option value="" selected disabled>Select Category</option>
                                     <option value="1">Graphics & Design</option>
                                     <option value="2">Programming & Tech</option>
@@ -58,24 +67,50 @@
                                     <option value="9">Photography</option>
                                     <option value="10">AI Services</option>
                                 </select>
-                                <select class="form-select mx-2" id="subCategory" name="subCategory">
+                                @error('category')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <select class="form-select mx-2 @error('subCategory') is-invalid @enderror" id="subCategory"
+                                    name="subCategory">
+                                    @error('subCategory')
+                                        is-invalid
+                                    @enderror">
                                     <option value="" selected disabled>Select Sub-category</option>
                                     <!-- Options will be dynamically populated using JavaScript -->
                                 </select>
+                                @error('subCategory')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
+
                 </div>
 
+                <br>
 
+                <div class="row">
+                    <div class="col-4 d-flex flex-column">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h3>About</h3>
+                            <p>write something about your gig</p>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex flex-column">
+                        <div class="form-group d-flex flex-column flex-grow-1">
+                            <textarea class="form-control flex-grow-1 @error('about') is-invalid @enderror" id="about" name="about"
+                                placeholder="Gig description here, minimum 50 characters">{{ old('about') }}</textarea>
+                            @error('about')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
 
-
-
-
-
-
-
-
+                        </div>
+                    </div>
+                </div>
+                <div class="my-2 py-2 text-end">
+                    <button type="submit" class="btn btn-success"
+                        style="background-color:#1dbf73; color:white;">Continue</button>
+                </div>
             </div>
         </form>
     @endsection
@@ -99,6 +134,7 @@
 
                             // Populate the select with subcategories
                             data.data.forEach(function(subcategory) {
+                                select.append('<option value="">Select sub category</option>');
                                 select.append('<option value="' + subcategory.id + '">' +
                                     subcategory.name + '</option>');
                             });
