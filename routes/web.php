@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ProfessionalInfoController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\OrderTimelineController;
 use App\Http\Controllers\Frontend\PersonalInfoController;
+use App\Http\Controllers\Frontend\SubCategoryController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserDashboardController;
@@ -56,9 +57,10 @@ Route::get('/terms-of-services', [IndexController::class, 'termsOfServices'])->n
 
 //Category resource route
 Route::resource('categories', CategoryController::class);
+Route::get('/get-sub-categories/{categoryId}',[SubCategoryController::class, 'show'])->name('get.sub.categories');
 //GIGs
 Route::resource('gigs', GigController::class);
-Route::get('add-gig-basic', [GigController::class,'addGigBasic'])->name('add.gig.basic');
+Route::get('/add-gig-basic', [GigController::class,'addGigBasic'])->name('add.gig.basic');
 Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
 
 //Orders

@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -48,12 +48,12 @@ class CategoryController extends Controller
             return Cache::get($cacheKey);
         }
 
-        $category = Cache::remember("category_{$key}", 3600*24*7, function () use ($key) {
+        $category = Cache::remember("category_{$key}", 3600 * 24 * 7, function () use ($key) {
             return Category::where('key', $key)->with('subCategories.subSubCategories')->first();
         });
 
         $view = view('frontend.pages.gigs.category', compact('category'))->render();
-        Cache::put($cacheKey, $view, 3600*24*7);
+        Cache::put($cacheKey, $view, 3600 * 24 * 7);
 
         return $view;
     }

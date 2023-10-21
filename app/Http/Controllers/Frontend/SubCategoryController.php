@@ -34,13 +34,26 @@ class SubCategoryController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(SubCategory $subCategory)
+    public function show($categoryId)
     {
-        //
+        $subCategories = SubCategory::where('category_id', $categoryId)->select('id', 'name')->get();
+
+        if ($subCategories->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No subcategories found for the given category ID.',
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Subcategories retrieved successfully.',
+            'data' => $subCategories,
+        ]);
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
