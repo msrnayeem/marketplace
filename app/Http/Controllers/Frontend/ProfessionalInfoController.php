@@ -16,8 +16,19 @@ class ProfessionalInfoController extends Controller
      */
     public function index()
     {
-        return view("frontend.pages.profile.professional-info");
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::user()->id;
+
+        if (!ProfessionalInfo::where('user_id', $userId)->exists()) {
+            return redirect()->route('add.gig.basic');
+        }
+
+        return redirect()->route('add.gig.basic');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -57,6 +68,12 @@ class ProfessionalInfoController extends Controller
 
             // Check if the record was successfully created
             if ($professionalInfo) {
+
+                //update in user table, is_seller
+                $user = Auth::user();
+                $user->is_seller = 1;
+                $user->save();
+
                 return redirect()->route('add.gig.basic');
             } else {
                 return redirect()->back()->with('error', 'Failed to save personal information. Please try again.'); // Redirect back with an error message

@@ -12,56 +12,72 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/custom_css/basic-info.css') }}">
 @endpush
 @section('content')
-
-    <div class="container">
+    <style>
+    </style>
+    <div class="container p-4">
         <form method="POST" action="" enctype="multipart/form-data">
             @csrf
-
-
-            <header class="step-header pt-4">
-                <h2 class="fw-bold my-3" style="color:#62646a;">Professional Info</h2>
-                <p class="mb-0" style="max-Width: 475px; color: #95979d;font-weight:600;font-size:15px">Tell us a bit
-                    about
-                    yourself. This information will appear on your public profile, so that potential buyers can get to know
-                    you
-                    better.</p>
-                <p class="text-end fst-italic" style="color: #95979d;font-weight:600;">* Mandatory fields</p>
-            </header>
-
-            <div class="row my-5 py-2"> <!-- Added mb-4 class to add bottom margin -->
-                <div class="col-md-4">
-                    <label for="full_name" class="header_name">Your Occupation<span class="text-danger">*</span><span
-                            class="fst-italic ps-2" style="color: #95979d;">public</span></label>
-                </div>
-                <div class="col-md-8 d-flex">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <select class="form-select" id="profession" name="profession">
-                                <option value="web_developer">Web Developer</option>
-                                <option value="web_designer">Web Designer</option>
-                                <!-- Add more profession options here -->
-                            </select>
+            <div class="card p-4">
+                <div class="row">
+                    <div class="col-4 d-flex flex-column">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h3>Gig title</h3>
+                            <p>As your Gig storefront, your <strong>title is the most important place </strong> to include
+                                keywords that buyers would likely use to search for a service like yours.</p>
                         </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="fromYear" name="fromYear"
-                                placeholder="Start Year">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="toYear" name="toYear" placeholder="End Year">
+                    </div>
+                    <div class="col-4 d-flex flex-column">
+                        <div class="form-group d-flex flex-column flex-grow-1">
+                            <textarea class="form-control flex-grow-1" id="title" name="title" placeholder="start with I will do"></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-4 d-flex flex-column">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <h3>Category</h3>
+                            <p>Choose the category and sub-category most suitable for your Gig.</p>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex flex-column">
+                        <div class="form-group d-flex flex-column flex-grow-1">
+                            <div class="d-flex mb-2">
+                                <select class="form-select mx-2" id="category" name="category">
+                                    <option value="" selected disabled>Select Category</option>
+                                    <option value="1">Graphics & Design</option>
+                                    <option value="2">Programming & Tech</option>
+                                    <option value="3">Digital Marketing</option>
+                                    <option value="4">Video & Animation</option>
+                                    <option value="5">Writing & Translation</option>
+                                    <option value="6">Music & Audio</option>
+                                    <option value="7">Business</option>
+                                    <option value="8">Data</option>
+                                    <option value="9">Photography</option>
+                                    <option value="10">AI Services</option>
+                                </select>
+                                <select class="form-select mx-2" id="subCategory" name="subCategory">
+                                    <option value="" selected disabled>Select Sub-category</option>
+                                    <!-- Options will be dynamically populated using JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
-            <div class="my-2 py-2 text-end">
-                <button type="submit" class="btn btn-success"
-                    style="background-color:#1dbf73; color:white;">Continue</button>
+
+
+
+
+
+
+
             </div>
         </form>
-
-
     @endsection
 
     @push('scripts')
