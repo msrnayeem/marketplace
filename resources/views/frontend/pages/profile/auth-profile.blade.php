@@ -15,13 +15,6 @@
 @section('content')
     <div class="container main">
         <div class="row align-items-start">
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
             <div class="col-xl-3 sm-12 col-md-5 mb-3 mb-sm-3">
                 <div class="row mb-4" style="background: white">
                     <div class="img container text-center ">
@@ -133,213 +126,225 @@
 
             <!-- right column seller-->
             @if ($user->is_seller == 0)
-                <div class="col-xl-9 col-md-7 sm-12 mb-sm-3" style="height: 450px;">
+                <div class="col-xl-9 col-md-7 col-sm-12 mb-sm-3" style="height: 450px;">
                     <div class="container h-100 w-100 p-4" style="background:rgb(223, 141, 141);">
                         <a href="{{ route('become.seller') }}" class="btn-standard btn-green rounded">Become Seller</a>
                     </div>
                 </div>
-
-
-
-                <!-- right column become seller-->
             @else
-                <div class="col-md-7 col-xl-9 mb-sm-3 p-3">
-                    <div class="container h-100 w-100">
+                <div class="col-xl-9 col-md-7 col-sm-12 mb-sm-3" style="height: 450px;">
+                    <div class="container mt-2 p-0">
                         <div class="row mx-0">
-                            <div class="container mt-2 p-0">
-                                <div class="row mx-0" style="height: 70px;">
-                                    <div class="border border-2 bg-light d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <label class="text-center fs-5 active-tab" id="active-gigs">Active</label>
+                            <!-- Tab Names -->
+                            <div class="col-10 mb-4">
+                                <div class="nav flex-row nav-pills p-2" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <a class="nav-link active" id="active-tab" data-bs-toggle="pill" href="#active-content"
+                                        role="tab" aria-controls="active-content" aria-selected="true">Active</a>
+                                    <a class="nav-link" id="drafts-tab" data-bs-toggle="pill" href="#drafts-content"
+                                        role="tab" aria-controls="drafts-content" aria-selected="false">Drafts</a>
+                                </div>
+                            </div>
+
+                            <!-- Tab Bodies -->
+                            <div class="col-10 mt-4">
+                                <div class="tab-content" id="v-pills-tabContent">
+
+                                    <div class="tab-pane fade show active" id="active-content" role="tabpanel"
+                                        aria-labelledby="active-tab">
+                                        <div class="custom-flex flex-wrap">
+                                            @foreach ($user->gigs as $gig)
+                                                @if ($gig->is_active == 1 && $gig->status == 1)
+                                                    <div class="custom-col d-flex flex-column">
+                                                        <div class="card custom-card flex-fill">
+                                                            <div id="carousel-{{ $gig->id }}" class="carousel slide"
+                                                                data-bs-ride="carousel">
+                                                                <div class="carousel-inner">
+                                                                    @foreach ($gig->gigImages as $index => $image)
+                                                                        <div
+                                                                            class="carousel-item{{ $index === 0 ? ' active' : '' }}">
+                                                                            <img src="{{ asset($image->imagePath) }}"
+                                                                                class="rounded d-block w-100"
+                                                                                alt="gig images">
+                                                                        </div>
+                                                                    @endforeach
+
+                                                                </div>
+                                                                <button class="carousel-control-prev" type="button"
+                                                                    data-bs-target="#carousel-{{ $gig->id }}"
+                                                                    data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Previous</span>
+                                                                </button>
+                                                                <button class="carousel-control-next" type="button"
+                                                                    data-bs-target="#carousel-{{ $gig->id }}"
+                                                                    data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Next</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="card-body mt-2 p-0">
+                                                                <a href="{{ route('gigs.show', ['gig' => $gig]) }}"
+                                                                    class="card-title mb-4">{{ $gig->title }}</a>
+                                                                <p class="card-text txt mt-4">Start
+                                                                    From- ${{ $gig->gigPackages->first()->price }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+
+
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <label class="text-center fs-5" id="drafts">Drafts</label>
+                                    </div>
+
+
+
+                                    <div class="tab-pane fade" id="drafts-content" role="tabpanel"
+                                        aria-labelledby="drafts-tab">
+                                        <div class="custom-flex flex-wrap">
+                                            <div class="custom-col d-flex flex-column">
+                                                <div class="card custom-card flex-fill create-gig">
+                                                    <a href="{{ route('become.seller') }}">
+                                                        <i class="fa-solid fa-circle-plus"
+                                                            style="color: #222325;font-size:60px;"></i>
+                                                    </a>
+                                                    <p>Create a new Gig</p>
+                                                </div>
+                                            </div>
+                                            @foreach ($user->gigs as $gig)
+                                                @if ($gig->is_active == 0 || $gig->status == 0)
+                                                    <div class="custom-col d-flex flex-column">
+                                                        <div class="card custom-card flex-fill">
+                                                            <div id="carousel-{{ $gig->id }}" class="carousel slide"
+                                                                data-bs-ride="carousel">
+                                                                <div class="carousel-inner">
+                                                                    @foreach ($gig->gigImages as $index => $image)
+                                                                        <div
+                                                                            class="carousel-item{{ $index === 0 ? ' active' : '' }}">
+                                                                            <img src="{{ asset($image->imagePath) }}"
+                                                                                class="rounded d-block w-100"
+                                                                                alt="gig images">
+                                                                        </div>
+                                                                    @endforeach
+
+                                                                </div>
+                                                                <button class="carousel-control-prev" type="button"
+                                                                    data-bs-target="#carousel-{{ $gig->id }}"
+                                                                    data-bs-slide="prev">
+                                                                    <span class="carousel-control-prev-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Previous</span>
+                                                                </button>
+                                                                <button class="carousel-control-next" type="button"
+                                                                    data-bs-target="#carousel-{{ $gig->id }}"
+                                                                    data-bs-slide="next">
+                                                                    <span class="carousel-control-next-icon"
+                                                                        aria-hidden="true"></span>
+                                                                    <span class="visually-hidden">Next</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="card-body mt-2 p-0">
+                                                                <a href="{{ route('gigs.show', ['gig' => $gig->id]) }}"
+                                                                    class="card-title mb-4">{{ $gig->title }}</a>
+                                                                <p class="card-text txt mt-4">Start
+                                                                    From- ${{ $gig->gigPackages->first()->price }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div class="row mx-0 h-100 w-100">
-                            <div class="container mt-2 p-0" id="for_gigs">
-                                <div class="row mt-4">
-                                    @foreach ($user->gigs as $gig)
-                                        @if ($gig->is_active == 1 && $gig->status == 1)
-                                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                                <div class="card border-0 p-2">
-
-                                                    <div id="carouselExample{{ $gig->id }}"
-                                                        class="carousel slide mb-2">
-                                                        <div class="carousel-inner">
-                                                            @php $i = 0; @endphp
-                                                            @foreach ($gig->gigImages as $gigImage)
-                                                                <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                                                                    <div class="image-container rounded">
-                                                                        <img src="{{ $gigImage->imagePath }}"
-                                                                            class="d-block w-100" alt="...">
-                                                                    </div>
-                                                                </div>
-                                                                @php $i++; @endphp
-                                                            @endforeach
-                                                        </div>
-                                                        @if (count($gig->gigImages) > 1)
-                                                            <button class="carousel-control-prev" type="button"
-                                                                data-bs-target="#carouselExample{{ $gig->id }}"
-                                                                data-bs-slide="prev">
-                                                                <span class="carousel-control-prev-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Previous</span>
-                                                            </button>
-                                                            <button class="carousel-control-next" type="button"
-                                                                data-bs-target="#carouselExample{{ $gig->id }}"
-                                                                data-bs-slide="next">
-                                                                <span class="carousel-control-next-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Next</span>
-                                                            </button>
-                                                            <ol class="carousel-indicators">
-                                                                @for ($j = 0; $j < count($gig->gigImages); $j++)
-                                                                    <li data-bs-target="#carouselExample{{ $gig->id }}"
-                                                                        data-bs-slide-to="{{ $j }}"
-                                                                        class="{{ $j === 0 ? 'active' : '' }}"></li>
-                                                                @endfor
-                                                            </ol>
-                                                        @endif
-                                                    </div>
-                                                    <div class="card-body p-1 mt-2">
-                                                        <a class="h5 text-dark"
-                                                            style="cursor: default;">{{ $gig->title }}</a>
-                                                        @if ($gig->gigPackages->isNotEmpty())
-                                                            <p class="mt-2" style="font-weight:800;">From -
-                                                                {{ $gig->gigPackages->first()->price }}</p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-
-
-                            <div class="container mt-2 p-0" id="for_drafts" style="display: none;">
-                                <div class="row mt-4">
-                                    @foreach ($user->gigs as $gig)
-                                        @if ($gig->is_active == 0 || $gig->status == 0)
-                                            <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                                <div class="card border-0 h-100">
-
-                                                    <div id="carouselExample{{ $gig->id }}"
-                                                        class="carousel slide mb-2">
-                                                        <div class="carousel-inner">
-                                                            @if (count($gig->gigImages) == null)
-                                                                <div class="image-container rounded">
-                                                                    <img src="{{ asset('frontend/images/gigs/website-1.png') }}"
-                                                                        class="d-block w-100" alt="...">
-                                                                </div>
-                                                        </div>
-                                                    @else
-                                                        @php $i = 0; @endphp
-                                                        @foreach ($gig->gigImages as $gigImage)
-                                                            <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                                                                <div class="image-container rounded">
-                                                                    <img src="{{ asset('website-2.png') }}"
-                                                                        class="d-block w-100" alt="...">
-                                                                </div>
-                                                            </div>
-                                                            @php $i++; @endphp
-                                                        @endforeach
-                                        @endif
-                                </div>
-                                @if (count($gig->gigImages) > 1)
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselExample{{ $gig->id }}" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                    <ol class="carousel-indicators">
-                                        @for ($j = 0; $j < count($gig->gigImages); $j++)
-                                            <li data-bs-target="#carouselExample{{ $gig->id }}"
-                                                data-bs-slide-to="{{ $j }}"
-                                                class="{{ $j === 0 ? 'active' : '' }}"></li>
-                                        @endfor
-                                    </ol>
-                                @endif
-                            </div>
-                            <div class="card-body p-1 mt-2">
-                                <a class="card-title text-dark" style="cursor: default;">{{ $gig->title }}</a>
-                                @if ($gig->gigPackages->isNotEmpty())
-                                    <p class="mt-2" style="font-weight:800;">From -
-                                        {{ $gig->gigPackages->first()->price }}</p>
-                                @endif
-                            </div>
                         </div>
                     </div>
+
+                </div>
             @endif
-            @endforeach
+
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    @endif
 
+        <style>
+            .nav-pills {
+                background-color: #ffffff;
+            }
 
-    </div>
+            .tab-content {
+                min-height: 500px;
+                padding: 20px;
+
+            }
+
+            .custom-flex {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: start;
+                gap: 15px;
+            }
+
+            .custom-card {
+                padding: 5px;
+                border-radius: 0;
+                background-color: #ffffff;
+                min-height: 260px;
+                width: 232px;
+            }
+
+            .create-gig {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .card-body a {
+                font-size: 15px;
+                cursor: pointer;
+                color: black;
+                font-style: normal;
+                font-weight: 400;
+            }
+
+            .card-body {
+                line-height: 1.2;
+            }
+
+            .title {
+                margin-top: 6px;
+                margin-bottom: 32px;
+            }
+
+            .txt {
+                font-weight: 500;
+                cursor: default;
+
+            }
+
+            .nav-pills .nav-link {
+                color: black;
+                border-bottom: 5px solid transparent;
+                border-radius: 0;
+                font-size: 25px;
+            }
+
+            .nav-pills .nav-link.active,
+            .nav-pills .show>.nav-link {
+                color: black;
+                background-color: transparent;
+            }
+
+            .nav-pills .nav-link.active {
+                border-bottom: 5px solid green;
+                font-weight: 700;
+            }
+        </style>
+
     </div>
     @push('scripts')
         <script src="{{ asset('frontend/custom_js/profile.js') }}"></script>
-        <script>
-            $(document).ready(function() {
-                $('#edit-desc').on('click', function() {
-                    var descriptionElement = $('#description');
-                    var editButtons = $('#edit-buttons');
-
-                    descriptionElement.attr('contenteditable', 'true');
-                    descriptionElement.focus();
-                    editButtons.show();
-
-                    $('#save-btn').on('click', function() {
-                        descriptionElement.attr('contenteditable', 'false');
-
-                        //jquery ajax to save the description to the server
-
-
-                        editButtons.hide();
-                    });
-
-                    $('#cancel-btn').on('click', function() {
-                        descriptionElement.attr('contenteditable', 'false');
-                        // Revert the description back to its original content
-
-                        // You can fetch the original content from the server if necessary
-
-                        editButtons.hide();
-                    });
-                });
-
-                $("#edit").click(function() {
-                    var languageList = $("#language-list");
-                    var isEditable = languageList.attr("contenteditable") === "true";
-
-                    if (!isEditable) {
-                        // Change "Edit" button to "Cancel" and make the list items editable
-                        $(this).text("Cancel");
-                        languageList.attr("contenteditable", "true").focus();
-                    } else {
-                        // Change "Cancel" button back to "Edit" and make the list items non-editable
-                        $(this).text("Edit");
-                        languageList.attr("contenteditable", "false");
-                    }
-                });
-            });
-        </script>
     @endpush
 
 @endsection

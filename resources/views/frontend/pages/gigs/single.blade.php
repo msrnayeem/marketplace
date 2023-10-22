@@ -9,7 +9,8 @@
 @endpush
 
 @section('content')
-
+    <br>
+    <br>
     <!-- Breadcrumbs container -->
     <div class="container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
