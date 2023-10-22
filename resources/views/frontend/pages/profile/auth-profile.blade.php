@@ -15,6 +15,13 @@
 @section('content')
     <div class="container main">
         <div class="row align-items-start">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="col-xl-3 sm-12 col-md-5 mb-3 mb-sm-3">
                 <div class="row mb-4" style="background: white">
                     <div class="img container text-center ">
@@ -125,7 +132,7 @@
             </div>
 
             <!-- right column seller-->
-            @if ($user->is_seller == 1)
+            @if ($user->is_seller == 0)
                 <div class="col-xl-9 col-md-7 sm-12 mb-sm-3" style="height: 450px;">
                     <div class="container h-100 w-100 p-4" style="background:rgb(223, 141, 141);">
                         <a href="{{ route('become.seller') }}" class="btn-standard btn-green rounded">Become Seller</a>
@@ -140,7 +147,7 @@
                     <div class="container h-100 w-100">
                         <div class="row mx-0">
                             <div class="container mt-2 p-0">
-                                <div class="row mx-0" style="height: 50px;">
+                                <div class="row mx-0" style="height: 70px;">
                                     <div class="border border-2 bg-light d-flex align-items-center">
                                         <div class="flex-grow-1">
                                             <label class="text-center fs-5 active-tab" id="active-gigs">Active</label>
@@ -160,7 +167,7 @@
                                     @foreach ($user->gigs as $gig)
                                         @if ($gig->is_active == 1 && $gig->status == 1)
                                             <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                                <div class="card border-0">
+                                                <div class="card border-0 p-2">
 
                                                     <div id="carouselExample{{ $gig->id }}"
                                                         class="carousel slide mb-2">
@@ -169,7 +176,7 @@
                                                             @foreach ($gig->gigImages as $gigImage)
                                                                 <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                                                                     <div class="image-container rounded">
-                                                                        <img src="{{ asset($gigImage->imagePath) }}"
+                                                                        <img src="{{ $gigImage->imagePath }}"
                                                                             class="d-block w-100" alt="...">
                                                                     </div>
                                                                 </div>
@@ -201,7 +208,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="card-body p-1 mt-2">
-                                                        <a class="card-title text-dark"
+                                                        <a class="h5 text-dark"
                                                             style="cursor: default;">{{ $gig->title }}</a>
                                                         @if ($gig->gigPackages->isNotEmpty())
                                                             <p class="mt-2" style="font-weight:800;">From -
@@ -221,7 +228,7 @@
                                     @foreach ($user->gigs as $gig)
                                         @if ($gig->is_active == 0 || $gig->status == 0)
                                             <div class="col-md-6 col-sm-12 col-xl-3 mb-3">
-                                                <div class="card border-0">
+                                                <div class="card border-0 h-100">
 
                                                     <div id="carouselExample{{ $gig->id }}"
                                                         class="carousel slide mb-2">

@@ -48,7 +48,53 @@ class GigPackageController extends Controller
      */
     public function store(StoreGigPackageRequest $request)
     {
-        //
+        $gig_id = $request->gig_id;
+        $basicPrice = $request->basic_price;
+        $basicTime = $request->basic_time;
+        $basic_desc = json_encode($request->basic_desc);
+
+        $gigPackage_1 = GigPackage::create([
+            'gig_id' => $gig_id,
+            'package_id' => 1,
+            'delivery_time' => $basicTime,
+            'description' => $basic_desc,
+            'price' => $basicPrice,
+        ]);
+
+        $standardPrice = $request->standard_price;
+        $standardTime = $request->standard_time;
+        $standard_desc = json_encode($request->standard_desc);
+
+        $gigPackage_2 = GigPackage::create([
+            'gig_id' => $gig_id,
+            'package_id' => 2,
+            'delivery_time' => $standardTime,
+            'description' => $standard_desc,
+            'price' => $standardPrice,
+        ]);
+
+        $premiumPrice = $request->premium_price;
+        $premiumTime = $request->premium_time;
+        $premium_desc = json_encode($request->premium_desc);
+
+        $gigPackage_3 = GigPackage::create([
+            'gig_id' => $gig_id,
+            'package_id' => 3,
+            'delivery_time' => $premiumTime,
+            'description' => $premium_desc,
+            'price' => $premiumPrice,
+        ]);
+
+        if ($gigPackage_1 && $gigPackage_2 && $gigPackage_3) {
+
+            $user = Auth::user();
+            $user->is_seller = 1;
+            $user->save();
+
+            return redirect()->route('user.profile')->with('success', 'Gig Added Successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 
     /**

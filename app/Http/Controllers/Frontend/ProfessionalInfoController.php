@@ -69,11 +69,6 @@ class ProfessionalInfoController extends Controller
             // Check if the record was successfully created
             if ($professionalInfo) {
 
-                //update in user table, is_seller
-                $user = Auth::user();
-                $user->is_seller = 1;
-                $user->save();
-
                 return redirect()->route('add.gig.basic');
             } else {
                 return redirect()->back()->with('error', 'Failed to save personal information. Please try again.'); // Redirect back with an error message

@@ -31,33 +31,33 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" name="basicPrice"
+                                        <input type="text" class="form-control" name="basic_price"
                                             placeholder="Enter Price">
                                     </td>
 
                                     <td>
-                                        <input type="text" class="form-control" name="standardPrice"
+                                        <input type="text" class="form-control" name="standard_price"
                                             placeholder="Enter Price">
                                     </td>
 
                                     <td>
-                                        <input type="text" class="form-control" name="premiumPrice"
+                                        <input type="text" class="form-control" name="premium_price"
                                             placeholder="Enter Price">
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" class="form-control" name="basicTime"
+                                        <input type="text" class="form-control" name="basic_time"
                                             placeholder="Enter Time">
                                     </td>
 
                                     <td>
-                                        <input type="text" class="form-control" name="standardTime"
+                                        <input type="text" class="form-control" name="standard_time"
                                             placeholder="Enter Time">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="premiumTime"
+                                        <input type="text" class="form-control" name="premium_time"
                                             placeholder="Enter Time">
                                     </td>
 
@@ -80,15 +80,15 @@
                             <tbody>
                                 <tr class="detail-row">
                                     <td>
-                                        <input type="text" class="form-control" name="basicDescription"
+                                        <input type="text" class="form-control" name="basic_desc[]"
                                             placeholder="Enter Description">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="standardDescription"
+                                        <input type="text" class="form-control" name="standard_desc[]"
                                             placeholder="Enter Description">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="premiumDescription"
+                                        <input type="text" class="form-control" name="premium_desc[]"
                                             placeholder="Enter Description">
                                     </td>
                                     <td><button type="button" class="btn btn-warning remove-info">-</button></td>

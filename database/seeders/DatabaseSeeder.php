@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             SubSubCategorySeeder::class,
             PackageSeeder::class,
             GigSeeder::class,
-            GigPackageSeeder::class,
+                // GigPackageSeeder::class,
             GigImageSeeder::class,
             TimelineStatusSeeder::class,
         ]);
