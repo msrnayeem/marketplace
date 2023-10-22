@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gig;
 use App\Http\Requests\StoreGigRequest;
 use App\Http\Requests\UpdateGigRequest;
+use Auth;
 use Illuminate\Support\Facades\Cache;
 
 class GigController extends Controller
@@ -13,7 +14,9 @@ class GigController extends Controller
 
     public function addGigBasic()
     {
-
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
         return view('frontend.pages.gigs.add-gig-basic');
     }
 

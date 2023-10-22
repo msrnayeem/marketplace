@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\GigController;
 use App\Http\Controllers\Frontend\GigImageController;
+use App\Http\Controllers\Frontend\GigPackageController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -16,61 +17,48 @@ use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Authentication routes
 require __DIR__ . '/auth.php';
 
-
-//FOR GOOGLE AUTH
+// Social authentication routes
 Route::get('/auth/google/redirect', [SocialAuthController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback'])->name('google.callback');
-
-//FOR FACEBOOK AUTH
 Route::get('/auth/facebook/redirect', [SocialAuthController::class, 'redirectToFacebook'])->name('facebook.redirect');
 Route::get('/auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback'])->name('facebook.callback');
 
-//FRONTEND ROUTES
+// Frontend routes
 Route::get('/', [IndexController::class, 'index'])->name('home');
-
-//privacy policy
 Route::get('/privacy-policy', [IndexController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-of-services', [IndexController::class, 'termsOfServices'])->name('terms.of.services');
 
-//Category resource route
+// Category and Subcategory routes
 Route::resource('categories', CategoryController::class);
 Route::get('/get-sub-categories/{categoryId}', [SubCategoryController::class, 'show'])->name('get.sub.categories');
-//GIGs
+
+// Gig routes
 Route::resource('gigs', GigController::class);
 Route::get('/add-gig-basic', [GigController::class, 'addGigBasic'])->name('add.gig.basic');
 Route::resource('gig-images', GigImageController::class);
+Route::resource('gig-packages', GigPackageController::class);
+Route::get('/create-packages/{gig_id}', [GigPackageController::class, 'create'])->name('gig.packages');
 Route::get('/add-gig-image/{id}', [GigImageController::class, 'addImageToGig'])->name('add.gig.image');
 Route::get('/gigsby/{subSubCategoryId}', [GigController::class, 'gigsBySubSubCategory'])->name('gigs.subSubCategory');
 
-//Orders
+// Order routes
 Route::resource('orders', OrderController::class);
 Route::resource('order-details', OrderTimelineController::class);
 
-//user routes
+// User routes
 Route::resource('users', UserController::class);
 Route::get('/my_profile/{rollout?}', [UserController::class, 'userProfile'])->name('user.profile');
 Route::resource('personal-info', PersonalInfoController::class);
@@ -78,7 +66,6 @@ Route::resource('professional-info', ProfessionalInfoController::class);
 Route::get('become-seller', [PersonalInfoController::class, 'becomeSeller'])->name('become.seller');
 Route::get('/seller-dashboard', [UserDashboardController::class, 'index'])->name('seller.dashboard');
 
-//notifications clear
+// Notification routes
 Route::get('/mark-as-read', [NotificationController::class, 'markAllRead'])->name('clear.notifications');
-
 Route::get('/notification-read/{notification}', [NotificationController::class, 'singleNotificationRead'])->name('single.notification.read');

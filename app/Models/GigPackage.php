@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class GigPackage extends Model
 {
+
+    protected $fillable = [
+        'gig_id',
+        'package_id',
+        'description',
+        'delivery_time',
+        'price',
+    ];
+
     public function package()
     {
         return $this->belongsTo(Package::class);

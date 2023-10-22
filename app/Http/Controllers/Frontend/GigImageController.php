@@ -7,6 +7,7 @@ use App\Models\Gig;
 use App\Models\GigImage;
 use App\Http\Requests\StoreGigImageRequest;
 use App\Http\Requests\UpdateGigImageRequest;
+use Auth;
 use Illuminate\Support\Str;
 
 class GigImageController extends Controller
@@ -24,10 +25,21 @@ class GigImageController extends Controller
      */
     public function addImageToGig($id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $gig = Gig::findOrFail($id);
         if ($gig->user_id != auth()->user()->id) {
             abort(403);
         }
+
+        $image = GigImage::where('gig_id', $id)->first();
+
+        if ($image) {
+            return redirect()->back()->with('error', 'You have already added an image to this gig!');
+        }
+
         return view('frontend.pages.gigs.add-gig-image', compact('id'));
     }
 
@@ -43,6 +55,7 @@ class GigImageController extends Controller
 
         $validatedData = $request->validated();
         $fileUrls = [];
+        $gigId = $request->gig_id;
         // Check if the request has 'images' key and it's an array
         if (isset($validatedData['images']) && is_array($validatedData['images'])) {
             foreach ($validatedData['images'] as $image) {
@@ -60,12 +73,12 @@ class GigImageController extends Controller
 
         foreach ($fileUrls as $image) {
             GigImage::create([
-                'gig_id' => $request->gig_id,
+                'gig_id' => $gigId,
                 'imagePath' => $image,
             ]);
         }
 
-        return redirect()->back()->with('success', 'Gig image(s) added successfully!');
+        return redirect()->route('gig.packages', ['gig_id' => $gigId]);
 
     }
 
