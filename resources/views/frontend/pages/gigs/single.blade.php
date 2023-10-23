@@ -131,7 +131,7 @@
                     </div>
                     <div class="seller-info">
                         <div class="">
-                            <img src="{{ asset('image.png') }}" alt="Seller Icon" class="seller-icon">
+                            <img src="{{ $gig->user->avatar }}" alt="Seller Icon" class="seller-icon">
                         </div>
                         <div class="seller-column">
                             <a class="seller-name">{{ $gig->user->name }}</a>
@@ -143,18 +143,13 @@
                     <div class="seller-details">
                         <div class="info">
                             <p>From: United States</p>
-                            <p>Member since: Sep 2019</p>
-                            <p>Languages: English</p>
+                            <p>Member since: {{ $gig->user->created_at }}</p>
+                            <p>Languages: {{ implode(', ', json_decode($gig->user->PersonalInfo->languages)) }}</p>
                             <p>Last delivery: about 2 hours</p>
                         </div>
                         <div class="about">
                             <hr>
-                            <p>
-                                I am a Freelance designer with over 15 years of experience in the advertising industry and a
-                                diploma in graphic design. I design to live, but I also live to design. I specialize in
-                                logos,
-                                branding, web design, illustration, infographics, websites, and PowerPoint.
-                            </p>
+                            <p> {{ $gig->user->PersonalInfo->description }} </p>
                         </div>
                     </div>
                 </div>
@@ -180,8 +175,12 @@
                                 <form method="post" action="{{ route('orders.store') }}">
                                     @csrf
                                     <div class="package-info">
-                                        <h2>Basic Package</h2>
-                                        <p>Package details for Basic.</p>
+                                        <ul>
+                                            @foreach (json_decode($gig->gigPackages[0]->description) as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+
                                         <p>Basic Price: ${{ $gig->gigPackages[0]->price }}</p>
                                     </div>
                                     <input type="hidden" name="gig_id" value="{{ $gig->id }}" id="gig_id">
@@ -198,8 +197,11 @@
                                 <form method="post" action="{{ route('orders.store') }}">
                                     @csrf
                                     <div class="package-info">
-                                        <h2>Standard Package</h2>
-                                        <p>Package details for Basic.</p>
+                                        <ul>
+                                            @foreach (json_decode($gig->gigPackages[1]->description) as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
                                         <p>Standard Price: ${{ $gig->gigPackages[1]->price }}</p>
                                     </div>
                                     <input type="hidden" name="gig_id" value="{{ $gig->id }}" id="gig_id">
@@ -215,8 +217,11 @@
                                 <form method="post" action="{{ route('orders.store') }}">
                                     @csrf
                                     <div class="package-info">
-                                        <h2>Premium Package</h2>
-                                        <p>Package details for Basic.</p>
+                                        <ul>
+                                            @foreach (json_decode($gig->gigPackages[2]->description) as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
                                         <p>Premium Price: ${{ $gig->gigPackages[2]->price }}</p>
                                     </div>
                                     <input type="hidden" name="gig_id" value="{{ $gig->id }}" id="gig_id">
