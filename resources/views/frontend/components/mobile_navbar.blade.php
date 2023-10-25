@@ -11,13 +11,13 @@
                     <a href="" class="fw-500 text-dark">{{ Auth::user()->name }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link fw-500">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link fw-500">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link fw-500">Inbox</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link fw-500">Dashboard</a>
+                    <a href="{{ route('seller.dashboard') }}" class="nav-link fw-500">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link fw-500">Lists</a>
@@ -30,12 +30,20 @@
                     <a href="{{ route('login') }}" class="nav-link fw-500">Sign In</a>
                 </li>
             @endif
+            <style>
+                .accordion-body {
+                    padding: 0;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
 
+                }
+            </style>
             <div class="accordion" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <button class="accordion-button collapsed nav-link fw-500" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                            aria-controls="flush-collapseOne">
                             Browse Categories
                         </button>
                     </h2>
@@ -46,7 +54,7 @@
                                 @foreach ($categories as $category)
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="category{{ $category->id }}Heading">
-                                            <button class="accordion-button collapsed" type="button"
+                                            <button class="accordion-button collapsed nav-link fw-500" type="button"
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#category{{ $category->id }}Collapse"
                                                 aria-expanded="false"
@@ -59,9 +67,12 @@
                                             aria-labelledby="category{{ $category->id }}Heading"
                                             data-bs-parent="#categoryAccordion">
                                             @foreach ($category->subCategories as $subCategory)
-                                                <div class="accordion-body">
-                                                    {{ $subCategory->name }}
-                                                </div>
+                                                @foreach ($subCategory->subSubCategories as $subSubCategory)
+                                                    <div class="accordion-body">
+                                                        <a href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => $subSubCategory->id]) }}"
+                                                            class="nav-link fw-400">{{ $subSubCategory->name }}</a>
+                                                    </div>
+                                                @endforeach
                                             @endforeach
                                         </div>
                                     </div>
@@ -74,8 +85,9 @@
             <div class="accordion" id="exploreAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="exploreHeading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#exploreCollapse" aria-expanded="false" aria-controls="exploreCollapse">
+                        <button class="accordion-button collapsed nav-link fw-500" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#exploreCollapse" aria-expanded="false"
+                            aria-controls="exploreCollapse">
                             Explore
                         </button>
                     </h2>
@@ -113,8 +125,8 @@
             <div class="accordion" id="businessAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="businessHeading">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#businessCollapse" aria-expanded="false"
+                        <button class="accordion-button collapsed nav-link fw-500" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#businessCollapse" aria-expanded="false"
                             aria-controls="businessCollapse">
                             Business solutions
                         </button>

@@ -41,21 +41,25 @@ class CategoryController extends Controller
     public function show(string $key)
     {
 
-        $cacheKey = "category_{$key}_view";
+        // $cacheKey = "category_{$key}_view";
 
 
-        if (Cache::has($cacheKey)) {
-            return Cache::get($cacheKey);
-        }
+        // if (Cache::has($cacheKey)) {
+        //     return Cache::get($cacheKey);
+        // }
 
-        $category = Cache::remember("category_{$key}", 3600 * 24 * 7, function () use ($key) {
-            return Category::where('key', $key)->with('subCategories.subSubCategories')->first();
-        });
+        // $category = Cache::remember("category_{$key}", 3600 * 24 * 7, function () use ($key) {
+        //     return Category::where('key', $key)->with('subCategories.subSubCategories')->first();
+        // });
 
-        $view = view('frontend.pages.gigs.category', compact('category'))->render();
-        Cache::put($cacheKey, $view, 3600 * 24 * 7);
+        // $view = view('frontend.pages.gigs.category', compact('category'))->render();
+        // Cache::put($cacheKey, $view, 3600 * 24 * 7);
 
-        return $view;
+        // return $view;
+        $category = Category::where('key', $key)->with('subCategories.subSubCategories')->first();
+
+        return view('frontend.pages.gigs.category', compact('category'));
+
     }
 
 

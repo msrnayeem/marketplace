@@ -2,10 +2,12 @@
     <nav class="navbar fixed-top navbar-expand-lg flex-column bg-white">
         <div class="container">
             <div class="nav-brand-wrapper d-flex">
+
                 <button class="navbar-toggler border-0 d-block d-lg-none " id="menu_icon" role="button"
                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <a class="navbar-brand" href="{{ route('seller.dashboard') }}">
                     <img src="{{ asset('frontend/logo.png') }}" class="Brand Logo" width="120" height="42">
                 </a>
@@ -114,3 +116,4 @@
 
     </nav>
 </header>
+@include('frontend.components.mobile_navbar')

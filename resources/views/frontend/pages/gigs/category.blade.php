@@ -94,34 +94,34 @@
 
             <!-- Content for desktop screens (hidden on small screens) -->
             <div class="d-none d-md-block mt-4">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+                <div class="row mt-4">
                     @foreach ($category->subCategories as $subcategory)
-                        <div class="col">
-                            <div class="card mt-2" style="width: 18rem; border:none;">
-                                <img src="{{ asset('image.png') }}" class="card-img-top rounded" alt="..."
-                                    width="200">
-                                <div class="card-body mt-4">
-                                    <h5 class="card-title" style="cursor:default;">{{ $subcategory->name }}</h5>
+                        <div class="col-md-3 col-sm-12 d-flex">
+                            <div class="card flex-fill mt-2" style="border: none;">
+                                <img src="{{ asset('image.png') }}" class="card-img-top rounded" alt="...">
+                                <div class="card-body mt-4 d-flex flex-column">
+                                    <h5 class="card-title" style="cursor: pointer;">{{ $subcategory->name }}</h5>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    @if ($subcategory->subSubCategories->count() > 0)
-                                        @foreach ($subcategory->subSubCategories as $subSubCategory)
-                                            <li class="list-group-item " style="border: none; text-align: left;">
-                                                <a
-                                                    href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => $subSubCategory->id]) }}">
-                                                    {{ $subSubCategory->name }}
-                                                </a>
-                                                <i class="fas fa-chevron-right" id="right-arrow"></i>
-                                            </li>
-                                        @endforeach
-                                    @else
-                                        <li class="list-group-item" style="cursor:default;">No subcategories</li>
-                                    @endif
+                                <ul class="list-group list-group-flush flex-fill">
+                                    @forelse ($subcategory->subSubCategories as $subSubCategory)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                                            style="border: none; text-align: left;">
+                                            <a
+                                                href="{{ route('gigs.subSubCategory', ['subSubCategoryId' => $subSubCategory->id]) }}">
+                                                {{ $subSubCategory->name }}
+                                            </a>
+                                            <i class="fas fa-chevron-right" id="right-arrow"></i>
+                                        </li>
+                                    @empty
+                                        <li class="list-group-item" style="cursor: default;">No subcategories</li>
+                                    @endforelse
                                 </ul>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+
             </div>
         </div>
 

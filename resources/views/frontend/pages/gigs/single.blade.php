@@ -24,17 +24,17 @@
                         {{ $gig->subSubCategory->subCategory->category->name }}
                     </a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                {{-- <li class="breadcrumb-item active" aria-current="page">
                     {{ $gig->subSubCategory->name }}
-                </li>
+                </li> --}}
             </ol>
         </nav>
     </div>
     <!-- Breadcrumbs container END-->
 
-    <div class="container" style="background-color:#ffffff;">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12 order-md-1">
+            <div class="col-md-8 col-sm-12 order-md-1" style="background-color:#ffffff;">
                 <h2> {{ $gig->title }} </h2>
                 <div class="row align-items-center p-1">
                     <div class="col-1">
@@ -87,42 +87,9 @@
 
                 <div class="about-gig">
                     <h3>About this gig</h3>
-                    <p>
-                        We offer groundbreaking mascot logo designs for your business, sports team, or esports clan.
-                        Elevate your marketing by owning an incredible logo and mascot design. We create perfect,
-                        engaging, and eye-catching mascot logos for our clients. Let your audience recognize you from miles
-                        away.
-                        Let's get started and let the world know you.
-                    </p>
-                    <div class="design-approach">
-                        <h3>We Approach Design Strategically:</h3>
-                        <ul>
-                            <li>Exceptional attraction</li>
-                            <li>Unique logo designs</li>
-                            <li>Unlimited Revisions</li>
-                            <li>Industry Experienced Designers</li>
-                            <li>Royalty-free logos</li>
-                            <li>100% Money Back Guarantee</li>
-                        </ul>
-                    </div>
-                    <div class="client-satisfaction">
-                        <h3>WE DELIVER 100% CLIENT SATISFACTION</h3>
-                        <p>
-                            We have extensive experience in Mascot Logo Design. GeeksDigital is focused on delivering 100%
-                            client
-                            satisfaction to its customers.
-                        </p>
-                    </div>
-                    <div class="get-started">
-                        <h3>Ready to Get Started?</h3>
-                        <p>
-                            Our pricing plans are affordable and budget-friendly for everyone. Reach out to a manager to
-                            discuss
-                            your specific mascot logo design needs or any query.
-                        </p>
-                        <p>Thanks,</p>
-                        <p>Team GeeksDigital.</p>
-                    </div>
+
+                    {!! $gig->description !!}
+
                 </div>
                 <hr>
                 <div class="about-seller border border-2 p-2">
@@ -163,7 +130,7 @@
             <div class="col-md-3 col-sm-12 order-md-3">
                 <div class="container order p-0">
                     <div class="card mb-3">
-                        <div class="tab-container border border-primary bg-success">
+                        <div class="tab-container border">
                             <div class="tab active" data-tab="basic-tab">Basic</div>
                             <div class="tab" data-tab="standard-tab">Standard</div>
                             <div class="tab" data-tab="premium-tab">Premium</div>

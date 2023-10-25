@@ -38,6 +38,23 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('categories', $categories);
         });
+
+        View::composer('frontend.components.seller-header', function ($view) {
+            $categories = Cache::remember('categories', 3600 * 24 * 7, function () {
+                return Category::select('id', 'name', 'key', 'class')->with('subCategories.subSubCategories')->get();
+            });
+
+            // if (!Cache::has('categories')) {
+            //     $data = Category::select('id', 'name', 'key', 'class')->with('subCategories.subSubCategories')->get();
+            //     Cache::put('categories', $data, 60 * 24 * 7);
+
+            // }
+
+            // $categories = Cache::get('categories');
+
+
+            $view->with('categories', $categories);
+        });
     }
 
 }

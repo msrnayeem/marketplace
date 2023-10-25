@@ -98,8 +98,7 @@
                     </div>
                     <div class="col-4 d-flex flex-column">
                         <div class="form-group d-flex flex-column flex-grow-1">
-                            <textarea class="form-control flex-grow-1 @error('about') is-invalid @enderror" id="about" name="about"
-                                placeholder="Gig description here, minimum 50 characters">{{ old('about') }}</textarea>
+                            <textarea id="editor" name="about"></textarea>
                             @error('about')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -112,15 +111,21 @@
                         style="background-color:#1dbf73; color:white;">Continue</button>
                 </div>
             </div>
+
         </form>
     @endsection
 
     @push('scripts')
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
         <!-- custom JS -->
         <script src="{{ asset('frontend/custom_js/basic-info.js') }}"></script>
         <script>
+            CKEDITOR.replace('editor');
+
+            
             $('#category').on('change', function() {
                 var categoryId = $(this).val();
                 $.ajax({
